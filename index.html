@@ -99,22 +99,47 @@ const answer=document.getElementById("answer");
 const message=document.getElementById("message");
 
 let noStreak = 0;
+let hasHadFirstYes = false;
 
 function getResult() {
   noStreak++;
 
-  // The advertised odds are still 99% NO / 1% YES.
-  // But if someone keeps asking, the universe eventually gives in.
-  let yesChance = 0.01;
+  let yesChance;
 
-  if (noStreak >= 10) yesChance = 0.25;
-  if (noStreak >= 11) yesChance = 0.50;
-  if (noStreak >= 12) yesChance = 0.75;
-  if (noStreak >= 13) yesChance = 1.00;
+  if (!hasHadFirstYes) {
+    // First YES is designed to arrive somewhere between toss 6 and 15.
+    if (noStreak <= 5) {
+      yesChance = 0.01;
+    } else if (noStreak === 6) {
+      yesChance = 0.10;
+    } else if (noStreak === 7) {
+      yesChance = 0.15;
+    } else if (noStreak === 8) {
+      yesChance = 0.20;
+    } else if (noStreak === 9) {
+      yesChance = 0.25;
+    } else if (noStreak === 10) {
+      yesChance = 0.30;
+    } else if (noStreak === 11) {
+      yesChance = 0.40;
+    } else if (noStreak === 12) {
+      yesChance = 0.50;
+    } else if (noStreak === 13) {
+      yesChance = 0.60;
+    } else if (noStreak === 14) {
+      yesChance = 0.75;
+    } else {
+      yesChance = 1.00;
+    }
+  } else {
+    // After the first YES, every new toss goes back to 99% NO / 1% YES.
+    yesChance = 0.01;
+  }
 
   const yes = Math.random() < yesChance;
 
   if (yes) {
+    hasHadFirstYes = true;
     noStreak = 0;
   }
 
