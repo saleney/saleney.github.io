@@ -4,188 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Am I The Red Flag? 🚩</title>
-
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:#fff;
+  color:#111;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-
-body {
-  margin: 0;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background: #fff;
-  color: #111;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+.app{width:min(100%,560px);text-align:center}
+h1{
+  margin:0;
+  font-size:clamp(38px,10vw,66px);
+  line-height:1;
+  letter-spacing:-.055em;
+  font-weight:800;
+  white-space:nowrap;
 }
-
-.app {
-  width: min(100%, 560px);
-  text-align: center;
+.subtitle{margin:18px 0 28px;color:#777;font-size:17px}
+textarea{
+  display:block;
+  width:100%;
+  min-height:160px;
+  padding:18px;
+  border:1px solid #ddd;
+  border-radius:14px;
+  outline:none;
+  resize:vertical;
+  background:#fafafa;
+  color:#111;
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-
-h1 {
-  margin: 0;
-  font-size: clamp(38px, 10vw, 66px);
-  line-height: 1;
-  letter-spacing: -0.055em;
-  font-weight: 800;
-  white-space: nowrap;
+textarea:focus{border-color:#999;background:#fff}
+button{
+  width:100%;
+  margin-top:12px;
+  padding:15px;
+  border:0;
+  border-radius:14px;
+  background:#111;
+  color:#fff;
+  font:700 15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  cursor:pointer;
 }
-
-.subtitle {
-  margin: 18px 0 28px;
-  color: #777;
-  font-size: 17px;
+button:disabled{opacity:.5;cursor:wait}
+.result{
+  display:none;
+  margin-top:28px;
+  padding-top:28px;
+  border-top:1px solid #eee;
 }
-
-textarea {
-  display: block;
-  width: 100%;
-  min-height: 160px;
-  padding: 18px;
-  border: 1px solid #ddd;
-  border-radius: 14px;
-  outline: none;
-  resize: vertical;
-  background: #fafafa;
-  color: #111;
-  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+.result.show{display:block}
+.emoji{font-size:38px}
+.verdict{
+  margin:10px 0 8px;
+  font-size:32px;
+  line-height:1;
+  letter-spacing:-.04em;
 }
-
-textarea:focus {
-  border-color: #999;
-  background: #fff;
+.score{
+  margin:0 0 10px;
+  color:#777;
+  font-size:14px;
+  font-weight:700;
 }
-
-button {
-  width: 100%;
-  margin-top: 12px;
-  padding: 15px;
-  border: 0;
-  border-radius: 14px;
-  background: #111;
-  color: #fff;
-  font: 700 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  cursor: pointer;
+.message{
+  margin:0 auto;
+  max-width:450px;
+  color:#555;
+  font-size:16px;
+  line-height:1.5;
 }
-
-button:disabled {
-  opacity: 0.5;
-  cursor: wait;
+.copy{
+  display:none;
+  width:auto;
+  margin:16px auto 0;
+  padding:11px 18px;
+  background:#eee;
+  color:#111;
+  font-size:13px;
 }
-
-.result {
-  display: none;
-  margin-top: 28px;
-  padding-top: 28px;
-  border-top: 1px solid #eee;
-}
-
-.result.show {
-  display: block;
-}
-
-.emoji {
-  font-size: 38px;
-}
-
-.verdict {
-  margin: 10px 0 8px;
-  font-size: 32px;
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.score {
-  margin: 0 0 10px;
-  color: #777;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.message {
-  margin: 0 auto;
-  max-width: 450px;
-  color: #555;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.share {
-  display: none;
-  width: auto;
-  margin: 16px auto 0;
-  padding: 11px 18px;
-  background: #eee;
-  color: #111;
-  font-size: 13px;
-}
-
-.share.show {
-  display: block;
-}
-
-.footer {
-  margin-top: 28px;
-  color: #aaa;
-  font-size: 11px;
-}
-
-@media (max-width: 430px) {
-  h1 {
-    font-size: clamp(31px, 9.8vw, 42px);
-  }
+.copy.show{display:block}
+.footer{margin-top:28px;color:#aaa;font-size:11px}
+@media(max-width:430px){
+  h1{font-size:clamp(31px,9.8vw,42px)}
 }
 </style>
 </head>
 
 <body>
-
 <main class="app">
 
-  <h1>Am I The Red Flag? 🚩</h1>
+<h1>Am I The Red Flag? 🚩</h1>
 
-  <p class="subtitle">
-    Tell me what happened. I'll be honest.
-  </p>
+<p class="subtitle">Tell me what happened. I'll be honest.</p>
 
-  <textarea
-    id="story"
-    maxlength="2000"
-    placeholder="What happened?"
-  ></textarea>
+<textarea id="story" maxlength="2000" placeholder="What happened?"></textarea>
 
-  <button id="judge">JUDGE ME</button>
+<button id="judge">JUDGE ME</button>
 
-  <section class="result" id="result" aria-live="polite">
+<section class="result" id="result">
+  <div class="emoji" id="emoji"></div>
+  <h2 class="verdict" id="verdict"></h2>
+  <p class="score" id="score"></p>
+  <p class="message" id="message"></p>
+  <button class="copy" id="copy">COPY VERDICT</button>
+</section>
 
-    <div class="emoji" id="emoji"></div>
-
-    <h2 class="verdict" id="verdict"></h2>
-
-    <p class="score" id="score"></p>
-
-    <p class="message" id="message"></p>
-
-    <button class="share" id="share">
-      COPY VERDICT
-    </button>
-
-  </section>
-
-  <div class="footer">
-    For entertainment purposes only.
-  </div>
+<div class="footer">For entertainment purposes only.</div>
 
 </main>
 
-
 <script>
-
 const story = document.getElementById("story");
 const judge = document.getElementById("judge");
 const result = document.getElementById("result");
@@ -193,580 +128,229 @@ const emoji = document.getElementById("emoji");
 const verdict = document.getElementById("verdict");
 const score = document.getElementById("score");
 const message = document.getElementById("message");
-const share = document.getElementById("share");
+const copy = document.getElementById("copy");
 
+/*
+  FRESH VERSION
+  The scoring is intentionally simple and direct.
+*/
 
-/* =========================
-   RED FLAG BEHAVIORS
-   ========================= */
+function analyze(text){
 
-const redFlags = [
-
-  {
-    words: [
-      "i cheated",
-      "i cheated on him",
-      "i cheated on her",
-      "i cheated on my boyfriend",
-      "i cheated on my girlfriend",
-      "i cheated on my partner",
-      "cheated on him",
-      "cheated on her"
-    ],
-    points: 60
-  },
-
-  {
-    words: [
-      "broke chopsticks",
-      "broke something when angry",
-      "broke things when angry",
-      "broke something out of anger",
-      "broke an object when angry",
-      "threw something",
-      "threw his phone",
-      "threw her phone",
-      "threw my phone",
-      "punched a wall",
-      "hit a wall",
-      "slammed the door",
-      "smashed something",
-      "destroyed something"
-    ],
-    points: 35
-  },
-
-  {
-    words: [
-      "went through his phone",
-      "went through her phone",
-      "checked his phone",
-      "checked her phone",
-      "read his texts",
-      "read her texts",
-      "read his messages",
-      "read her messages"
-    ],
-    points: 30
-  },
-
-  {
-    words: [
-      "checked his location",
-      "checked her location",
-      "tracked him",
-      "tracked her",
-      "stalked him",
-      "stalked her",
-      "followed him",
-      "followed her"
-    ],
-    points: 28
-  },
-
-  {
-    words: [
-      "made him jealous",
-      "made her jealous",
-      "trying to make him jealous",
-      "trying to make her jealous",
-      "posted to make him jealous",
-      "posted to make her jealous"
-    ],
-    points: 22
-  },
-
-  {
-    words: [
-      "silent treatment",
-      "gave him the silent treatment",
-      "gave her the silent treatment"
-    ],
-    points: 20
-  },
-
-  {
-    words: [
-      "lied to him",
-      "lied to her",
-      "lied about",
-      "hid it from him",
-      "hid it from her"
-    ],
-    points: 18
-  },
-
-  {
-    words: [
-      "revenge",
-      "cheat to get back",
-      "got revenge"
-    ],
-    points: 30
-  },
-
-  {
-    words: [
-      "tested him",
-      "tested her",
-      "test him",
-      "test her",
-      "set a trap"
-    ],
-    points: 15
-  },
-
-  {
-    words: [
-      "fake account",
-      "made a fake account"
-    ],
-    points: 24
-  },
-
-  {
-    words: [
-      "threatened to break up",
-      "threatened to leave"
-    ],
-    points: 18
-  },
-
-  {
-    words: [
-      "yelled at him",
-      "yelled at her",
-      "screamed at him",
-      "screamed at her"
-    ],
-    points: 14
-  },
-
-  {
-    words: [
-      "insulted him",
-      "insulted her",
-      "called him names",
-      "called her names"
-    ],
-    points: 16
-  }
-
-];
-
-
-/* =========================
-   HEALTHY BEHAVIORS
-   ========================= */
-
-const healthy = [
-
-  {
-    words: [
-      "set a boundary",
-      "set boundaries"
-    ],
-    points: -15
-  },
-
-  {
-    words: [
-      "asked for reassurance",
-      "needed reassurance"
-    ],
-    points: -10
-  },
-
-  {
-    words: [
-      "communicated",
-      "had a conversation",
-      "talked about it",
-      "talked to him about it",
-      "talked to her about it"
-    ],
-    points: -8
-  },
-
-  {
-    words: [
-      "ended the relationship",
-      "broke up with him",
-      "broke up with her"
-    ],
-    points: -12
-  },
-
-  {
-    words: [
-      "asked for clarification",
-      "asked what he meant",
-      "asked what she meant"
-    ],
-    points: -8
-  },
-
-  {
-    words: [
-      "told him how i felt",
-      "told her how i felt",
-      "told them how i felt",
-      "expressed how i felt"
-    ],
-    points: -8
-  },
-
-  {
-    words: [
-      "apologized",
-      "apologised",
-      "took accountability",
-      "admitted i was wrong"
-    ],
-    points: -10
-  }
-
-];
-
-
-/* =========================
-   CONTEXT THAT SOFTENS SCORE
-   ========================= */
-
-const context = [
-
-  {
-    words: [
-      "i felt unsafe",
-      "i was scared",
-      "i was afraid"
-    ],
-    points: -12
-  },
-
-  {
-    words: [
-      "he cheated",
-      "she cheated",
-      "he lied",
-      "she lied",
-      "he betrayed me",
-      "she betrayed me"
-    ],
-    points: -10
-  },
-
-  {
-    words: [
-      "he yelled at me",
-      "she yelled at me",
-      "he screamed at me",
-      "she screamed at me"
-    ],
-    points: -10
-  },
-
-  {
-    words: [
-      "he manipulated me",
-      "she manipulated me",
-      "he gaslit me",
-      "she gaslit me"
-    ],
-    points: -10
-  }
-
-];
-
-
-/* =========================
-   CALCULATE SCORE
-   ========================= */
-
-function calculate(text) {
-
-  const lower = text.toLowerCase();
-
-  let total = 8;
-
-  redFlags.forEach(item => {
-
-    if (
-      item.words.some(word =>
-        lower.includes(word)
-      )
-    ) {
-      total += item.points;
-    }
-
-  });
-
-
-  healthy.forEach(item => {
-
-    if (
-      item.words.some(word =>
-        lower.includes(word)
-      )
-    ) {
-      total += item.points;
-    }
-
-  });
-
-
-  context.forEach(item => {
-
-    if (
-      item.words.some(word =>
-        lower.includes(word)
-      )
-    ) {
-      total += item.points;
-    }
-
-  });
-
-
-  return Math.max(
-    0,
-    Math.min(100, total)
-  );
-
-}
-
-
-/* =========================
-   VERDICT
-   ========================= */
-
-function getVerdict(total, text) {
-
-  const lower = text.toLowerCase().trim();
-
-
-  const vague = [
-
-    "idk",
-    "i don't know",
-    "i dont know",
-    "he was weird",
-    "she was weird",
-    "they were weird",
-    "he did something",
-    "she did something",
-    "something happened"
-
-  ];
-
+  const t = text.toLowerCase().trim();
 
   /*
-    INSUFFICIENT EVIDENCE
-
-    Give it a different score every time.
-    Between 5% and 20%.
+    First check whether the person actually gave us a story.
   */
 
-  if (vague.includes(lower)) {
-
-    const evidenceScore =
-      Math.floor(Math.random() * 16) + 5;
-
-
+  if(t.length < 5){
     return {
-
-      emoji: "🧑‍⚖️",
-
-      title: "INSUFFICIENT EVIDENCE",
-
-      score: evidenceScore,
-
-      message:
-        "You cannot expect me to convict someone based on that. Give me the actual story."
-
+      type:"insufficient",
+      score: randomNumber(5,20),
+      emoji:"🧑‍⚖️",
+      title:"INSUFFICIENT EVIDENCE",
+      message:"You cannot expect me to convict someone based on that. Give me the actual story."
     };
-
   }
 
+  /*
+    CHEATING BY THE PERSON WRITING THE STORY
+    This is an automatic red flag.
+  */
 
-  if (total >= 65) {
+  const iCheated =
+    t.includes("i cheated") ||
+    t.includes("i was cheating") ||
+    t.includes("i had an affair") ||
+    t.includes("i slept with someone else") ||
+    t.includes("i hooked up with someone else");
 
+  if(iCheated){
     return {
-
-      emoji: "🚩",
-
-      title: "YOU ARE THE RED FLAG",
-
-      score: total,
-
-      message:
-        "Respectfully... I don't know how you typed all of that out and thought you were going to beat the allegations."
-
+      type:"red",
+      score: randomNumber(75,98),
+      emoji:"🚩",
+      title:"YOU ARE THE RED FLAG",
+      message:"Yeah... we're not going to litigate this one. You cheated."
     };
-
   }
 
+  /*
+    AGGRESSION / BREAKING THINGS
+  */
 
-  if (total >= 40) {
+  const aggression =
+    t.includes("broke chopsticks") ||
+    t.includes("broke something") ||
+    t.includes("broke things") ||
+    t.includes("threw something") ||
+    t.includes("threw his phone") ||
+    t.includes("threw her phone") ||
+    t.includes("punched a wall") ||
+    t.includes("hit a wall") ||
+    t.includes("slammed the door") ||
+    t.includes("smashed something") ||
+    t.includes("destroyed something");
 
+  if(aggression){
     return {
-
-      emoji: "🚩",
-
-      title: "WE HAVE SOME CONCERNS",
-
-      score: total,
-
-      message:
-        "I'm not saying you're the problem. I'm saying the evidence isn't exactly helping your case."
-
+      type:"red",
+      score: randomNumber(55,82),
+      emoji:"🚩",
+      title:"WE HAVE SOME CONCERNS",
+      message:"Breaking or throwing things when you're angry is not exactly a green flag."
     };
-
   }
 
+  /*
+    PRIVACY / CONTROL
+  */
 
-  if (total >= 22) {
+  const privacy =
+    t.includes("went through his phone") ||
+    t.includes("went through her phone") ||
+    t.includes("checked his phone") ||
+    t.includes("checked her phone") ||
+    t.includes("read his texts") ||
+    t.includes("read her texts") ||
+    t.includes("read his messages") ||
+    t.includes("read her messages") ||
+    t.includes("tracked him") ||
+    t.includes("tracked her") ||
+    t.includes("checked his location") ||
+    t.includes("checked her location");
 
+  if(privacy){
     return {
-
-      emoji: "🟡",
-
-      title: "IT'S COMPLICATED",
-
-      score: total,
-
-      message:
-        "There are some yellow flags here. Nobody is getting convicted today."
-
+      type:"red",
+      score: randomNumber(45,72),
+      emoji:"🚩",
+      title:"WE HAVE SOME CONCERNS",
+      message:"Respectfully, violating someone's privacy is not helping your case."
     };
-
   }
 
+  /*
+    MANIPULATION / JEALOUSY
+  */
+
+  const manipulation =
+    t.includes("gave him the silent treatment") ||
+    t.includes("gave her the silent treatment") ||
+    t.includes("silent treatment") ||
+    t.includes("made him jealous") ||
+    t.includes("made her jealous") ||
+    t.includes("tested him") ||
+    t.includes("tested her") ||
+    t.includes("fake account") ||
+    t.includes("lied to him") ||
+    t.includes("lied to her");
+
+  if(manipulation){
+    return {
+      type:"red",
+      score: randomNumber(35,64),
+      emoji:"🚩",
+      title:"WE HAVE SOME CONCERNS",
+      message:"I'm not saying you're the problem. I'm saying the evidence isn't exactly helping your case."
+    };
+  }
+
+  /*
+    HEALTHY / NORMAL RESPONSES
+  */
+
+  const healthy =
+    t.includes("set a boundary") ||
+    t.includes("set boundaries") ||
+    t.includes("communicated") ||
+    t.includes("had a conversation") ||
+    t.includes("talked about it") ||
+    t.includes("asked for reassurance") ||
+    t.includes("asked for clarification") ||
+    t.includes("told him how i felt") ||
+    t.includes("told her how i felt") ||
+    t.includes("broke up with him") ||
+    t.includes("broke up with her") ||
+    t.includes("ended the relationship");
+
+  if(healthy){
+    return {
+      type:"green",
+      score: randomNumber(5,21),
+      emoji:"🟢",
+      title:"NOT THE RED FLAG",
+      message:"You communicated, set a boundary, or made a reasonable choice. This one might actually be on them."
+    };
+  }
+
+  /*
+    IF THE STORY IS REAL BUT WE DON'T RECOGNIZE THE BEHAVIOR,
+    DO NOT automatically call it insufficient evidence.
+  */
 
   return {
-
-    emoji: "🟢",
-
-    title: "NOT THE RED FLAG",
-
-    score: total,
-
-    message:
-      "You're surprisingly reasonable. This one might actually be on them."
-
+    type:"mixed",
+    score: randomNumber(15,35),
+    emoji:"🟡",
+    title:"IT'S COMPLICATED",
+    message:"I need more context before I'm ready to convict either party."
   };
-
 }
 
+function randomNumber(min,max){
+  return Math.floor(Math.random() * (max-min+1)) + min;
+}
 
-/* =========================
-   JUDGE
-   ========================= */
-
-function judgeStory() {
+function judgeStory(){
 
   const text = story.value.trim();
 
-
-  if (!text) {
-
+  if(!text){
     story.focus();
-
     return;
-
   }
 
-
   judge.disabled = true;
-
   judge.textContent = "JUDGING...";
 
+  setTimeout(()=>{
 
-  setTimeout(() => {
+    const resultData = analyze(text);
 
-    const total = calculate(text);
-
-    const verdictData =
-      getVerdict(total, text);
-
-
-    emoji.textContent =
-      verdictData.emoji;
-
-    verdict.textContent =
-      verdictData.title;
-
-    score.textContent =
-      "Red Flag Score: " +
-      verdictData.score +
-      "%";
-
-    message.textContent =
-      verdictData.message;
-
+    emoji.textContent = resultData.emoji;
+    verdict.textContent = resultData.title;
+    score.textContent = "Red Flag Score: " + resultData.score + "%";
+    message.textContent = resultData.message;
 
     result.classList.add("show");
-
-    share.classList.add("show");
-
+    copy.classList.add("show");
 
     judge.disabled = false;
-
     judge.textContent = "JUDGE ME";
 
-
     /*
-      Clear the box so the person can immediately
+      Clear the box so the user can immediately
       enter another scenario.
     */
 
     story.value = "";
-
     story.focus();
 
-  }, 450);
-
+  },450);
 }
 
+judge.addEventListener("click",judgeStory);
 
-/* =========================
-   BUTTON
-   ========================= */
-
-judge.addEventListener(
-  "click",
-  judgeStory
-);
-
-
-/* Command + Enter / Control + Enter */
-
-story.addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      (event.metaKey || event.ctrlKey) &&
-      event.key === "Enter"
-    ) {
-
-      judgeStory();
-
-    }
-
+story.addEventListener("keydown",event=>{
+  if((event.metaKey || event.ctrlKey) && event.key === "Enter"){
+    judgeStory();
   }
-);
+});
 
+copy.addEventListener("click",async()=>{
 
-/* =========================
-   COPY VERDICT
-   ========================= */
-
-share.addEventListener(
-  "click",
-  async () => {
-
-    const text =
+  const text =
 `🚩 AM I THE RED FLAG?
 
 ${verdict.textContent}
@@ -775,36 +359,23 @@ ${message.textContent}
 
 https://saleney.github.io/am-i-the-red-flag/`;
 
+  try{
 
-    try {
+    await navigator.clipboard.writeText(text);
 
-      await navigator.clipboard.writeText(
-        text
-      );
+    copy.textContent = "COPIED ✓";
 
-      share.textContent =
-        "COPIED ✓";
+    setTimeout(()=>{
+      copy.textContent = "COPY VERDICT";
+    },1600);
 
+  }catch(error){
 
-      setTimeout(
-        () =>
-          share.textContent =
-            "COPY VERDICT",
-        1600
-      );
-
-    }
-
-    catch (error) {
-
-      share.textContent =
-        "SELECT & COPY";
-
-    }
+    copy.textContent = "SELECT & COPY";
 
   }
-);
 
+});
 </script>
 
 </body>
