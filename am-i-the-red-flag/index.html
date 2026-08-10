@@ -103,7 +103,7 @@ button:disabled{opacity:.5}
 
 <body>
 <main class="app">
-  <h1>Am I the Red Flag?</h1>
+  <h1>Am I The Red Flag? 🚩</h1>
   <p class="subtitle">Tell me what happened. I'll be honest.</p>
 
   <textarea id="story" maxlength="2000" placeholder="What happened?"></textarea>
@@ -114,7 +114,7 @@ button:disabled{opacity:.5}
     <h2 class="verdict" id="verdict"></h2>
     <p class="score" id="score"></p>
     <p class="message" id="message"></p>
-    <button class="share" id="share">COPY VERDICT</button><button class="reset" id="reset">Try another</button>
+    <button class="share" id="share">COPY VERDICT</button>
   </section>
 
   <div class="footer">For entertainment purposes only.</div>
@@ -128,9 +128,10 @@ const emoji=document.getElementById("emoji");
 const verdict=document.getElementById("verdict");
 const score=document.getElementById("score");
 const message=document.getElementById("message");
-const share=document.getElementById("share"),reset=document.getElementById("reset");
+const share=document.getElementById("share");
 
 const redFlags=[
+["broke something when angry|broke things when angry|broke something out of anger|threw something|threw his phone|threw her phone|punched a wall|hit a wall|slammed the door|smashed something|destroyed something",30],
   ["went through his phone|went through her phone|checked his phone|checked her phone|read his texts|read her texts",30],
   ["checked his location|checked her location|tracked him|tracked her|stalked him|stalked her",28],
   ["made him jealous|made her jealous|trying to make him jealous|trying to make her jealous",22],
