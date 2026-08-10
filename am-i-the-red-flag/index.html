@@ -143,13 +143,13 @@ function getVerdict(total, text){
     "he did something","she did something","something happened"
   ];
 
-  if(text.trim().length < 12 || vague.includes(lower)){
-    return [
-      "🧑‍⚖️",
-      "INSUFFICIENT EVIDENCE",
-      "You cannot expect me to convict someone based on that. Give me the actual story."
-    ];
-  }
+if(vague.includes(lower)){
+  return [
+    "🧑‍⚖️",
+    "INSUFFICIENT EVIDENCE",
+    "You cannot expect me to convict someone based on that. Give me the actual story."
+  ];
+}
 
   if(total >= 65){
     return [
