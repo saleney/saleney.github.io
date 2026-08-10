@@ -6,146 +6,239 @@
 <title>Am I The Red Flag? 🚩</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:24px;background:#fff;color:#111;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{
+  margin:0;min-height:100svh;display:flex;align-items:center;justify-content:center;
+  padding:24px;background:#fff;color:#111;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
 .app{width:min(100%,560px);text-align:center}
-h1{margin:0;font-size:clamp(44px,11vw,68px);line-height:.98;letter-spacing:-.055em;font-weight:800}
+h1{
+  margin:0;
+  font-size:clamp(38px,10vw,66px);
+  line-height:1;
+  letter-spacing:-.055em;
+  font-weight:800;
+  white-space:nowrap;
+}
 .subtitle{margin:18px 0 28px;color:#777;font-size:17px}
-textarea{display:block;width:100%;min-height:160px;padding:18px;border:1px solid #ddd;border-radius:14px;outline:none;resize:vertical;background:#fafafa;color:#111;font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+textarea{
+  display:block;width:100%;min-height:160px;padding:18px;
+  border:1px solid #ddd;border-radius:14px;outline:none;resize:vertical;
+  background:#fafafa;color:#111;
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
 textarea:focus{border-color:#999;background:#fff}
-button{width:100%;margin-top:12px;padding:15px;border:0;border-radius:14px;background:#111;color:#fff;font:700 15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;cursor:pointer}
+button{
+  width:100%;margin-top:12px;padding:15px;border:0;border-radius:14px;
+  background:#111;color:#fff;
+  font:700 15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  cursor:pointer
+}
 button:disabled{opacity:.5;cursor:wait}
-.result{display:none;margin-top:28px;padding-top:28px;border-top:1px solid #eee}
+.result{
+  display:none;margin-top:28px;padding-top:28px;border-top:1px solid #eee
+}
 .result.show{display:block}
 .emoji{font-size:38px}
 .verdict{margin:10px 0 8px;font-size:32px;line-height:1;letter-spacing:-.04em}
 .score{margin:0 0 10px;color:#777;font-size:14px;font-weight:700}
 .message{margin:0 auto;max-width:450px;color:#555;font-size:16px;line-height:1.5}
-.share{display:none;width:auto;margin:16px auto 0;padding:11px 18px;background:#eee;color:#111;font-size:13px}
+.share{
+  display:none;width:auto;margin:16px auto 0;padding:11px 18px;
+  background:#eee;color:#111;font-size:13px
+}
 .share.show{display:block}
 .footer{margin-top:28px;color:#aaa;font-size:11px}
+@media(max-width:430px){
+  h1{font-size:clamp(31px,9.8vw,42px)}
+}
 </style>
 </head>
 <body>
 <main class="app">
-<h1>Am I The Red Flag? 🚩</h1>
-<p class="subtitle">Tell me what happened. I'll be honest.</p>
+  <h1>Am I The Red Flag? 🚩</h1>
+  <p class="subtitle">Tell me what happened. I'll be honest.</p>
 
-<textarea id="story" maxlength="2000" placeholder="What happened?"></textarea>
-<button id="judge">JUDGE ME</button>
+  <textarea id="story" maxlength="2000" placeholder="What happened?"></textarea>
+  <button id="judge">JUDGE ME</button>
 
-<section class="result" id="result" aria-live="polite">
-<div class="emoji" id="emoji"></div>
-<h2 class="verdict" id="verdict"></h2>
-<p class="score" id="score"></p>
-<p class="message" id="message"></p>
-<button class="share" id="share">COPY VERDICT</button>
-</section>
+  <section class="result" id="result" aria-live="polite">
+    <div class="emoji" id="emoji"></div>
+    <h2 class="verdict" id="verdict"></h2>
+    <p class="score" id="score"></p>
+    <p class="message" id="message"></p>
+    <button class="share" id="share">COPY VERDICT</button>
+  </section>
 
-<div class="footer">For entertainment purposes only.</div>
+  <div class="footer">For entertainment purposes only.</div>
 </main>
 
 <script>
-const story=document.getElementById("story");
-const judge=document.getElementById("judge");
-const result=document.getElementById("result");
-const emoji=document.getElementById("emoji");
-const verdict=document.getElementById("verdict");
-const score=document.getElementById("score");
-const message=document.getElementById("message");
-const share=document.getElementById("share");
+const story = document.getElementById("story");
+const judge = document.getElementById("judge");
+const result = document.getElementById("result");
+const emoji = document.getElementById("emoji");
+const verdict = document.getElementById("verdict");
+const score = document.getElementById("score");
+const message = document.getElementById("message");
+const share = document.getElementById("share");
 
-const redFlags=[
-["broke something when angry|broke things when angry|broke something out of anger|broke an object when angry|threw something|threw his phone|threw her phone|threw my phone|punched a wall|hit a wall|slammed the door|smashed something|destroyed something|broke chopsticks|snapped chopsticks",35],
-["went through his phone|went through her phone|checked his phone|checked her phone|read his texts|read her texts|read his messages|read her messages",30],
-["checked his location|checked her location|tracked him|tracked her|stalked him|stalked her|followed him|followed her",28],
-["made him jealous|made her jealous|trying to make him jealous|trying to make her jealous|posted to make him jealous|posted to make her jealous",22],
-["silent treatment|gave him the silent treatment|gave her the silent treatment",20],
-["lied to him|lied to her|lied about|hid it from him|hid it from her",18],
-["revenge|cheated on him|cheated on her|cheat to get back",30],
-["tested him|tested her|test him|test her|set a trap",15],
-["fake account|made a fake account",24],
-["threatened to break up|threatened to leave",18],
-["yelled at him|yelled at her|screamed at him|screamed at her",14],
-["insulted him|insulted her|called him names|called her names",16]
+const redFlags = [
+  {words:["broke chopsticks","broke something when angry","broke things when angry","broke something out of anger","broke an object when angry","threw something","threw his phone","threw her phone","threw my phone","punched a wall","hit a wall","slammed the door","smashed something","destroyed something"], points:35},
+  {words:["went through his phone","went through her phone","checked his phone","checked her phone","read his texts","read her texts","read his messages","read her messages"], points:30},
+  {words:["checked his location","checked her location","tracked him","tracked her","stalked him","stalked her","followed him","followed her"], points:28},
+  {words:["made him jealous","made her jealous","trying to make him jealous","trying to make her jealous","posted to make him jealous","posted to make her jealous"], points:22},
+  {words:["silent treatment","gave him the silent treatment","gave her the silent treatment"], points:20},
+  {words:["lied to him","lied to her","lied about","hid it from him","hid it from her"], points:18},
+  {words:["revenge","cheated on him","cheated on her","cheat to get back"], points:30},
+  {words:["tested him","tested her","test him","test her","set a trap"], points:15},
+  {words:["fake account","made a fake account"], points:24},
+  {words:["threatened to break up","threatened to leave"], points:18},
+  {words:["yelled at him","yelled at her","screamed at him","screamed at her"], points:14},
+  {words:["insulted him","insulted her","called him names","called her names"], points:16}
 ];
 
-const healthy=[
-["set a boundary|set boundaries",15],
-["asked for reassurance|needed reassurance",10],
-["communicated|had a conversation|talked about it|talked to him about it|talked to her about it",8],
-["ended the relationship|broke up with him|broke up with her",12],
-["asked for clarification|asked what he meant|asked what she meant",8],
-["told him how i felt|told her how i felt|told them how i felt|expressed how i felt",8],
-["apologized|apologised|took accountability|admitted i was wrong",10]
+const healthy = [
+  {words:["set a boundary","set boundaries"], points:-15},
+  {words:["asked for reassurance","needed reassurance"], points:-10},
+  {words:["communicated","had a conversation","talked about it","talked to him about it","talked to her about it"], points:-8},
+  {words:["ended the relationship","broke up with him","broke up with her"], points:-12},
+  {words:["asked for clarification","asked what he meant","asked what she meant"], points:-8},
+  {words:["told him how i felt","told her how i felt","told them how i felt","expressed how i felt"], points:-8},
+  {words:["apologized","apologised","took accountability","admitted i was wrong"], points:-10}
 ];
 
-const nuance=[
-["i felt unsafe|i was scared|i was afraid",12],
-["he cheated|she cheated|he lied|she lied|he betrayed me|she betrayed me",10],
-["he yelled at me|she yelled at me|he screamed at me|she screamed at me",10],
-["he manipulated me|she manipulated me|he gaslit me|she gaslit me",10]
+const context = [
+  {words:["i felt unsafe","i was scared","i was afraid"], points:-12},
+  {words:["he cheated","she cheated","he lied","she lied","he betrayed me","she betrayed me"], points:-10},
+  {words:["he yelled at me","she yelled at me","he screamed at me","she screamed at me"], points:-10},
+  {words:["he manipulated me","she manipulated me","he gaslit me","she gaslit me"], points:-10}
 ];
 
 function calculate(text){
-let s=8,l=text.toLowerCase();
-redFlags.forEach(x=>{if(x[0].split("|").some(w=>l.includes(w)))s+=x[1]});
-healthy.forEach(x=>{if(x[0].split("|").some(w=>l.includes(w)))s-=x[1]});
-nuance.forEach(x=>{if(x[0].split("|").some(w=>l.includes(w)))s-=x[1]});
-return Math.max(0,Math.min(100,s));
+  const lower = text.toLowerCase();
+  let total = 8;
+
+  redFlags.forEach(item=>{
+    if(item.words.some(word=>lower.includes(word))) total += item.points;
+  });
+
+  healthy.forEach(item=>{
+    if(item.words.some(word=>lower.includes(word))) total += item.points;
+  });
+
+  context.forEach(item=>{
+    if(item.words.some(word=>lower.includes(word))) total += item.points;
+  });
+
+  return Math.max(0, Math.min(100, total));
 }
 
-function getVerdict(s,text){
-const l=text.toLowerCase().trim();
-if(l.length<25)return["🧑‍⚖️","INSUFFICIENT EVIDENCE","You cannot expect me to convict someone based on that. Give me the actual story."];
-if(s>=65)return["🚩","YOU ARE THE RED FLAG","Respectfully... I don't know how you typed all of that out and thought you were going to beat the allegations."];
-if(s>=40)return["🚩","WE HAVE SOME CONCERNS","I'm not saying you're the problem. I'm saying the evidence isn't exactly helping your case."];
-if(s>=22)return["🟡","IT'S COMPLICATED","There are some yellow flags here. Nobody is getting convicted today."];
-return["🟢","NOT THE RED FLAG","You're surprisingly reasonable. This one might actually be on them."];
+function getVerdict(total, text){
+  const lower = text.toLowerCase().trim();
+
+  const vague = [
+    "idk","i don't know","i dont know",
+    "he was weird","she was weird","they were weird",
+    "he did something","she did something","something happened"
+  ];
+
+  if(text.trim().length < 12 || vague.includes(lower)){
+    return [
+      "🧑‍⚖️",
+      "INSUFFICIENT EVIDENCE",
+      "You cannot expect me to convict someone based on that. Give me the actual story."
+    ];
+  }
+
+  if(total >= 65){
+    return [
+      "🚩",
+      "YOU ARE THE RED FLAG",
+      "Respectfully... I don't know how you typed all of that out and thought you were going to beat the allegations."
+    ];
+  }
+
+  if(total >= 40){
+    return [
+      "🚩",
+      "WE HAVE SOME CONCERNS",
+      "I'm not saying you're the problem. I'm saying the evidence isn't exactly helping your case."
+    ];
+  }
+
+  if(total >= 22){
+    return [
+      "🟡",
+      "IT'S COMPLICATED",
+      "There are some yellow flags here. Nobody is getting convicted today."
+    ];
+  }
+
+  return [
+    "🟢",
+    "NOT THE RED FLAG",
+    "You're surprisingly reasonable. This one might actually be on them."
+  ];
 }
 
 function judgeStory(){
-const text=story.value.trim();
-if(!text){story.focus();return}
-judge.disabled=true;
-judge.textContent="JUDGING...";
-setTimeout(()=>{
-const s=calculate(text);
-const v=getVerdict(s,text);
-emoji.textContent=v[0];
-verdict.textContent=v[1];
-score.textContent="Red Flag Score: "+s+"%";
-message.textContent=v[2];
-result.classList.add("show");
-share.classList.add("show");
-judge.disabled=false;
-judge.textContent="JUDGE ME";
-story.value="";
-story.focus();
-result.scrollIntoView({behavior:"smooth",block:"center"});
-},450);
+  const text = story.value.trim();
+
+  if(!text){
+    story.focus();
+    return;
+  }
+
+  judge.disabled = true;
+  judge.textContent = "JUDGING...";
+
+  setTimeout(()=>{
+    const total = calculate(text);
+    const resultData = getVerdict(total, text);
+
+    emoji.textContent = resultData[0];
+    verdict.textContent = resultData[1];
+    score.textContent = "Red Flag Score: " + total + "%";
+    message.textContent = resultData[2];
+
+    result.classList.add("show");
+    share.classList.add("show");
+
+    judge.disabled = false;
+    judge.textContent = "JUDGE ME";
+
+    // Ready for the next scenario without a second button.
+    story.value = "";
+    story.focus();
+  },450);
 }
 
-judge.addEventListener("click",judgeStory);
+judge.addEventListener("click", judgeStory);
 
-story.addEventListener("keydown",e=>{
-if((e.metaKey||e.ctrlKey)&&e.key==="Enter")judgeStory();
+story.addEventListener("keydown", event=>{
+  if((event.metaKey || event.ctrlKey) && event.key === "Enter"){
+    judgeStory();
+  }
 });
 
-share.addEventListener("click",async()=>{
-const t=`🚩 AM I THE RED FLAG?
+share.addEventListener("click", async()=>{
+  const text =
+`🚩 AM I THE RED FLAG?
 
 ${verdict.textContent}
 ${score.textContent}
 ${message.textContent}
 
 https://saleney.github.io/am-i-the-red-flag/`;
-try{
-await navigator.clipboard.writeText(t);
-share.textContent="COPIED ✓";
-setTimeout(()=>share.textContent="COPY VERDICT",1600);
-}catch(e){
-share.textContent="SELECT & COPY";
-}
+
+  try{
+    await navigator.clipboard.writeText(text);
+    share.textContent = "COPIED ✓";
+    setTimeout(()=>share.textContent="COPY VERDICT",1600);
+  }catch(error){
+    share.textContent = "SELECT & COPY";
+  }
 });
 </script>
 </body>
