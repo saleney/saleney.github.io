@@ -1,0 +1,30 @@
+/* Keep system emoji out of the finished interface. */
+.verdict-row > span:first-child {
+  font-size: 0;
+}
+
+.verdict-row > span:first-child::after {
+  content: "RESULT";
+  font: 700 9px "DM Mono", monospace;
+}
+
+.salene-home-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 11px;
+  border: 2px solid #293c3b;
+  border-radius: 999px;
+  background: #fffdf7;
+  color: #293c3b;
+  box-shadow: 2px 2px 0 #293c3b;
+  font: 10px "DM Mono", monospace;
+  text-decoration: none;
+}
+
+.salene-home-link:hover,
+.salene-home-link:focus-visible {
+  background: #ffe477;
+  text-decoration: none;
+  outline: 2px solid #293c3b;
+  outline-offset: 2px;
+}
