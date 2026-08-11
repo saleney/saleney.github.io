@@ -31,7 +31,8 @@
       .project:nth-child(7) { background:#f8d3a1; border-radius:18px 35px 20px 45px; }
       .project:nth-child(9) { background:#d3edb8; border-radius:38px 19px 45px 21px; }
       .project:nth-child(3) { background:#ffb2a6; border-radius:22px 47px 35px 18px; }
-      .project::after { position:absolute; right:20px; bottom:8px; font:90px/1 Fraunces,serif; opacity:.3; }
+      .project::after { position:absolute; z-index:0; right:20px; bottom:8px; font:90px/1 Fraunces,serif; opacity:.3; pointer-events:none; }
+      .project > * { position:relative; z-index:1; }
       .project:nth-child(2)::after { content:"◌"; }
       .project:nth-child(8)::after { content:"?"; }
       .project:nth-child(4)::after { content:"8"; }
@@ -53,7 +54,7 @@
       .pocket p { max-width:630px; margin:10px 0 0; line-height:1.5; }
       footer { display:flex; justify-content:space-between; gap:16px; padding:35px 5px 0; font:11px "DM Mono",monospace; }
       footer a { color:inherit; }
-      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { padding:28px 20px 31px; border-radius:20px 39px 27px 41px; } header::after { right:-5px; top:-16px; font-size:115px; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .section-head { display:block; margin-top:44px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } }
+      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { padding:28px 20px 31px; border-radius:20px 39px 27px 41px; } header::after { right:-5px; top:-16px; font-size:115px; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .project:nth-child(3)::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:44px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } }
       @media (prefers-reduced-motion:reduce) { .project { transition:none; } }
     </style>
   </head>
