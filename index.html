@@ -23,23 +23,27 @@
       .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
       .project { position:relative; min-height:230px; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:27px; overflow:hidden; border:3px solid var(--line); border-radius:27px 16px 33px 18px; color:var(--ink); text-decoration:none; box-shadow:6px 7px 0 rgba(39,54,90,.2); transition:transform .18s ease,box-shadow .18s ease; }
       .project:hover,.project:focus-visible { transform:translate(-3px,-5px) rotate(-.5deg); box-shadow:12px 15px 0 rgba(39,54,90,.2); outline:none; }
-      .project:nth-child(1) { background:#ffe982; }
-      .project:nth-child(7) { background:#c8f0e2; border-radius:18px 40px 20px 48px; }
-      .project:nth-child(3) { background:#ffcfdd; border-radius:48px 20px 44px 19px; }
-      .project:nth-child(4) { background:#c7e8fb; border-radius:20px 45px 17px 38px; }
-      .project:nth-child(5) { background:#e8d5fc; border-radius:43px 19px 35px 23px; }
-      .project:nth-child(6) { background:#f8d3a1; border-radius:18px 35px 20px 45px; }
-      .project:nth-child(8) { background:#d3edb8; border-radius:38px 19px 45px 21px; }
-      .project:nth-child(2) { background:#ffb2a6; border-radius:22px 47px 35px 18px; }
+      .project:nth-child(2) { background:#ffe982; }
+      .project:nth-child(8) { background:#c8f0e2; border-radius:18px 40px 20px 48px; }
+      .project:nth-child(4) { background:#ffcfdd; border-radius:48px 20px 44px 19px; }
+      .project:nth-child(5) { background:#c7e8fb; border-radius:20px 45px 17px 38px; }
+      .project:nth-child(6) { background:#e8d5fc; border-radius:43px 19px 35px 23px; }
+      .project:nth-child(7) { background:#f8d3a1; border-radius:18px 35px 20px 45px; }
+      .project:nth-child(9) { background:#d3edb8; border-radius:38px 19px 45px 21px; }
+      .project:nth-child(3) { background:#ffb2a6; border-radius:22px 47px 35px 18px; }
       .project::after { position:absolute; right:20px; bottom:8px; font:90px/1 Fraunces,serif; opacity:.3; }
-      .project:nth-child(1)::after { content:"◌"; }
-      .project:nth-child(7)::after { content:"?"; }
-      .project:nth-child(3)::after { content:"8"; }
-      .project:nth-child(4)::after { content:"!"; }
-      .project:nth-child(5)::after { content:"✦"; }
-      .project:nth-child(6)::after { content:"↗"; }
-      .project:nth-child(8)::after { content:"⚑"; }
-      .project:nth-child(2)::after { content:"听"; font-family:"Noto Sans SC",sans-serif; }
+      .project:nth-child(2)::after { content:"◌"; }
+      .project:nth-child(8)::after { content:"?"; }
+      .project:nth-child(4)::after { content:"8"; }
+      .project:nth-child(5)::after { content:"!"; }
+      .project:nth-child(6)::after { content:"✦"; }
+      .project:nth-child(7)::after { content:"↗"; }
+      .project:nth-child(9)::after { content:"⚑"; }
+      .project:nth-child(3)::after { content:"听"; font-family:"Noto Sans SC",sans-serif; }
+      .project.featured { grid-column:1/-1; min-height:300px; color:#1e2924; background:#f2eee4; border-color:#1e2924; border-radius:18px 54px 24px 42px; box-shadow:8px 9px 0 rgba(30,41,36,.2); }
+      .project.featured::after { content:"◐"; color:#a94e35; font-size:150px; opacity:.7; }
+      .project.featured h3 { max-width:70%; font:500 clamp(2.5rem,6vw,5rem)/.9 Fraunces,Georgia,serif; }
+      .project.featured p { max-width:580px; font-family:Fraunces,Georgia,serif; font-style:italic; font-size:1.05rem; }
       .tag { display:inline-block; margin:0 0 18px; padding:5px 8px; border:1px solid var(--line); border-radius:99px; background:rgba(255,255,255,.66); font:10px "DM Mono",monospace; letter-spacing:.04em; text-transform:uppercase; }
       h3 { position:relative; z-index:1; max-width:85%; margin:0; font:700 clamp(1.65rem,4vw,2.45rem)/.96 Fraunces,Georgia,serif; letter-spacing:-.045em; }
       .project p { position:relative; z-index:1; max-width:85%; margin:11px 0 0; font-size:.93rem; line-height:1.35; }
@@ -68,6 +72,9 @@
       </div>
 
       <section class="grid" aria-label="Salene's projects">
+        <a class="project featured" href="/autobiography-through-love/">
+          <span class="tag">personal museum</span><div><h3>An Autobiography Told Through Love</h3><p>A collection of things that delighted me, changed me, broke me, and brought me home.</p></div><span class="arrow">enter the collection ↗</span>
+        </a>
         <a class="project" href="/salenes-world/">
           <span class="tag">museum / playground</span><div><h3>Salene’s World</h3><p>A world for practicing love, wonder, and presence.</p></div><span class="arrow">enter ↗</span>
         </a>
