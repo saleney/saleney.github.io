@@ -1,5 +1,5 @@
-const route = ["香港 Hong Kong","台山 Taishan","广州 Guangzhou","开平 Kaiping","珠海 Zhuhai","佛山 Foshan","昆明 Kunming","大理 Dali","丽江 Lijiang","香格里拉 Shangri-La"];
-const routePinyin = ["Xiānggǎng","Táishān","Guǎngzhōu","Kāipíng","Zhūhǎi","Fóshān","Kūnmíng","Dàlǐ","Lìjiāng","Xiānggélǐlā"];
+const route = ["香港 Hong Kong","台山 Taishan","广州 Guangzhou","开平 Kaiping","昆明 Kunming","大理 Dali","丽江 Lijiang","香格里拉 Shangri-La","佛山 Foshan","珠海 Zhuhai"];
+const routePinyin = ["Xiānggǎng","Táishān","Guǎngzhōu","Kāipíng","Kūnmíng","Dàlǐ","Lìjiāng","Xiānggélǐlā","Fóshān","Zhūhǎi"];
 const choicePinyin = {
   "不好意思，我听不懂。可以发短信吗？":"Bù hǎoyìsi, wǒ tīng bù dǒng. Kěyǐ fā duǎnxìn ma?","我在这里！":"Wǒ zài zhèlǐ!","我听一点普通话，可以慢一点吗？":"Wǒ tīng yìdiǎn Pǔtōnghuà, kěyǐ màn yìdiǎn ma?","我是美国人。":"Wǒ shì Měiguó rén.",
   "可以帮我吗？我的护照在这里。":"Kěyǐ bāng wǒ ma? Wǒ de hùzhào zài zhèlǐ.","这个？那个？":"Zhège? Nàge?","我要去开平。":"Wǒ yào qù Kāipíng.","不要辣。我要这个，谢谢。":"Bú yào là. Wǒ yào zhège, xièxie.","一点点辣。":"Yìdiǎndiǎn là.","不要！":"Bú yào!",
@@ -52,6 +52,9 @@ const scenarios = [
     ["C","明天…八点？","Tomorrow… eight?",1,"CAVEMAN FLUENCY","Three words, one rising intonation, successful logistics. Language is miraculous."],
     ["D","Hang up and stare at the phone.","The original strategy",-1,"A PERFECT CIRCLE","You end exactly where you began—but now you know what you should have said." ] ]}
 ];
+
+const scenarioRoute = [0,1,2,3,9,8,4,5,7];
+scenarios.forEach((scenario,index)=>scenario.location=scenarioRoute[index]);
 
 let state={scene:0,score:0,nerve:3,streak:0,bestStreak:0,phrases:[]};
 const $=id=>document.getElementById(id);
