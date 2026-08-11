@@ -1,218 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Should I Text My Ex?</title>
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;min-height:100svh;width:100%;
-  display:flex;align-items:center;justify-content:center;
-  padding:24px 0;
-  font-family:Georgia,"Times New Roman",serif;
-  background:linear-gradient(145deg,#ffffff 0%,#f5f6fb 55%,#eef0fa 100%);
-  color:#171a21;overflow:hidden;
-}
-.card{
-  width:100%;max-width:700px;min-height:100svh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:24px 0;
-}
-.eyebrow{margin:0 0 12px;font:700 12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#85899a}
-.title-wrap{
-  width:100vw;max-width:100vw;overflow:hidden;
-  margin:0 0 14px;padding:0;
-  display:flex;justify-content:flex-start;
-}
-h1{
-  margin:0;display:inline-block;white-space:nowrap;
-  font-size:clamp(46px,8vw,96px);line-height:1;letter-spacing:-.045em;
-  animation:title-scroll 14s linear infinite;
-  flex:none;
-}
-@keyframes title-scroll{
-  0%{transform:translateX(100vw)}
-  100%{transform:translateX(-100%)}
-}
-.subtext{margin:16px 0 30px;font-size:20px;font-style:italic;color:#74788d}
-.coin-wrap{
-  width:100%;height:245px;display:flex;align-items:center;justify-content:center;
-  margin:0 auto 10px;perspective:1000px;flex:none;
-}
-.coin{
-  cursor:pointer;
-  position:relative;width:190px;height:190px;border-radius:50%;
-  display:grid;place-items:center;
-  background:
-    radial-gradient(circle at 32% 25%,#ffffff 0%,#f2f3f5 18%,#cfd2d6 48%,#f8f9fa 70%,#aeb2b7 100%);
-  border:7px solid #c1c4c8;
-  box-shadow:
-    inset 0 0 0 3px #fafafa,
-    inset 0 0 0 8px #aeb2b7,
-    inset 0 0 18px rgba(60,65,72,.28),
-    0 18px 30px rgba(40,45,55,.22);
-  color:#70757c;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:92px;font-weight:400;
-  text-shadow:1px 1px 1px #fff,-1px -1px 1px #8e9297;
-  transform-style:preserve-3d;
-}
-.coin::before{
-  content:"";
-  position:absolute;inset:17px;border-radius:50%;
-  border:2px dotted rgba(95,100,108,.55);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.8);
-}
-.coin::after{
-  content:"";
-  position:absolute;top:14px;left:32px;width:58px;height:24px;
-  border-radius:50%;transform:rotate(-25deg);
-  background:rgba(255,255,255,.55);filter:blur(5px);
-}
-.coin:hover{transform:scale(1.04);box-shadow:inset 0 0 0 3px #fafafa,inset 0 0 0 8px #aeb2b7,inset 0 0 18px rgba(60,65,72,.28),0 22px 38px rgba(40,45,55,.28)}
-.coin:active{transform:scale(.96)}
-.coin.flipping{animation:flip 1s cubic-bezier(.2,.8,.2,1)}
-@keyframes flip{
-  0%{transform:rotateY(0) translateY(0)}
-  35%{transform:rotateY(720deg) translateY(-22px)}
-  70%{transform:rotateY(1440deg) translateY(0)}
-  100%{transform:rotateY(1800deg) translateY(0)}
-}
-button{display:none}
-.click-hint{margin:0 0 20px;font:600 15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#777b88;letter-spacing:.03em}
-.answer{min-height:105px;width:100%;margin-top:26px}
-.answer-word{margin:0;font:900 clamp(56px,14vw,92px) -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:.9;letter-spacing:-.06em}
-.message{margin:12px 0 0;font:600 18px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#5f6370}
-.odds{margin-top:28px;font:700 15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.06em;color:#353a45}
-.tiny{margin-top:10px;font-size:14px;font-style:italic;color:#7b7f8d}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Salene's projects, questions, and tiny internet worlds." />
+    <title>Salene's Corner of the Internet</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@500;700&display=swap');
 
-@media (max-width: 600px){
-  .card{padding:20px 0}
-  .eyebrow{font-size:11px}
-  .subtext{font-size:18px;margin:12px 0 24px}
-  .coin-wrap{height:215px;margin-bottom:2px}
-  .coin{width:170px;height:170px;font-size:82px}
-  .answer{margin-top:20px;min-height:95px}
-  .message{font-size:16px;padding:0 20px}
-  .odds{font-size:13px}
-  .tiny{font-size:12px}
-}
+      :root { --ink:#27365a; --paper:#fffaf0; --pink:#ff8eaa; --yellow:#ffe36b; --blue:#84cbe9; --green:#a6d998; --line:#27365a; }
+      * { box-sizing:border-box; }
+      body { margin:0; min-height:100vh; color:var(--ink); background:radial-gradient(circle at 10% 7%, #fff 0 3%, transparent 3.2%), radial-gradient(circle at 86% 17%, #f6c3d2 0 6%, transparent 6.2%), linear-gradient(145deg,#fff4d9,#dff4f5 51%,#f9dbe7); font-family:"Space Grotesk",system-ui,sans-serif; }
+      .page { width:min(1120px,calc(100% - 34px)); margin:0 auto; padding:42px 0 60px; }
+      header { position:relative; padding:38px clamp(20px,5vw,60px) 42px; overflow:hidden; border:3px solid var(--line); border-radius:28px 58px 34px 65px; background:rgba(255,250,240,.92); box-shadow:10px 12px 0 rgba(39,54,90,.18); }
+      header::after { content:"✦"; position:absolute; right:7%; top:-36px; color:var(--yellow); font-size:180px; line-height:1; text-shadow:3px 3px 0 var(--line); transform:rotate(11deg); }
+      .eyebrow,.note { position:relative; z-index:1; margin:0; font:12px "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
+      h1 { position:relative; z-index:1; max-width:750px; margin:15px 0 15px; font:700 clamp(3rem,9vw,6.7rem)/.88 Fraunces,Georgia,serif; letter-spacing:-.07em; }
+      .intro { position:relative; z-index:1; max-width:610px; margin:0; font-size:clamp(1rem,2.4vw,1.3rem); line-height:1.45; }
+      .goodness { margin:21px 0 0; font:italic 1.1rem Fraunces,Georgia,serif; }
+      .section-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin:62px 4px 20px; }
+      h2 { margin:0; font:700 clamp(2rem,5vw,3.45rem)/.94 Fraunces,Georgia,serif; letter-spacing:-.05em; }
+      .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+      .project { position:relative; min-height:230px; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:27px; overflow:hidden; border:3px solid var(--line); border-radius:27px 16px 33px 18px; color:var(--ink); text-decoration:none; box-shadow:6px 7px 0 rgba(39,54,90,.2); transition:transform .18s ease,box-shadow .18s ease; }
+      .project:hover,.project:focus-visible { transform:translate(-3px,-5px) rotate(-.5deg); box-shadow:12px 15px 0 rgba(39,54,90,.2); outline:none; }
+      .project:nth-child(1) { background:#ffe982; }
+      .project:nth-child(2) { background:#c8f0e2; border-radius:18px 40px 20px 48px; }
+      .project:nth-child(3) { background:#ffcfdd; border-radius:48px 20px 44px 19px; }
+      .project:nth-child(4) { background:#c7e8fb; border-radius:20px 45px 17px 38px; }
+      .project:nth-child(5) { background:#e8d5fc; border-radius:43px 19px 35px 23px; }
+      .project:nth-child(6) { background:#f8d3a1; border-radius:18px 35px 20px 45px; }
+      .project:nth-child(7) { background:#d3edb8; border-radius:38px 19px 45px 21px; }
+      .project::after { position:absolute; right:20px; bottom:8px; font:90px/1 Fraunces,serif; opacity:.3; }
+      .project:nth-child(1)::after { content:"◌"; }
+      .project:nth-child(2)::after { content:"?"; }
+      .project:nth-child(3)::after { content:"8"; }
+      .project:nth-child(4)::after { content:"!"; }
+      .project:nth-child(5)::after { content:"✦"; }
+      .project:nth-child(6)::after { content:"↗"; }
+      .project:nth-child(7)::after { content:"⚑"; }
+      .tag { display:inline-block; margin:0 0 18px; padding:5px 8px; border:1px solid var(--line); border-radius:99px; background:rgba(255,255,255,.66); font:10px "DM Mono",monospace; letter-spacing:.04em; text-transform:uppercase; }
+      h3 { position:relative; z-index:1; max-width:85%; margin:0; font:700 clamp(1.65rem,4vw,2.45rem)/.96 Fraunces,Georgia,serif; letter-spacing:-.045em; }
+      .project p { position:relative; z-index:1; max-width:85%; margin:11px 0 0; font-size:.93rem; line-height:1.35; }
+      .arrow { position:relative; z-index:1; margin-top:22px; font:700 1.2rem "DM Mono",monospace; }
+      .pocket { margin-top:44px; padding:28px; border:3px dashed var(--line); border-radius:25px; background:rgba(255,255,255,.6); }
+      .pocket h2 { font-size:clamp(1.6rem,4vw,2.5rem); }
+      .pocket p { max-width:630px; margin:10px 0 0; line-height:1.5; }
+      footer { display:flex; justify-content:space-between; gap:16px; padding:35px 5px 0; font:11px "DM Mono",monospace; }
+      footer a { color:inherit; }
+      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { padding:28px 20px 31px; border-radius:20px 39px 27px 41px; } header::after { right:-5px; top:-16px; font-size:115px; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .section-head { display:block; margin-top:44px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } }
+      @media (prefers-reduced-motion:reduce) { .project { transition:none; } }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <p class="eyebrow">✦ a corner of the internet by salene</p>
+        <h1>Come wander<br />with me.</h1>
+        <p class="intro">A growing collection of tiny worlds, strange questions, unhinged buttons, and things I made because I wanted them to exist.</p>
+        <p class="goodness">Follow what catches your attention.</p>
+      </header>
 
-</style>
-</head>
-<body>
-<main class="card">
-<p class="eyebrow">A very important decision</p>
-<div class="title-wrap">
-  <h1>Should I text my ex?</h1>
-</div>
-<p class="subtext">✦ Let's ask the coin. ✦</p>
+      <div class="section-head">
+        <h2>Places to visit</h2>
+        <p class="note">no optimal route ✦</p>
+      </div>
 
-<div class="coin-wrap" id="coinWrap">
-  <div class="coin" id="coin" role="button" tabindex="0" aria-label="Flip the coin">?</div>
-</div>
+      <section class="grid" aria-label="Salene's projects">
+        <a class="project" href="/salenes-world/">
+          <span class="tag">museum / playground</span><div><h3>Salene’s World</h3><p>A world for practicing love, wonder, and presence.</p></div><span class="arrow">enter ↗</span>
+        </a>
+        <a class="project" href="/should-i-text-my-ex/">
+          <span class="tag">very important decision</span><div><h3>Should I text my ex?</h3><p>Ask the coin. It has opinions.</p></div><span class="arrow">ask it ↗</span>
+        </a>
+        <a class="project" href="/unhinged-8-ball/">
+          <span class="tag">oracle-ish</span><div><h3>Unhinged 8 Ball</h3><p>For questions that deserve an equally unhinged answer.</p></div><span class="arrow">consult it ↗</span>
+        </a>
+        <a class="project" href="/bad-idea-generator/">
+          <span class="tag">use at your own risk</span><div><h3>Bad Idea Generator</h3><p>Because sometimes the worst idea is the beginning of something.</p></div><span class="arrow">generate ↗</span>
+        </a>
+        <a class="project" href="/what-now/">
+          <span class="tag">gentle decision helper</span><div><h3>What Should We Do?</h3><p>For the moments when you want a soft nudge toward what’s next.</p></div><span class="arrow">figure it out ↗</span>
+        </a>
+        <a class="project" href="/a-little-adventure/">
+          <span class="tag">choose your own way</span><div><h3>A Little Adventure</h3><p>A tiny invitation to get out there and follow the plot.</p></div><span class="arrow">begin ↗</span>
+        </a>
+        <a class="project" href="/am-i-the-red-flag/">
+          <span class="tag">relationship court</span><div><h3>Am I the Red Flag?</h3><p>Tell the story. Receive a completely objective-ish verdict.</p></div><span class="arrow">be judged ↗</span>
+        </a>
+      </section>
 
+      <section class="pocket">
+        <h2>More pockets of the internet, soon.</h2>
+        <p>I’m still making things. This front door will keep growing as I do.</p>
+      </section>
 
-<section class="answer" aria-live="polite">
-<p class="answer-word" id="answer"></p>
-<p class="message" id="message"></p>
-</section>
-
-<div class="odds">99% NO &nbsp; | &nbsp; 1% YES</div>
-<div class="tiny">Results are scientifically questionable. 😉</div>
-</main>
-
-<script>
-const coin=document.getElementById("coin");
-const answer=document.getElementById("answer");
-const message=document.getElementById("message");
-
-let noStreak = 0;
-let hasHadFirstYes = false;
-
-function getResult() {
-  noStreak++;
-
-  let yesChance;
-
-  if (!hasHadFirstYes) {
-    // First YES is designed to arrive somewhere between toss 6 and 15.
-    if (noStreak <= 5) {
-      yesChance = 0.01;
-    } else if (noStreak === 6) {
-      yesChance = 0.10;
-    } else if (noStreak === 7) {
-      yesChance = 0.15;
-    } else if (noStreak === 8) {
-      yesChance = 0.20;
-    } else if (noStreak === 9) {
-      yesChance = 0.25;
-    } else if (noStreak === 10) {
-      yesChance = 0.30;
-    } else if (noStreak === 11) {
-      yesChance = 0.40;
-    } else if (noStreak === 12) {
-      yesChance = 0.50;
-    } else if (noStreak === 13) {
-      yesChance = 0.60;
-    } else if (noStreak === 14) {
-      yesChance = 0.75;
-    } else {
-      yesChance = 1.00;
-    }
-  } else {
-    // After the first YES, every new toss goes back to 99% NO / 1% YES.
-    yesChance = 0.01;
-  }
-
-  const yes = Math.random() < yesChance;
-
-  if (yes) {
-    hasHadFirstYes = true;
-    noStreak = 0;
-  }
-
-  return yes;
-}
-
-function flipCoin(){
-  coin.style.pointerEvents="none";
-  answer.textContent="";
-  message.textContent="";
-  coin.classList.remove("flipping");
-  void coin.offsetWidth;
-  coin.classList.add("flipping");
-
-  setTimeout(()=>{
-    const wasFirstYes = !hasHadFirstYes;
-    const yes=getResult();
-
-    if(yes){
-      answer.textContent="YES";
-      message.textContent=wasFirstYes
-        ? "Fine. You asked enough times. Go text them. 🙄"
-        : "The universe has spoken. 👀";
-      coin.textContent="YES";
-    }else{
-      answer.textContent="NO";
-      message.textContent=noStreak >= 8
-        ? "Seriously? Put the phone down."
-        : "Put the phone down.";
-      coin.textContent="NO";
-    }
-
-    coin.style.pointerEvents="auto";
-  },1000);
-}
-
-coin.addEventListener("click", flipCoin);
-coin.addEventListener("keydown", (event)=>{
-  if(event.key==="Enter" || event.key===" "){
-    event.preventDefault();
-    flipCoin();
-  }
-});
-</script>
-</body>
+      <footer><span>made with curiosity &amp; questionable impulses</span><a href="https://github.com/saleney">find the source code ↗</a></footer>
+    </main>
+  </body>
 </html>
