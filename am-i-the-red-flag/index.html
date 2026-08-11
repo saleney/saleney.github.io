@@ -159,6 +159,30 @@ function analyze(text){
   }
 
   /*
+    UNMISTAKABLY SEVERE HARM
+    Keep this deliberately narrow so unusual stories still receive context.
+  */
+
+  const severeHarm =
+    t.includes("ate a child") ||
+    t.includes("cannibal") ||
+    t.includes("murdered") ||
+    t.includes("killed") ||
+    t.includes("kidnapped") ||
+    t.includes("sexually assaulted") ||
+    t.includes("abused a child");
+
+  if(severeHarm){
+    return {
+      type:"red",
+      score: randomNumber(85,99),
+      emoji:"🚩",
+      title:"YOU ARE THE RED FLAG",
+      message:"This is not a close call. Please seek immediate real-world help."
+    };
+  }
+
+  /*
     CHEATING BY THE PERSON WRITING THE STORY
     This is an automatic red flag.
   */
