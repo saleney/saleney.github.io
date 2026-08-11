@@ -41,4 +41,5 @@ test("preserves comfortable mobile touch targets and flexible doors", async () =
   assert.match(css, /\.sound\{display:block;min-height:44px/);
   assert.match(css, /\.door\{flex:0 0 min\(350px,75vw\);display:grid;min-height:560px/);
   assert.match(css, /\.door\{flex-basis:calc\(100vw - 48px\);min-height:430px/);
+  assert.match(css, /\.hallway-hint\{display:block/);
 });
