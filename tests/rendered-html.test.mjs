@@ -5,13 +5,14 @@ import test from "node:test";
 const root = new URL("../", import.meta.url);
 
 async function sourceFiles() {
-  const [page, css, layout] = await Promise.all([
+  const [page, css, layout, museumData] = await Promise.all([
     readFile(new URL("app/page.tsx", root), "utf8"),
     readFile(new URL("app/globals.css", root), "utf8"),
     readFile(new URL("app/layout.tsx", root), "utf8"),
+    readFile(new URL("app/museum-data.ts", root), "utf8"),
   ]);
 
-  return { page, css, layout };
+  return { page, css, layout, museumData };
 }
 
 test("keeps the museum's identity in its document metadata", async () => {
@@ -22,10 +23,11 @@ test("keeps the museum's identity in its document metadata", async () => {
 });
 
 test("keeps memory dialogs keyboard-safe and public memories explicit", async () => {
-  const { page } = await sourceFiles();
+  const { page, museumData } = await sourceFiles();
 
-  assert.match(page, /function memoryForEdition/);
-  assert.match(page, /function makeCurrentMemoriesPublic/);
+  assert.match(museumData, /function memoryForEdition/);
+  assert.match(museumData, /function makeCurrentMemoriesPublic/);
+  assert.match(page, /from "\.\/museum-data"/);
   assert.match(page, /event\.key !== "Tab"/);
   assert.match(page, /aria-modal="true"/);
   assert.match(page, /className="portal-dismiss"/);
