@@ -11,3 +11,4 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 @media(max-width:760px){.object strong{font-size:17px;overflow-wrap:break-word}.room-01 .object strong{font-size:16px}}
 .object[data-room]{cursor:pointer}.object[data-room]:hover{background:var(--ink);color:var(--paper);transform:translateY(-4px) rotate(-.35deg);box-shadow:0 12px 30px rgba(30,41,36,.12)}
+@media(max-width:760px){.moments-title h2{font-size:42px;line-height:.92}.thresholds h2{font-size:54px}.coming-home h2{font-size:58px}}
