@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ef3e2f">
+  <meta name="description" content="听不懂 — a chaotic Mandarin survival simulator inspired by a real 2026 China trip.">
+  <title>听不懂 — Mandarin Survival Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Noto+Sans+SC:wght@400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="icon-overrides.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <button class="brand" data-action="home" aria-label="Return to title">听不懂<span>™</span></button>
+    <div class="status" aria-live="polite">
+      <span><i class="status-mark pin"></i><b id="locationLabel">HONG KONG</b></span>
+      <span><i class="status-mark heart"></i><b id="nerveLabel">3</b></span>
+      <span><i class="status-mark spark"></i><b id="streakLabel">0</b></span>
+    </div>
+    <div class="top-actions"><button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">SOUND: ON</button></div>
+  </header>
+
+  <main>
+    <section class="screen hero active" id="heroScreen">
+      <div class="passport-stamp" aria-hidden="true">2026<br>中国</div>
+      <p class="eyebrow">A HIGHLY UNOFFICIAL MANDARIN SURVIVAL SIMULATOR</p>
+      <h1><span>听</span><span>不</span><span>懂</span></h1>
+      <p class="pinyin">TĪNG BÙ DǑNG <button class="speak" data-speak="听不懂" aria-label="Hear 听不懂">↗ PLAY</button></p>
+      <p class="hero-copy">You booked the ticket.<br><em>Now figure it out.</em></p>
+      <button class="primary wobble" id="startButton">ENTER CHINA <span>→</span></button>
+      <p class="microcopy">No flashcards. No green owl. Just consequences.</p>
+      <div class="ticker" aria-hidden="true"><div>香港 · 台山 · 广州 · 开平 · 珠海 · 佛山 · 昆明 · 大理 · 丽江 · 香格里拉 · 祝你好运 ·&nbsp;</div></div>
+    </section>
+
+    <section class="screen briefing" id="briefingScreen">
+      <div class="briefing-card">
+        <p class="chapter">TRIP BRIEFING / 旅行须知</p>
+        <h2>Your Mandarin level:<br><mark>CONCERNING.</mark></h2>
+        <div class="inventory">
+          <div><span class="inventory-mark phone-mark"></span><b>1</b><small>translation app<br>(emotionally unstable)</small></div>
+          <div><span class="inventory-mark phrase-mark">你</span><b>5</b><small>useful phrases<br>(allegedly)</small></div>
+          <div><span class="inventory-mark confidence-mark">!</span><b>∞</b><small>unearned<br>confidence</small></div>
+        </div>
+        <p>Every stop is a real-world language crisis. Choose what you’d actually say. Good answers teach you Mandarin. Bad answers build character.</p>
+        <button class="primary" id="beginTrip">I ACCEPT THE CONSEQUENCES →</button>
+      </div>
+    </section>
+
+    <section class="screen game" id="gameScreen">
+      <aside class="route-panel">
+        <p class="chapter">THE 2026 CHINA ROUTE</p>
+        <ol id="routeList" class="route-list"></ol>
+        <div class="phrase-wallet">
+          <span>PHRASES ACQUIRED</span><b id="phraseCount">0 / 9</b>
+        </div>
+      </aside>
+
+      <div class="scenario-wrap">
+        <div class="scene-meta">
+          <span id="sceneNumber">CRISIS 01 / 09</span>
+          <span class="danger" id="dangerLabel">DANGER: MODERATE</span>
+        </div>
+        <div class="scene-card" id="sceneCard">
+          <div class="scene-visual" id="sceneVisual" aria-hidden="true"></div>
+          <p class="scene-kicker" id="sceneKicker"></p>
+          <h2 id="sceneTitle"></h2>
+          <div class="npc" id="npcBubble"></div>
+          <button class="dialogue-audio" id="npcSpeak" aria-label="Hear the dialogue in Mandarin"><span class="sound-waves" aria-hidden="true"></span> HEAR THE LINE</button>
+          <p class="prompt" id="scenePrompt"></p>
+          <div class="choices" id="choices"></div>
+        </div>
+        <div class="feedback-card" id="feedbackCard" aria-live="polite">
+          <div class="verdict-row"><span id="verdictIcon"></span><b id="verdict"></b><span id="scoreChange"></span></div>
+          <p id="feedbackText"></p>
+          <div class="lesson" id="lessonBox">
+            <button class="speak lesson-play" id="lessonSpeak" aria-label="Hear phrase">▶</button>
+            <div><strong id="lessonChinese"></strong><span id="lessonPinyin"></span><small id="lessonMeaning"></small></div>
+          </div>
+          <p class="context" id="contextText"></p>
+          <button class="primary next" id="nextButton">NEXT CRISIS →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen results" id="resultsScreen">
+      <div class="confetti" aria-hidden="true">福 囍 福 囍 福 囍</div>
+      <p class="eyebrow">FINAL TRIP REPORT</p>
+      <h2 id="resultHeadline">YOU SURVIVED.</h2>
+      <p class="result-cn">活下来了！</p>
+      <div class="score-stamp"><span id="finalScore">0</span><small>SURVIVAL POINTS</small></div>
+      <p id="resultCopy"></p>
+      <div class="results-grid">
+        <div><b id="finalPhrases">0</b><span>phrases acquired</span></div>
+        <div><b id="finalStreak">0</b><span>best streak</span></div>
+        <div><b id="finalRank">?</b><span>traveler rank</span></div>
+      </div>
+      <div class="phrase-recap" id="phraseRecap"></div>
+      <button class="primary" id="replayButton">MISS YOUR TRAIN AGAIN ↻</button>
+      <button class="text-button" data-action="home">Return to title</button>
+    </section>
+  </main>
+
+  <footer>BASED ON A TRUE TRIP · EDUCATIONAL OUTCOMES MAY VARY · <span>祝你好运</span><br><a class="salene-home-link" href="https://saleney.github.io/">← back to Salene’s Corner</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>
