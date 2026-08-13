@@ -75,3 +75,14 @@ Preserve that distinction. Do not turn the front door into a generic portfolio t
 5. Test the affected interactions and responsive behavior.
 6. Summarize what changed.
 7. Stop when the requested problem is solved.
+
+## Required session start
+
+Before modifying this project:
+
+1. Read this `AGENTS.md` file completely.
+2. Read the master creative constitution: https://github.com/saleney/saleney.github.io/blob/main/DESIGN.md
+3. Briefly confirm which instruction files you read.
+4. Inspect the existing implementation before proposing or making changes.
+
+Treat `AGENTS.md` as the operational instructions and the master `DESIGN.md` as the creative constitution. If either required file is unavailable, stop and tell Salene before modifying anything.
