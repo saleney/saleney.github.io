@@ -22,7 +22,8 @@
       h2 { margin:0; font:700 clamp(2rem,5vw,3.45rem)/.94 Fraunces,Georgia,serif; letter-spacing:-.05em; }
       .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
       .project { position:relative; min-height:230px; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:27px; overflow:hidden; border:3px solid var(--line); border-radius:27px 16px 33px 18px; color:var(--ink); text-decoration:none; box-shadow:6px 7px 0 rgba(39,54,90,.2); transition:transform .18s ease,box-shadow .18s ease; }
-      .project:hover,.project:focus-visible { transform:translate(-3px,-5px) rotate(-.5deg); box-shadow:12px 15px 0 rgba(39,54,90,.2); outline:none; }
+      .project:hover,.project:focus-visible { transform:translate(-3px,-5px) rotate(-.5deg); box-shadow:12px 15px 0 rgba(39,54,90,.2); }
+      .project:focus-visible,footer a:focus-visible { outline:3px solid var(--line); outline-offset:4px; }
       .project:nth-child(2) { background:#ffe982; }
       .project:nth-child(8) { background:#c8f0e2; border-radius:18px 40px 20px 48px; }
       .project:nth-child(4) { background:#ffcfdd; border-radius:48px 20px 44px 19px; }
@@ -54,7 +55,7 @@
       .pocket p { max-width:630px; margin:10px 0 0; line-height:1.5; }
       footer { display:flex; justify-content:space-between; gap:16px; padding:35px 5px 0; font:11px "DM Mono",monospace; }
       footer a { color:inherit; }
-      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { padding:28px 20px 31px; border-radius:20px 39px 27px 41px; } header::after { right:-5px; top:-16px; font-size:115px; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .project:nth-child(3)::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:44px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } }
+      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { padding:28px 20px 31px; border-radius:20px 39px 27px 41px; } header::after { right:-5px; top:-16px; font-size:115px; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .project:nth-child(3)::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:44px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } footer a { display:inline-flex; align-items:center; min-height:44px; } }
       @media (prefers-reduced-motion:reduce) { .project { transition:none; } }
     </style>
   </head>
