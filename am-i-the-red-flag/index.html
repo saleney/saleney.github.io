@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Am I The Red Flag? 🚩</title>
+<title>Am I The Red Flag?</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
 *{box-sizing:border-box}
@@ -66,7 +66,16 @@ button:disabled{opacity:.5;cursor:wait}
   border-top:1px solid #eee;
 }
 .result.show{display:block}
-.emoji{font-size:38px}
+.reaction{--flag:#e4b94e;position:relative;width:132px;height:92px;margin:0 auto 4px;transform:rotate(-2deg)}
+.flag-pole{position:absolute;left:25px;top:5px;width:4px;height:68px;border-radius:2px;background:#293c3b;box-shadow:2px 1px 0 rgba(41,60,59,.2)}
+.flag-pole::after{content:"";position:absolute;left:-5px;bottom:-6px;width:14px;height:6px;border:2px solid #293c3b;border-radius:50%;background:#fffdf7}
+.flag-cloth{position:absolute;left:28px;top:7px;width:79px;height:52px;background:var(--flag);clip-path:polygon(0 0,100% 13%,78% 50%,100% 87%,0 100%);filter:drop-shadow(2px 3px 0 #293c3b);transform-origin:left center}
+.flag-eye,.flag-mouth{position:absolute;z-index:1;background:#293c3b}.flag-eye{top:19px;width:5px;height:5px;border-radius:50%}.flag-eye.left{left:19px}.flag-eye.right{left:37px}.flag-mouth{left:24px;top:34px;width:18px;height:3px;border-radius:4px}
+.reaction::after{position:absolute;right:0;bottom:3px;max-width:86px;font:700 9px/1.2 "DM Mono",monospace;letter-spacing:.07em;text-align:left;content:"NEEDS ACTUAL EVIDENCE"}
+.reaction[data-type="red"]{--flag:#e9695f}.reaction[data-type="red"] .flag-cloth{transform:skewY(-4deg)}.reaction[data-type="red"] .flag-eye{height:3px;border-radius:0;transform:rotate(12deg)}.reaction[data-type="red"] .flag-eye.right{transform:rotate(-12deg)}.reaction[data-type="red"] .flag-mouth{height:10px;width:12px;left:27px;top:33px;border-radius:50%}.reaction[data-type="red"]::after{content:"OBJECTION."}
+.reaction[data-type="green"]{--flag:#91cb8d}.reaction[data-type="green"] .flag-mouth{top:31px;height:9px;background:transparent;border-bottom:3px solid #293c3b;border-radius:50%}.reaction[data-type="green"]::after{content:"CASE DISMISSED."}
+.reaction[data-type="mixed"]{--flag:#ffe477}.reaction[data-type="mixed"] .flag-eye.right{height:2px;border-radius:0}.reaction[data-type="mixed"] .flag-mouth{transform:rotate(-7deg)}.reaction[data-type="mixed"]::after{content:"JURY CONFUSED."}
+.title-flag{position:relative;display:inline-block;width:.68em;height:.72em;margin-left:.08em;vertical-align:.04em}.title-flag::before{content:"";position:absolute;left:10%;top:3%;width:6%;height:95%;border-radius:2px;background:#293c3b}.title-flag::after{content:"";position:absolute;left:16%;top:7%;width:76%;height:58%;background:#e9695f;clip-path:polygon(0 0,100% 13%,78% 50%,100% 87%,0 100%);filter:drop-shadow(1px 2px 0 #293c3b);transform:rotate(-4deg);transform-origin:left center}
 .verdict{
   margin:10px 0 8px;
   font-size:32px;
@@ -110,7 +119,7 @@ body{background:radial-gradient(circle at 10% 10%,#ffe477 0 42px,transparent 43p
 <body>
 <main class="app">
 
-<h1>Am I The Red Flag? 🚩</h1>
+<h1>Am I The Red Flag?<span class="title-flag" aria-hidden="true"></span></h1>
 
 <p class="subtitle">Tell me what happened. I'll be honest.</p>
 
@@ -120,7 +129,7 @@ body{background:radial-gradient(circle at 10% 10%,#ffe477 0 42px,transparent 43p
 <button id="judge">JUDGE ME</button>
 
 <section class="result" id="result" role="status" aria-live="polite" aria-atomic="true">
-  <div class="emoji" id="emoji"></div>
+  <div class="reaction" id="reaction" data-type="insufficient" aria-hidden="true"><span class="flag-pole"></span><span class="flag-cloth"><i class="flag-eye left"></i><i class="flag-eye right"></i><i class="flag-mouth"></i></span></div>
   <h2 class="verdict" id="verdict"></h2>
   <p class="score" id="score"></p>
   <p class="message" id="message"></p>
@@ -135,7 +144,7 @@ body{background:radial-gradient(circle at 10% 10%,#ffe477 0 42px,transparent 43p
 const story = document.getElementById("story");
 const judge = document.getElementById("judge");
 const result = document.getElementById("result");
-const emoji = document.getElementById("emoji");
+const reaction = document.getElementById("reaction");
 const verdict = document.getElementById("verdict");
 const score = document.getElementById("score");
 const message = document.getElementById("message");
@@ -159,7 +168,6 @@ function analyze(text){
     return {
       type:"insufficient",
       score: randomNumber(5,20),
-      emoji:"🧑‍⚖️",
       title:"INSUFFICIENT EVIDENCE",
       message:"You cannot expect me to convict someone based on that. Give me the actual story."
     };
@@ -183,7 +191,6 @@ function analyze(text){
     return {
       type:"red",
       score: randomNumber(85,99),
-      emoji:"🚩",
       title:"YOU ARE THE RED FLAG",
       message:"This is not a close call. Please seek immediate real-world help."
     };
@@ -205,7 +212,6 @@ function analyze(text){
     return {
       type:"red",
       score: randomNumber(75,98),
-      emoji:"🚩",
       title:"YOU ARE THE RED FLAG",
       message:"Yeah... we're not going to litigate this one. You cheated."
     };
@@ -232,7 +238,6 @@ function analyze(text){
     return {
       type:"red",
       score: randomNumber(55,82),
-      emoji:"🚩",
       title:"WE HAVE SOME CONCERNS",
       message:"Breaking or throwing things when you're angry is not exactly a green flag."
     };
@@ -260,7 +265,6 @@ function analyze(text){
     return {
       type:"red",
       score: randomNumber(45,72),
-      emoji:"🚩",
       title:"WE HAVE SOME CONCERNS",
       message:"Respectfully, violating someone's privacy is not helping your case."
     };
@@ -286,7 +290,6 @@ function analyze(text){
     return {
       type:"red",
       score: randomNumber(35,64),
-      emoji:"🚩",
       title:"WE HAVE SOME CONCERNS",
       message:"I'm not saying you're the problem. I'm saying the evidence isn't exactly helping your case."
     };
@@ -314,7 +317,6 @@ function analyze(text){
     return {
       type:"green",
       score: randomNumber(5,21),
-      emoji:"🟢",
       title:"NOT THE RED FLAG",
       message:"You communicated, set a boundary, or made a reasonable choice. This one might actually be on them."
     };
@@ -328,7 +330,6 @@ function analyze(text){
   return {
     type:"mixed",
     score: randomNumber(15,35),
-    emoji:"🟡",
     title:"IT'S COMPLICATED",
     message:"I need more context before I'm ready to convict either party."
   };
@@ -355,7 +356,7 @@ function judgeStory(){
 
     const resultData = analyze(text);
 
-    emoji.textContent = resultData.emoji;
+    reaction.dataset.type = resultData.type;
     verdict.textContent = resultData.title;
     score.textContent = "Red Flag Score: " + resultData.score + "%";
     message.textContent = resultData.message;
@@ -396,7 +397,7 @@ story.addEventListener("pointerup",event=>{
 copy.addEventListener("click",async()=>{
 
   const text =
-`🚩 AM I THE RED FLAG?
+`AM I THE RED FLAG?
 
 ${verdict.textContent}
 ${score.textContent}

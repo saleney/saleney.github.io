@@ -1,12 +1,5 @@
-/* Keep system emoji out of the finished interface. */
-.verdict-row > span:first-child {
-  font-size: 0;
-}
-
-.verdict-row > span:first-child::after {
-  content: "RESULT";
-  font: 700 9px "DM Mono", monospace;
-}
+/* Outcome stamps are authored text, not platform-dependent emoji artwork. */
+.verdict-row > span:first-child::after { content:none; }
 
 .salene-home-link {
   display: inline-block;
