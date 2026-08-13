@@ -49,10 +49,11 @@
       @keyframes bird-flight { 0%{opacity:0;transform:translateX(0) translateY(22px) rotate(-4deg)} 5%{opacity:1} 25%{transform:translateX(calc(25vw + 70px)) translateY(-18px) rotate(2deg)} 50%{transform:translateX(calc(50vw + 100px)) translateY(12px) rotate(-2deg)} 75%{opacity:1;transform:translateX(calc(75vw + 130px)) translateY(-24px) rotate(2deg)} 95%{opacity:1} 100%{opacity:0;transform:translateX(calc(100vw + 220px)) translateY(5px) rotate(-1deg)} }
       @keyframes bird-wing { from{transform:rotate(-18deg) translateY(1px)} to{transform:rotate(26deg) translateY(-3px)} }
       @keyframes bird-flight-gentle { 0%{opacity:0;transform:translateX(0)} 8%,92%{opacity:1} 100%{opacity:0;transform:translateX(calc(100vw + 220px))} }
+      .entrance-copy { width:min(930px,100%); margin:0 auto; }
       .eyebrow,.note { position:relative; z-index:1; margin:0; font:12px "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
       h1 { position:relative; z-index:1; max-width:930px; margin:20px 0 19px; font:700 clamp(3.4rem,9.5vw,7.35rem)/.84 Fraunces,Georgia,serif; letter-spacing:-.075em; }
       .intro { position:relative; z-index:1; max-width:610px; margin:0; font-size:clamp(1rem,2.4vw,1.3rem); line-height:1.45; }
-      .goodness { position:relative; z-index:1; align-self:flex-end; margin:24px clamp(8px,9vw,105px) 0 0; font:italic 1.1rem Fraunces,Georgia,serif; transform:rotate(-1.5deg); }
+      .goodness { position:relative; z-index:1; margin:24px clamp(8px,9vw,105px) 0 auto; width:max-content; font:italic 1.1rem Fraunces,Georgia,serif; transform:rotate(-1.5deg); }
       .section-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin:35px 4px 20px; scroll-margin-top:20px; }
       h2 { margin:0; font:700 clamp(2rem,5vw,3.45rem)/.94 Fraunces,Georgia,serif; letter-spacing:-.05em; }
       .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
@@ -90,7 +91,7 @@
       .pocket p { max-width:630px; margin:10px 0 0; line-height:1.5; }
       footer { display:flex; justify-content:space-between; gap:16px; padding:35px 5px 0; font:11px "DM Mono",monospace; }
       footer a { color:inherit; }
-      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 96px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:5px; bottom:17px; width:116px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { align-self:flex-start; margin:23px 0 0 18%; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .project:nth-child(3)::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } footer a { display:inline-flex; align-items:center; min-height:44px; } }
+      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 96px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:5px; bottom:17px; width:116px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { margin:23px auto 0 18%; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .project:nth-child(3)::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } footer a { display:inline-flex; align-items:center; min-height:44px; } }
       @media (prefers-reduced-motion:reduce) { .project { transition:none; } .entrance-star.sparkle { animation:none; color:var(--pink); transform:rotate(11deg) scale(1.04); } .entrance-star.sparkle::before,.entrance-star.sparkle::after { animation:none; } .entrance-wave:hover path,.entrance-wave:focus-visible path,.entrance-wave.waving,.entrance-wave.waving path { animation:none; color:var(--green); } .entrance-bird.flying { animation:bird-flight-gentle 4.8s linear both; } .entrance-bird.flying .bird-wing { animation:none; } }
     </style>
   </head>
@@ -108,9 +109,11 @@
     <main class="page">
       <header>
         <button class="entrance-star" type="button" aria-label="Make the entrance star sparkle">✦</button>
-        <h1>Salene’s<br />Playground.</h1>
-        <p class="intro">A growing collection of tiny worlds, strange questions, unhinged buttons, and things I made because I wanted them to exist.</p>
-        <p class="goodness">Come wander with me.</p>
+        <div class="entrance-copy">
+          <h1>Salene’s<br />Playground.</h1>
+          <p class="intro">A growing collection of tiny worlds, strange questions, unhinged buttons, and things I made because I wanted them to exist.</p>
+          <p class="goodness">Come wander with me.</p>
+        </div>
         <button class="entrance-wave" type="button" aria-label="Ripple the ocean and send a bird flying">
           <svg viewBox="0 0 170 76" aria-hidden="true">
             <path class="wave-crest" d="M7 48c15-3 22-17 34-29 13-13 31-14 43-3 8 7 10 18 7 27-2-13-10-20-20-21-13-2-22 7-29 17 13-7 25-6 36 1 12 8 22 13 36 9 12-3 23-12 49-2" />
