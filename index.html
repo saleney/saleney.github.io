@@ -12,13 +12,45 @@
       * { box-sizing:border-box; }
       body { margin:0; min-height:100vh; color:var(--ink); background-color:#f6f0df; background-image:linear-gradient(rgba(39,54,90,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(39,54,90,.035) 1px,transparent 1px); background-size:28px 28px; font-family:"Space Grotesk",system-ui,sans-serif; }
       .page { width:min(1120px,calc(100% - 34px)); margin:0 auto; padding:42px 0 60px; }
-      header { position:relative; padding:38px clamp(20px,5vw,60px) 42px; overflow:hidden; border:3px solid var(--line); border-radius:28px 58px 34px 65px; background:rgba(255,250,240,.92); box-shadow:10px 12px 0 rgba(39,54,90,.18); }
-      header::after { content:"✦"; position:absolute; right:7%; top:-36px; color:var(--yellow); font-size:180px; line-height:1; text-shadow:3px 3px 0 var(--line); transform:rotate(11deg); }
+      header { position:relative; min-height:calc(100svh - 42px); padding:35px clamp(8px,4vw,38px) 48px; display:flex; flex-direction:column; justify-content:center; }
+      .entrance-star { position:absolute; z-index:2; right:clamp(12px,5vw,62px); top:28px; border:0; padding:0; background:transparent; color:var(--yellow); font:clamp(150px,20vw,230px)/1 Fraunces,Georgia,serif; text-shadow:3px 3px 0 var(--line); cursor:pointer; transform:rotate(11deg); transform-origin:center; }
+      .entrance-star::before,.entrance-star::after { content:"✦"; position:absolute; color:var(--pink); font-size:.18em; text-shadow:none; opacity:0; pointer-events:none; }
+      .entrance-star::before { left:-.05em; top:.05em; }.entrance-star::after { right:-.04em; bottom:.12em; color:var(--blue); }
+      .entrance-star:hover,.entrance-star:focus-visible { transform:rotate(5deg) scale(1.04); }
+      .entrance-star:focus-visible { outline:3px solid var(--line); outline-offset:8px; border-radius:50%; }
+      .entrance-star.sparkle { animation:star-pop .62s ease; }
+      .entrance-star.sparkle::before { animation:spark-left .62s ease; }.entrance-star.sparkle::after { animation:spark-right .62s .06s ease; }
+      .entrance-wave { position:absolute; left:clamp(9px,4vw,38px); bottom:26px; width:clamp(92px,13vw,145px); border:0; padding:0; background:transparent; color:var(--blue); cursor:pointer; transform:rotate(-3deg); transform-origin:center; }
+      .entrance-wave:focus-visible { outline:3px solid var(--line); outline-offset:7px; border-radius:50%; }
+      .entrance-wave svg { display:block; width:100%; height:auto; }
+      .entrance-wave path { fill:none; stroke:currentColor; stroke-width:7; stroke-linecap:round; }
+      .entrance-wave:hover path:first-child,.entrance-wave:focus-visible path:first-child { animation:water-ripple .8s ease-in-out infinite alternate; transform-origin:center; }
+      .entrance-wave:hover path:last-child,.entrance-wave:focus-visible path:last-child { animation:water-ripple .8s .13s ease-in-out infinite alternate-reverse; transform-origin:center; }
+      .entrance-wave.waving { animation:wave-rock .75s ease; }
+      .entrance-wave.waving path:first-child { animation:wave-stretch .75s ease; transform-origin:center; }
+      .entrance-wave.waving path:last-child { animation:wave-stretch .75s .08s ease reverse; transform-origin:center; }
+      .entrance-bird { position:fixed; z-index:8; left:-120px; top:31%; width:82px; color:var(--ink); opacity:0; pointer-events:none; }
+      .entrance-bird svg { display:block; width:100%; height:auto; overflow:visible; }
+      .entrance-bird .bird-body,.entrance-bird .bird-head,.entrance-bird .bird-tail { fill:currentColor; }
+      .entrance-bird .bird-beak { fill:var(--pink); stroke:var(--ink); stroke-width:2; }
+      .entrance-bird .bird-eye { fill:var(--paper); }
+      .entrance-bird .bird-wing { fill:var(--blue); stroke:var(--ink); stroke-width:2.5; transform-box:fill-box; transform-origin:20% 65%; }
+      .entrance-bird.flying { animation:bird-flight 4.8s linear both; }
+      .entrance-bird.flying .bird-wing { animation:bird-wing .34s ease-in-out infinite alternate; }
+      @keyframes star-pop { 0%,100%{transform:rotate(11deg) scale(1)} 42%{transform:rotate(2deg) scale(1.14)} 68%{transform:rotate(15deg) scale(.97)} }
+      @keyframes spark-left { 0%,100%{opacity:0;transform:translate(0,0) scale(.5)} 42%{opacity:1;transform:translate(-24px,-19px) scale(1.15)} }
+      @keyframes spark-right { 0%,100%{opacity:0;transform:translate(0,0) scale(.5)} 42%{opacity:1;transform:translate(25px,18px) scale(1.1)} }
+      @keyframes wave-rock { 0%,100%{transform:rotate(-3deg) translateY(0)} 35%{transform:rotate(1deg) translateY(-5px)} 70%{transform:rotate(-5deg) translateY(2px)} }
+      @keyframes wave-stretch { 0%,100%{transform:scaleX(1)} 45%{transform:scaleX(1.12)} 72%{transform:scaleX(.96)} }
+      @keyframes water-ripple { from{transform:translateX(-3px) scaleX(.97)} to{transform:translateX(3px) scaleX(1.04)} }
+      @keyframes bird-flight { 0%{opacity:0;transform:translateX(0) translateY(22px) rotate(-4deg)} 5%{opacity:1} 25%{transform:translateX(calc(25vw + 70px)) translateY(-18px) rotate(2deg)} 50%{transform:translateX(calc(50vw + 100px)) translateY(12px) rotate(-2deg)} 75%{opacity:1;transform:translateX(calc(75vw + 130px)) translateY(-24px) rotate(2deg)} 95%{opacity:1} 100%{opacity:0;transform:translateX(calc(100vw + 220px)) translateY(5px) rotate(-1deg)} }
+      @keyframes bird-wing { from{transform:rotate(-18deg) translateY(1px)} to{transform:rotate(26deg) translateY(-3px)} }
+      @keyframes bird-flight-gentle { 0%{opacity:0;transform:translateX(0)} 8%,92%{opacity:1} 100%{opacity:0;transform:translateX(calc(100vw + 220px))} }
       .eyebrow,.note { position:relative; z-index:1; margin:0; font:12px "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
-      h1 { position:relative; z-index:1; max-width:750px; margin:15px 0 15px; font:700 clamp(3rem,9vw,6.7rem)/.88 Fraunces,Georgia,serif; letter-spacing:-.07em; }
+      h1 { position:relative; z-index:1; max-width:930px; margin:20px 0 19px; font:700 clamp(3.4rem,9.5vw,7.35rem)/.84 Fraunces,Georgia,serif; letter-spacing:-.075em; }
       .intro { position:relative; z-index:1; max-width:610px; margin:0; font-size:clamp(1rem,2.4vw,1.3rem); line-height:1.45; }
-      .goodness { margin:21px 0 0; font:italic 1.1rem Fraunces,Georgia,serif; }
-      .section-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin:62px 4px 20px; }
+      .goodness { position:relative; z-index:1; align-self:flex-end; margin:24px clamp(8px,9vw,105px) 0 0; font:italic 1.1rem Fraunces,Georgia,serif; transform:rotate(-1.5deg); }
+      .section-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin:35px 4px 20px; scroll-margin-top:20px; }
       h2 { margin:0; font:700 clamp(2rem,5vw,3.45rem)/.94 Fraunces,Georgia,serif; letter-spacing:-.05em; }
       .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
       .project { position:relative; min-height:230px; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:27px; overflow:hidden; border:3px solid var(--line); border-radius:27px 16px 33px 18px; color:var(--ink); text-decoration:none; box-shadow:6px 7px 0 rgba(39,54,90,.2); transition:transform .18s ease,box-shadow .18s ease; }
@@ -55,17 +87,33 @@
       .pocket p { max-width:630px; margin:10px 0 0; line-height:1.5; }
       footer { display:flex; justify-content:space-between; gap:16px; padding:35px 5px 0; font:11px "DM Mono",monospace; }
       footer a { color:inherit; }
-      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { padding:28px 20px 31px; border-radius:20px 39px 27px 41px; } header::after { right:-5px; top:-16px; font-size:115px; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .project:nth-child(3)::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:44px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } footer a { display:inline-flex; align-items:center; min-height:44px; } }
-      @media (prefers-reduced-motion:reduce) { .project { transition:none; } }
+      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 88px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:9px; bottom:22px; width:94px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { align-self:flex-start; margin:23px 0 0 18%; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .project:nth-child(3)::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } footer a { display:inline-flex; align-items:center; min-height:44px; } }
+      @media (prefers-reduced-motion:reduce) { .project { transition:none; } .entrance-star.sparkle { animation:none; color:var(--pink); transform:rotate(11deg) scale(1.04); } .entrance-star.sparkle::before,.entrance-star.sparkle::after { animation:none; } .entrance-wave:hover path,.entrance-wave:focus-visible path,.entrance-wave.waving,.entrance-wave.waving path { animation:none; color:var(--green); } .entrance-bird.flying { animation:bird-flight-gentle 4.8s linear both; } .entrance-bird.flying .bird-wing { animation:none; } }
     </style>
   </head>
   <body>
+    <div class="entrance-bird" aria-hidden="true">
+      <svg viewBox="0 0 110 68">
+        <path class="bird-tail" d="M25 38 2 27l9 19-5 13 25-8Z" />
+        <ellipse class="bird-body" cx="49" cy="42" rx="31" ry="18" />
+        <circle class="bird-head" cx="78" cy="29" r="16" />
+        <path class="bird-beak" d="m92 27 16 6-16 6Z" />
+        <circle class="bird-eye" cx="83" cy="25" r="3" />
+        <path class="bird-wing" d="M52 42C38 32 31 14 40 5c15 7 25 21 27 37-4 7-10 9-15 0Z" />
+      </svg>
+    </div>
     <main class="page">
       <header>
-        <p class="eyebrow">✦ AN INTERACTIVE PLAYGROUND</p>
-        <h1>Come wander<br />with me.</h1>
+        <button class="entrance-star" type="button" aria-label="Make the entrance star sparkle">✦</button>
+        <h1>Salene’s<br />Playground.</h1>
         <p class="intro">A growing collection of tiny worlds, strange questions, unhinged buttons, and things I made because I wanted them to exist.</p>
-        <p class="goodness">Follow what catches your attention.</p>
+        <p class="goodness">Come wander with me.</p>
+        <button class="entrance-wave" type="button" aria-label="Ripple the ocean and send a bird flying">
+          <svg viewBox="0 0 150 48" aria-hidden="true">
+            <path d="M5 28c15-19 29-19 44 0s29 19 44 0 29-19 52 0" />
+            <path d="M18 41c11-10 22-10 33 0s22 10 33 0 22-10 43 0" />
+          </svg>
+        </button>
       </header>
 
       <div class="section-head">
@@ -78,7 +126,7 @@
           <span class="tag">personal museum</span><div><h3>An Autobiography Told Through Love</h3><p>A collection of things that delighted me, changed me, broke me, and brought me home.</p></div><span class="arrow">enter the collection ↗</span>
         </a>
         <a class="project" href="/salenes-world/">
-          <span class="tag">exploration</span><div><h3>Salene’s World</h3><p>A world for practicing love, wonder, and presence.</p></div><span class="arrow">enter ↗</span>
+          <span class="tag">explore</span><div><h3>My World</h3><p>A world for practicing love, wonder, and presence.</p></div><span class="arrow">enter ↗</span>
         </a>
         <a class="project" href="/ting-bu-dong/">
           <span class="tag">mandarin survival simulator</span><div><h3>听不懂</h3><p>You booked the ticket. Now figure it out.</p></div><span class="arrow">enter china ↗</span>
@@ -110,5 +158,48 @@
 
       <footer><span>made with curiosity &amp; questionable impulses</span><a href="https://github.com/saleney">find the source code ↗</a></footer>
     </main>
+    <script>
+      const entranceStar = document.querySelector('.entrance-star');
+      entranceStar.addEventListener('click', () => {
+        entranceStar.classList.remove('sparkle');
+        requestAnimationFrame(() => entranceStar.classList.add('sparkle'));
+        window.setTimeout(() => entranceStar.classList.remove('sparkle'), 700);
+      });
+
+      const entranceWave = document.querySelector('.entrance-wave');
+      const entranceBird = document.querySelector('.entrance-bird');
+      let birdFlightTimer;
+      entranceWave.addEventListener('click', () => {
+        entranceWave.classList.remove('waving');
+        entranceBird.classList.remove('flying');
+        void entranceBird.offsetWidth;
+        entranceWave.classList.add('waving');
+        entranceBird.classList.add('flying');
+        window.clearTimeout(birdFlightTimer);
+        window.setTimeout(() => entranceWave.classList.remove('waving'), 850);
+        birdFlightTimer = window.setTimeout(() => entranceBird.classList.remove('flying'), 5000);
+      });
+
+      const placesToVisit = document.querySelector('.section-head');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let entranceHandoffComplete = false;
+      let entranceHandoffTimer;
+
+      window.addEventListener('scroll', () => {
+        if (entranceHandoffComplete || window.scrollY <= 4) return;
+        window.clearTimeout(entranceHandoffTimer);
+        entranceHandoffTimer = window.setTimeout(() => {
+          if (window.scrollY < placesToVisit.offsetTop) {
+            entranceHandoffComplete = true;
+            placesToVisit.scrollIntoView({
+              behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+              block: 'start'
+            });
+          } else {
+            entranceHandoffComplete = true;
+          }
+        }, 90);
+      }, { passive: true });
+    </script>
   </body>
 </html>
