@@ -28,3 +28,58 @@
   outline: 2px solid #293c3b;
   outline-offset: 2px;
 }
+
+/* A shared usability layer, while keeping this exhibit's own visual voice. */
+.brand,
+.sound-toggle,
+.speak,
+.text-button,
+.salene-home-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+
+.brand,
+.sound-toggle,
+.speak,
+.text-button {
+  min-width: 44px;
+}
+
+.choice-row {
+  position: relative;
+}
+
+.choice {
+  width: 100%;
+  color: inherit;
+  font: inherit;
+}
+
+.choice-row.has-audio .choice {
+  padding-right: 64px;
+}
+
+.choice-audio {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  transform: translateY(-50%);
+}
+
+.brand:focus-visible,
+.sound-toggle:focus-visible,
+.speak:focus-visible,
+.text-button:focus-visible,
+.choice:focus-visible,
+.choice-audio:focus-visible,
+.dialogue-audio:focus-visible,
+.primary:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
