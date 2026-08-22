@@ -75,7 +75,7 @@
       .project-eight-ball { background:#ffcfdd; border-radius:48px 20px 44px 19px; }
       .project-bad-idea { background:#c7e8fb; border-radius:20px 45px 17px 38px; }
       .project-what-now { background:#e8d5fc; border-radius:43px 19px 35px 23px; }
-      .project-adventure { background:#f8d3a1; border-radius:18px 35px 20px 45px; }
+      .project-adventure { background:#f8d3a1; }
       .project-red-flag { background:#d3edb8; border-radius:38px 19px 45px 21px; }
       .project-ting-bu-dong { background:#ffb2a6; border-radius:22px 47px 35px 18px; }
       .project-clay-studio { background:#d9a878; border-color:#553d2f; border-radius:43px 22px 37px 19px; }
@@ -88,8 +88,8 @@
       .project-bad-idea::after { content:"!"; }
       .project-what-now::after { content:""; right:15px; bottom:13px; width:94px; height:66px; border:2px solid rgba(39,54,90,.55); border-radius:2px 8px 3px 7px; background:rgba(255,250,240,.58); box-shadow:inset 0 11px 0 rgba(39,54,90,.07),4px 4px 0 rgba(39,54,90,.11); transform:rotate(4deg); }
       .project-what-now::before { content:""; position:absolute; z-index:0; right:56px; bottom:74px; width:15px; height:15px; border:2px solid rgba(39,54,90,.62); border-radius:50%; background:#ff8eaa; box-shadow:1px 2px 0 rgba(39,54,90,.16); transform:rotate(4deg); }
-      .project-adventure::after { content:""; right:21px; bottom:11px; width:57px; height:76px; border:3px solid rgba(39,54,90,.56); border-bottom:0; border-radius:45px 45px 0 0; background:rgba(255,250,240,.23); box-shadow:inset -15px 0 0 rgba(39,54,90,.08); transform:rotate(4deg); }
-      .project-adventure::before { content:""; position:absolute; z-index:0; right:33px; bottom:42px; width:7px; height:7px; border-radius:50%; background:rgba(39,54,90,.56); transform:rotate(4deg); }
+      .project-adventure::after { content:""; right:30px; top:0; width:2px; height:100%; border-left:2px dashed rgba(39,54,90,.42); opacity:.8; }
+      .project-adventure::before { content:""; position:absolute; z-index:0; right:12px; bottom:16px; width:46px; height:63px; border:3px solid rgba(39,54,90,.56); border-bottom:0; border-radius:40px 40px 0 0; background:rgba(255,250,240,.28); box-shadow:inset -12px 0 0 rgba(39,54,90,.08); }
       .project-red-flag::after { content:"⚑"; }
       .project-ting-bu-dong::after { content:"听"; font-family:"Noto Sans SC",sans-serif; }
       .project-clay-studio::after { content:""; }
@@ -108,24 +108,27 @@
       .project-autobiography p { max-width:580px; font-family:Fraunces,Georgia,serif; font-style:italic; font-size:1.05rem; }
       .archive-folio { position:absolute; z-index:0; right:37px; top:43px; width:min(29%,220px); height:180px; border-top:1px solid rgba(30,41,36,.4); border-bottom:1px solid rgba(30,41,36,.4); opacity:.64; transform:rotate(3deg); }
       .archive-folio::before,.archive-folio::after { content:""; position:absolute; left:15%; width:70%; border-top:1px solid rgba(30,41,36,.25); }.archive-folio::before { top:28px; }.archive-folio::after { bottom:29px; }
+      .side-doors { display:flex; gap:26px; align-items:stretch; margin:26px clamp(6px,5vw,54px) 6px; }
+      .side-doors .project { flex:1; min-width:0; min-height:210px; }
+      .project-ticket { border-radius:6px; box-shadow:5px 6px 0 rgba(39,54,90,.18); transform:rotate(-1.1deg); }
+      .project-ticket:hover,.project-ticket:focus-visible { transform:translate(-3px,-5px) rotate(-1.6deg); }
+      .project-coin-decision { overflow:visible; border-width:0 0 3px; border-radius:0; background:transparent; box-shadow:none; padding-left:118px; }
+      .project-coin-decision:hover,.project-coin-decision:focus-visible { box-shadow:none; transform:translate(-3px,-3px); }
+      .project-coin-decision::after { right:auto; left:18px; bottom:50%; width:76px; height:76px; transform:translateY(50%) rotate(-8deg); }
+      .project-coin-decision::before { right:auto; left:47px; bottom:calc(50% - 9px); transform:rotate(-8deg); }
       .tag { display:inline-block; margin:0 0 18px; padding:0 1px 4px; border:0; border-bottom:1px solid var(--line); border-radius:0; background:transparent; font:10px "DM Mono",monospace; letter-spacing:.06em; text-transform:uppercase; transform:rotate(-1deg); }
       h3 { position:relative; z-index:1; max-width:85%; margin:0; font:700 clamp(1.65rem,4vw,2.45rem)/.96 Fraunces,Georgia,serif; letter-spacing:-.045em; }
       .project p { position:relative; z-index:1; max-width:85%; margin:11px 0 0; font-size:.93rem; line-height:1.35; }
       .arrow { position:relative; z-index:1; margin-top:22px; font:700 1.2rem "DM Mono",monospace; }
-      .pocket { position:relative; isolation:isolate; margin-top:54px; padding:38px 30px 30px; overflow:hidden; border:3px solid var(--line); border-top:0; border-radius:0 0 31px 27px; background:rgba(255,250,240,.72); box-shadow:7px 8px 0 rgba(39,54,90,.12); }
-      .pocket::before { content:""; position:absolute; z-index:0; top:0; left:9%; width:82%; height:28px; border-top:3px solid var(--line); border-radius:50% 50% 0 0; box-shadow:0 8px 0 -6px rgba(39,54,90,.28); }
-      .pocket::after { content:""; position:absolute; z-index:-1; right:8%; top:-19px; width:180px; height:72px; border:2px solid rgba(39,54,90,.45); border-radius:5px 16px 4px 8px; background:#ffdf94; transform:rotate(5deg); }
-      .pocket > :not(.pocket-paper) { position:relative; z-index:1; }
-      .pocket-paper { position:absolute; z-index:0; top:11px; left:8%; width:124px; height:42px; border:2px solid rgba(39,54,90,.38); border-radius:3px; background:#fffaf0; transform:rotate(-4deg); }
-      .pocket-paper::after { content:""; position:absolute; right:-2px; bottom:-2px; width:16px; height:16px; border-left:2px solid rgba(39,54,90,.38); border-top:2px solid rgba(39,54,90,.38); background:#f6f0df; }
-      .pocket h2 { font-size:clamp(1.6rem,4vw,2.5rem); }
-      .pocket p { max-width:630px; margin:10px 0 0; line-height:1.5; }
+      .pocket { margin:54px 5px 0; padding:0 0 0 20px; border-left:2px solid var(--line); background:transparent; }
+      .pocket h2 { font-size:clamp(1.35rem,3vw,2rem); }
+      .pocket p { max-width:630px; margin:9px 0 0; line-height:1.5; }
       footer { display:flex; justify-content:space-between; gap:16px; padding:35px 5px 0; font:11px "DM Mono",monospace; }
       footer a { color:inherit; }
       .bird-field-guide { width:min(420px,calc(100vw - 32px)); max-height:min(550px,calc(100dvh - 32px)); margin:auto; overflow:auto; border:3px solid var(--line); border-radius:24px 38px 21px 34px; color:var(--ink); background:var(--paper); box-shadow:9px 10px 0 rgba(39,54,90,.22); }
       .bird-field-guide::backdrop { background:rgba(39,54,90,.22); }
       .bird-field-guide__inside { padding:26px; }.bird-field-guide h2 { margin:10px 0 4px; font-size:clamp(2rem,9vw,2.8rem); }.bird-field-guide p { margin:14px 0 0; font-size:1rem; line-height:1.45; }.bird-field-guide__scientific { margin-top:0 !important; font:italic 1rem Fraunces,Georgia,serif; }.bird-field-guide__note { font-family:Fraunces,Georgia,serif; font-size:1.17rem !important; }.bird-field-guide__close { position:absolute; top:10px; right:10px; display:grid; place-items:center; width:44px; height:44px; border:2px solid var(--line); border-radius:50%; color:inherit; background:var(--yellow); cursor:pointer; font-size:1.2rem; }.bird-field-guide__song { min-height:44px; margin-top:24px; border:2px solid var(--line); border-radius:999px; padding:10px 15px; color:inherit; background:var(--blue); box-shadow:3px 3px 0 rgba(39,54,90,.24); font:700 .78rem "DM Mono",monospace; cursor:pointer; }.bird-field-guide__song:disabled { cursor:not-allowed; opacity:.58; }.bird-field-guide__status { margin-top:10px !important; font:11px "DM Mono",monospace; }
-      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 96px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:5px; bottom:17px; width:116px; } [data-bird-perch] { right:12px; bottom:17px; } .bird-visitor { width:48px; height:48px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { margin:23px auto 0 18%; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .project-ting-bu-dong::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } footer a { display:inline-flex; align-items:center; min-height:44px; } }
+      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 96px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:5px; bottom:17px; width:116px; } [data-bird-perch] { right:12px; bottom:17px; } .bird-visitor { width:48px; height:48px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { margin:23px auto 0 18%; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .side-doors { display:grid; grid-template-columns:1fr; gap:16px; margin:18px 3px 6px; } .side-doors .project { min-height:190px; } .project-coin-decision { padding-left:112px; } .project-ting-bu-dong::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } footer a { display:inline-flex; align-items:center; min-height:44px; } }
       @media (prefers-reduced-motion:reduce) { .project { transition:none; } .entrance-star.sparkle { animation:none; color:var(--pink); transform:rotate(11deg) scale(1.04); } .entrance-star.sparkle::before,.entrance-star.sparkle::after { animation:none; } .entrance-wave:hover path,.entrance-wave:focus-visible path,.entrance-wave.waving,.entrance-wave.waving path { animation:none; color:var(--green); } .entrance-bird.flying { animation:bird-flight-gentle 4.8s linear both; } .entrance-bird.flying .bird-wing { animation:none; } }
     </style>
   </head>
@@ -184,12 +187,18 @@
         <a class="project project-what-now" href="/what-now/">
           <span class="tag">for parents of bored kids</span><div><h3>What Should We Do?</h3><p>Screen-free activity ideas for when your kids are bored and your brain is done.</p></div><span class="arrow">figure it out ↗</span>
         </a>
-        <a class="project project-adventure" href="/a-little-adventure/">
+      </section>
+
+      <section class="side-doors" aria-label="Two side paths">
+        <a class="project project-adventure project-ticket" href="/a-little-adventure/">
           <span class="tag">a read-aloud adventure for kids</span><div><h3>A Little Adventure</h3><p>A choose-your-own-way story for kids and their grown-ups.</p></div><span class="arrow">begin ↗</span>
         </a>
-        <a class="project project-text-ex" href="/should-i-text-my-ex/">
+        <a class="project project-text-ex project-coin-decision" href="/should-i-text-my-ex/">
           <span class="tag">very important decision</span><div><h3>Should I Text My Ex?</h3><p>Ask the coin. It has opinions.</p></div><span class="arrow">ask it ↗</span>
         </a>
+      </section>
+
+      <section class="grid" aria-label="More of Salene's projects">
         <a class="project project-red-flag" href="/am-i-the-red-flag/">
           <span class="tag">relationship court</span><div><h3>Am I the Red Flag?</h3><p>Tell the story. Receive a completely objective-ish verdict.</p></div><span class="arrow">be judged ↗</span>
         </a>
@@ -199,7 +208,6 @@
       </section>
 
       <section class="pocket">
-        <span class="pocket-paper" aria-hidden="true"></span>
         <h2>More pockets of the internet, soon.</h2>
         <p>I’m still making things. This front door will keep growing as I do.</p>
       </section>
