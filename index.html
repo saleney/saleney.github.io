@@ -78,6 +78,7 @@
       .project:nth-child(7) { background:#f8d3a1; border-radius:18px 35px 20px 45px; }
       .project:nth-child(9) { background:#d3edb8; border-radius:38px 19px 45px 21px; }
       .project:nth-child(3) { background:#ffb2a6; border-radius:22px 47px 35px 18px; }
+      .project.clay-studio { background:#d9a878; border-color:#553d2f; border-radius:43px 22px 37px 19px; }
       .project::after { position:absolute; z-index:0; right:20px; bottom:8px; font:90px/1 Fraunces,serif; opacity:.3; pointer-events:none; }
       .project > * { position:relative; z-index:1; }
       .project:nth-child(2)::after { content:"◌"; }
@@ -88,6 +89,7 @@
       .project:nth-child(7)::after { content:"↗"; }
       .project:nth-child(9)::after { content:"⚑"; }
       .project:nth-child(3)::after { content:"听"; font-family:"Noto Sans SC",sans-serif; }
+      .project.clay-studio::after { content:"◒"; color:#6a4532; }
       .project.featured { grid-column:1/-1; min-height:300px; color:#1e2924; background:#f2eee4; border-color:#1e2924; border-radius:18px 54px 24px 42px; box-shadow:8px 9px 0 rgba(30,41,36,.2); }
       .project.featured::after { content:"◐"; color:#a94e35; font-size:150px; opacity:.7; }
       .project.featured h3 { max-width:70%; font:500 clamp(2.5rem,6vw,5rem)/.9 Fraunces,Georgia,serif; }
@@ -170,6 +172,9 @@
         </a>
         <a class="project" href="/am-i-the-red-flag/">
           <span class="tag">relationship court</span><div><h3>Am I the Red Flag?</h3><p>Tell the story. Receive a completely objective-ish verdict.</p></div><span class="arrow">be judged ↗</span>
+        </a>
+        <a class="project clay-studio" href="https://saleney.github.io/virtual-clay-studio/">
+          <span class="tag">interactive / 3D</span><div><h3>Virtual Clay Studio</h3><p>Throw a little clay in your browser. Open, pull, shape, and see what happens.</p></div><span class="arrow">sit at the wheel ↗</span>
         </a>
       </section>
 

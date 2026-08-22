@@ -70,6 +70,13 @@ Master guide: `DEV_GUIDE.md`
 - Main file: `index.html`
 - Role: hub/index for the whole collection.
 
+### Virtual Clay Studio
+
+- Repository: `saleney/virtual-clay-studio`
+- Public: `https://saleney.github.io/virtual-clay-studio/`
+- Main files: `index.html`, `atelier.js`
+- Role: a standalone real-time WebGL pottery-wheel experience. Its repository is separate from this hub; the front door only links to it.
+
 #### Am I the Red Flag?
 
 - Public: `https://saleney.github.io/am-i-the-red-flag/`
