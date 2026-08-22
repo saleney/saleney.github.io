@@ -32,7 +32,7 @@
       .entrance-wave.waving { animation:wave-rock .75s ease; }
       .entrance-wave.waving .wave-crest { animation:wave-stretch .75s ease; transform-origin:center; }
       .entrance-wave.waving .wave-water { animation:wave-stretch .75s .08s ease reverse; transform-origin:center; }
-      [data-bird-perch] { position:absolute; z-index:2; right:clamp(24px,6vw,76px); bottom:24px; width:54px; height:54px; }
+      header [data-bird-perch] { position:absolute; z-index:2; right:clamp(24px,6vw,76px); bottom:24px; width:54px; height:54px; }
       .bird-visitor { display:grid; place-items:center; width:54px; height:54px; padding:0; border:0; border-radius:50%; color:var(--ink); background:transparent; cursor:pointer; }
       .bird-visitor:focus-visible { outline:3px solid var(--pink); outline-offset:3px; }
       .bird-illustration { position:relative; display:block; width:36px; height:29px; border:2px solid var(--ink); border-radius:58% 45% 48% 51%; background:#a36b4e; box-shadow:inset -7px -5px 0 #e9c89d, 2px 3px 0 rgba(39,54,90,.18); transform:rotate(-4deg); }
@@ -115,15 +115,17 @@
       h3 { position:relative; z-index:1; max-width:85%; margin:0; font:700 clamp(1.65rem,4vw,2.45rem)/.96 Fraunces,Georgia,serif; letter-spacing:-.045em; }
       .project p { position:relative; z-index:1; max-width:85%; margin:11px 0 0; font-size:.93rem; line-height:1.35; }
       .arrow { position:relative; z-index:1; margin-top:22px; font:700 1.2rem "DM Mono",monospace; }
-      .pocket { max-width:630px; margin:48px 5px 0; }
+      .pocket { position:relative; max-width:630px; margin:48px 5px 0; padding-right:62px; }
       .pocket h2 { font:12px "DM Mono",monospace; letter-spacing:.07em; text-transform:uppercase; }
       .pocket p { margin:8px 0 0; line-height:1.5; }
+      .pocket [data-bird-perch] { position:absolute; right:0; top:-11px; width:54px; height:54px; }
+      .pocket .bird-visitor::after { bottom:5px; width:38px; border-color:rgba(39,54,90,.7); transform:rotate(7deg); }
       footer { display:flex; justify-content:space-between; gap:16px; padding:35px 5px 0; font:11px "DM Mono",monospace; }
       footer a { color:inherit; }
       .bird-field-guide { width:min(420px,calc(100vw - 32px)); max-height:min(550px,calc(100dvh - 32px)); margin:auto; overflow:auto; border:3px solid var(--line); border-radius:24px 38px 21px 34px; color:var(--ink); background:var(--paper); box-shadow:9px 10px 0 rgba(39,54,90,.22); }
       .bird-field-guide::backdrop { background:rgba(39,54,90,.22); }
       .bird-field-guide__inside { padding:26px; }.bird-field-guide h2 { margin:10px 0 4px; font-size:clamp(2rem,9vw,2.8rem); }.bird-field-guide p { margin:14px 0 0; font-size:1rem; line-height:1.45; }.bird-field-guide__scientific { margin-top:0 !important; font:italic 1rem Fraunces,Georgia,serif; }.bird-field-guide__note { font-family:Fraunces,Georgia,serif; font-size:1.17rem !important; }.bird-field-guide__close { position:absolute; top:10px; right:10px; display:grid; place-items:center; width:44px; height:44px; border:2px solid var(--line); border-radius:50%; color:inherit; background:var(--yellow); cursor:pointer; font-size:1.2rem; }.bird-field-guide__song { min-height:44px; margin-top:24px; border:2px solid var(--line); border-radius:999px; padding:10px 15px; color:inherit; background:var(--blue); box-shadow:3px 3px 0 rgba(39,54,90,.24); font:700 .78rem "DM Mono",monospace; cursor:pointer; }.bird-field-guide__song:disabled { cursor:not-allowed; opacity:.58; }.bird-field-guide__status { margin-top:10px !important; font:11px "DM Mono",monospace; }
-      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 96px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:5px; bottom:17px; width:116px; } [data-bird-perch] { right:12px; bottom:17px; } .bird-visitor { width:48px; height:48px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { margin:23px auto 0 18%; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .coin-door { width:calc(100% - 6px); margin:22px auto; } .coin-door .project-coin-decision { min-height:184px; padding-left:132px; } .coin-door .project-coin-decision::after { left:18px; width:88px; height:88px; } .coin-door .project-coin-decision::before { left:54px; } .project-ting-bu-dong::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } footer a { display:inline-flex; align-items:center; min-height:44px; } }
+      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 96px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:5px; bottom:17px; width:116px; } header [data-bird-perch] { right:12px; bottom:17px; } .bird-visitor { width:48px; height:48px; } .pocket { padding-right:52px; } .pocket [data-bird-perch] { right:-4px; top:-11px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { margin:23px auto 0 18%; } .grid { grid-template-columns:1fr; } .project { min-height:205px; } .coin-door { width:calc(100% - 6px); margin:22px auto; } .coin-door .project-coin-decision { min-height:184px; padding-left:132px; } .coin-door .project-coin-decision::after { left:18px; width:88px; height:88px; } .coin-door .project-coin-decision::before { left:54px; } .project-ting-bu-dong::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } footer { display:block; line-height:1.8; } footer a { display:inline-flex; align-items:center; min-height:44px; } }
       @media (prefers-reduced-motion:reduce) { .project { transition:none; } .entrance-star.sparkle { animation:none; color:var(--pink); transform:rotate(11deg) scale(1.04); } .entrance-star.sparkle::before,.entrance-star.sparkle::after { animation:none; } .entrance-wave:hover path,.entrance-wave:focus-visible path,.entrance-wave.waving,.entrance-wave.waving path { animation:none; color:var(--green); } .entrance-bird.flying { animation:bird-flight-gentle 4.8s linear both; } .entrance-bird.flying .bird-wing { animation:none; } }
     </style>
   </head>
@@ -154,7 +156,7 @@
             <path class="wave-water" d="M31 70c10-5 20-5 30 0s20 5 30 0 20-5 31 0" />
           </svg>
         </button>
-        <div data-bird-perch></div>
+        <div data-bird-perch="entrance"></div>
       </header>
 
       <div class="section-head">
@@ -205,6 +207,7 @@
       <section class="pocket">
         <h2>More pockets of the internet, soon.</h2>
         <p>I’m still making things. This front door will keep growing as I do.</p>
+        <div data-bird-perch="field-note"></div>
       </section>
 
       <footer><span>made with curiosity &amp; questionable impulses</span><a href="https://github.com/saleney">find the source code ↗</a></footer>
