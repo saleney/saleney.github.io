@@ -2,7 +2,7 @@ import { birds } from './birds.js'
 
 const appearanceChance = 0.34
 const visitDuration = 45000
-const birdPerch = document.querySelector('[data-bird-perch]')
+const birdPerches = [...document.querySelectorAll('[data-bird-perch]')]
 const fieldGuide = document.querySelector('#bird-field-guide')
 let activeBirdButton = null
 
@@ -22,7 +22,7 @@ function openFieldGuide(bird, trigger) {
   fieldGuide.showModal()
 }
 
-function addBirdVisitor(bird) {
+function addBirdVisitor(bird, birdPerch) {
   const birdButton = document.createElement('button')
   birdButton.className = `bird-visitor bird-visitor--${bird.illustration}`
   birdButton.type = 'button'
@@ -47,6 +47,13 @@ fieldGuide.addEventListener('close', () => {
   activeBirdButton = null
 })
 
-if (birdPerch && birds.length && Math.random() < appearanceChance) {
-  addBirdVisitor(birds[Math.floor(Math.random() * birds.length)])
+if (birdPerches.length && birds.length && Math.random() < appearanceChance) {
+  const bird = birds[Math.floor(Math.random() * birds.length)]
+  const eligiblePerches = birdPerches.filter((perch) => {
+    const perchName = perch.dataset.birdPerch
+    return !bird.perches || bird.perches.includes(perchName)
+  })
+  const birdPerch = eligiblePerches[Math.floor(Math.random() * eligiblePerches.length)]
+
+  if (birdPerch) addBirdVisitor(bird, birdPerch)
 }
