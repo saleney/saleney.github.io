@@ -70,7 +70,7 @@
       .project { position:relative; min-height:230px; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:27px; overflow:hidden; border:3px solid var(--line); border-radius:27px 16px 33px 18px; color:var(--ink); text-decoration:none; box-shadow:6px 7px 0 rgba(39,54,90,.2); transition:transform .18s ease,box-shadow .18s ease; }
       .project:hover,.project:focus-visible { transform:translate(-3px,-5px) rotate(-.5deg); box-shadow:12px 15px 0 rgba(39,54,90,.2); }
       .project:focus-visible { outline:3px solid var(--line); outline-offset:4px; }
-      .project-world { background:#ffe982; }
+      .project-world { grid-column:1/-1; min-height:300px; background:#ffe982; }
       .project-text-ex { background:#c8f0e2; border-radius:18px 40px 20px 48px; }
       .project-eight-ball { background:#ffcfdd; border-radius:48px 20px 44px 19px; }
       .project-bad-idea { background:#c7e8fb; border-radius:20px 45px 17px 38px; }
@@ -103,7 +103,7 @@
       .world-map-mark .map-edge { fill:rgba(255,250,240,.2); stroke:currentColor; stroke-width:2.4; stroke-linejoin:round; }
       .world-map-mark .map-route { fill:none; stroke:currentColor; stroke-width:2.4; stroke-dasharray:4 5; stroke-linecap:round; }
       .world-map-mark .map-marker { fill:#ff8eaa; stroke:var(--line); stroke-width:1.6; }
-      .project.featured { grid-column:1/-1; min-height:300px; color:#1e2924; background:#f2eee4; border-color:#1e2924; border-radius:18px 54px 24px 42px; box-shadow:8px 9px 0 rgba(30,41,36,.2); }
+      .project.featured { min-height:230px; color:#1e2924; background:#f2eee4; border-color:#1e2924; border-radius:18px 54px 24px 42px; box-shadow:8px 9px 0 rgba(30,41,36,.2); }
       .project-autobiography::before { content:""; position:absolute; z-index:0; right:26px; top:28px; width:min(32%,248px); height:208px; border:2px solid rgba(30,41,36,.48); border-radius:2px 4px 3px 2px; background:#fffaf0; box-shadow:7px 7px 0 rgba(30,41,36,.13),-10px 13px 0 rgba(255,250,240,.74); transform:rotate(3deg); }
       .project-autobiography::after { content:""; right:46px; bottom:39px; width:min(25%,190px); height:116px; border:2px solid rgba(30,41,36,.45); border-radius:1px; background:rgba(169,78,53,.1); box-shadow:inset 0 0 0 9px #f2eee4; opacity:.78; transform:rotate(-4deg); }
       .project-autobiography h3 { max-width:62%; font:500 clamp(2.5rem,6vw,5rem)/.9 Fraunces,Georgia,serif; }
