@@ -1,403 +1,704 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Am I The Red Flag?</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
-*{box-sizing:border-box}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-body{
-  margin:0;
-  min-height:100svh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-  background:#fff;
-  color:#111;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-.app{width:min(100%,560px);text-align:center}
-h1{
-  margin:0;
-  font-size:clamp(38px,10vw,66px);
-  line-height:1;
-  letter-spacing:-.055em;
-  font-weight:800;
-  white-space:nowrap;
-}
-.subtitle{margin:18px 0 28px;color:#777;font-size:17px}
-textarea{
-  display:block;
-  width:100%;
-  min-height:160px;
-  padding:18px;
-  border:1px solid #ddd;
-  border-radius:14px;
-  outline:none;
-  resize:vertical;
-  background:#fafafa;
-  color:#111;
-  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-textarea:focus{border-color:#999;background:#fff}
-textarea:focus-visible,button:focus-visible{
-  outline:3px solid #293c3b;
-  outline-offset:3px;
-}
-button{
-  width:100%;
-  margin-top:12px;
-  padding:15px;
-  border:0;
-  border-radius:14px;
-  background:#111;
-  color:#fff;
-  font:700 15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  cursor:pointer;
-}
-button:disabled{opacity:.5;cursor:wait}
-.result{
-  display:none;
-  margin-top:28px;
-  padding-top:28px;
-  border-top:1px solid #eee;
-}
-.result.show{display:block}
-.reaction{--flag:#e4b94e;position:relative;width:132px;height:92px;margin:0 auto 4px;transform:rotate(-2deg)}
-.flag-pole{position:absolute;left:25px;top:5px;width:4px;height:68px;border-radius:2px;background:#293c3b;box-shadow:2px 1px 0 rgba(41,60,59,.2)}
-.flag-pole::after{content:"";position:absolute;left:-5px;bottom:-6px;width:14px;height:6px;border:2px solid #293c3b;border-radius:50%;background:#fffdf7}
-.flag-cloth{position:absolute;left:28px;top:7px;width:79px;height:52px;background:var(--flag);clip-path:polygon(0 0,100% 13%,78% 50%,100% 87%,0 100%);filter:drop-shadow(2px 3px 0 #293c3b);transform-origin:left center}
-.flag-eye,.flag-mouth{position:absolute;z-index:1;background:#293c3b}.flag-eye{top:19px;width:5px;height:5px;border-radius:50%}.flag-eye.left{left:19px}.flag-eye.right{left:37px}.flag-mouth{left:24px;top:34px;width:18px;height:3px;border-radius:4px}
-.reaction::after{position:absolute;right:0;bottom:3px;max-width:86px;font:700 9px/1.2 "DM Mono",monospace;letter-spacing:.07em;text-align:left;content:"NEEDS ACTUAL EVIDENCE"}
-.reaction[data-type="red"]{--flag:#e9695f}.reaction[data-type="red"] .flag-cloth{transform:skewY(-4deg)}.reaction[data-type="red"] .flag-eye{height:3px;border-radius:0;transform:rotate(12deg)}.reaction[data-type="red"] .flag-eye.right{transform:rotate(-12deg)}.reaction[data-type="red"] .flag-mouth{height:10px;width:12px;left:27px;top:33px;border-radius:50%}.reaction[data-type="red"]::after{content:"OBJECTION."}
-.reaction[data-type="green"]{--flag:#91cb8d}.reaction[data-type="green"] .flag-mouth{top:31px;height:9px;background:transparent;border-bottom:3px solid #293c3b;border-radius:50%}.reaction[data-type="green"]::after{content:"CASE DISMISSED."}
-.reaction[data-type="mixed"]{--flag:#ffe477}.reaction[data-type="mixed"] .flag-eye.right{height:2px;border-radius:0}.reaction[data-type="mixed"] .flag-mouth{transform:rotate(-7deg)}.reaction[data-type="mixed"]::after{content:"JURY CONFUSED."}
-.title-flag{position:relative;display:inline-block;width:.68em;height:.72em;margin-left:.08em;vertical-align:.04em}.title-flag::before{content:"";position:absolute;left:10%;top:3%;width:6%;height:95%;border-radius:2px;background:#293c3b}.title-flag::after{content:"";position:absolute;left:16%;top:7%;width:76%;height:58%;background:#e9695f;clip-path:polygon(0 0,100% 13%,78% 50%,100% 87%,0 100%);filter:drop-shadow(1px 2px 0 #293c3b);transform:rotate(-4deg);transform-origin:left center}
-.verdict{
-  margin:10px 0 8px;
-  font-size:32px;
-  line-height:1;
-  letter-spacing:-.04em;
-}
-.score{
-  margin:0 0 10px;
-  color:#777;
-  font-size:14px;
-  font-weight:700;
-}
-.message{
-  margin:0 auto;
-  max-width:450px;
-  color:#555;
-  font-size:16px;
-  line-height:1.5;
-}
-.copy{
-  display:none;
-  width:auto;
-  margin:16px auto 0;
-  padding:11px 18px;
-  background:#eee;
-  color:#111;
-  font-size:13px;
-}
-.copy.show{display:block}
-.footer{margin-top:28px;color:#aaa;font-size:11px}.salene-home-link{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;padding:8px 11px;border:2px solid #293c3b;border-radius:999px;background:#fffdf7;color:#293c3b;box-shadow:2px 2px 0 #293c3b;font:10px "DM Mono",monospace;text-decoration:none}.salene-home-link:hover,.salene-home-link:focus-visible{background:#ffe477;text-decoration:none;outline:2px solid #293c3b;outline-offset:2px}
-@media(max-width:430px){
-  h1{font-size:clamp(31px,9.8vw,42px)}
-}
-</style>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@500;700&display=swap');
-body{background:radial-gradient(circle at 10% 10%,#ffe477 0 42px,transparent 43px),radial-gradient(circle at 91% 18%,#b9e6ee 0 58px,transparent 59px),#fff8e8;color:#293c3b;font-family:"Space Grotesk",system-ui,sans-serif}.app{padding:28px;border:3px solid #293c3b;border-radius:32px 18px 36px 21px;background:#fffdf7;box-shadow:7px 8px 0 rgba(41,60,59,.18)}h1,.verdict{font-family:Fraunces,Georgia,serif;color:#293c3b}h1{max-width:100%;white-space:normal;font-size:clamp(2.7rem,10vw,4.5rem);overflow-wrap:anywhere}.subtitle{font-family:Fraunces,Georgia,serif;color:#69746d}textarea{border:2px solid #293c3b;border-radius:18px;background:#fff;color:#293c3b;font-family:"Space Grotesk",sans-serif}button{border:2px solid #293c3b;background:#91cb8d;color:#293c3b;box-shadow:3px 3px 0 #293c3b;font-family:"DM Mono",monospace}.footer{font-family:"DM Mono",monospace}.salene-home-link{font-family:"DM Mono",monospace}
-</style>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Am I The Red Flag?</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono&display=swap");
+      * {
+        box-sizing: border-box;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      body {
+        margin: 0;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: #fff;
+        color: #111;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      .app {
+        width: min(100%, 560px);
+        text-align: center;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(38px, 10vw, 66px);
+        line-height: 1;
+        letter-spacing: -0.055em;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+      .subtitle {
+        margin: 18px 0 28px;
+        color: #777;
+        font-size: 17px;
+      }
+      textarea {
+        display: block;
+        width: 100%;
+        min-height: 160px;
+        padding: 18px;
+        border: 1px solid #ddd;
+        border-radius: 14px;
+        outline: none;
+        resize: vertical;
+        background: #fafafa;
+        color: #111;
+        font:
+          16px/1.5 -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      textarea:focus {
+        border-color: #999;
+        background: #fff;
+      }
+      textarea:focus-visible,
+      button:focus-visible {
+        outline: 3px solid #293c3b;
+        outline-offset: 3px;
+      }
+      button {
+        width: 100%;
+        margin-top: 12px;
+        padding: 15px;
+        border: 0;
+        border-radius: 14px;
+        background: #111;
+        color: #fff;
+        font:
+          700 15px -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: wait;
+      }
+      .result {
+        display: none;
+        margin-top: 28px;
+        padding-top: 28px;
+        border-top: 1px solid #eee;
+      }
+      .result.show {
+        display: block;
+      }
+      .reaction {
+        --flag: #e4b94e;
+        position: relative;
+        width: 132px;
+        height: 92px;
+        margin: 0 auto 4px;
+        transform: rotate(-2deg);
+      }
+      .flag-pole {
+        position: absolute;
+        left: 25px;
+        top: 5px;
+        width: 4px;
+        height: 68px;
+        border-radius: 2px;
+        background: #293c3b;
+        box-shadow: 2px 1px 0 rgba(41, 60, 59, 0.2);
+      }
+      .flag-pole::after {
+        content: "";
+        position: absolute;
+        left: -5px;
+        bottom: -6px;
+        width: 14px;
+        height: 6px;
+        border: 2px solid #293c3b;
+        border-radius: 50%;
+        background: #fffdf7;
+      }
+      .flag-cloth {
+        position: absolute;
+        left: 28px;
+        top: 7px;
+        width: 79px;
+        height: 52px;
+        background: var(--flag);
+        clip-path: polygon(0 0, 100% 13%, 78% 50%, 100% 87%, 0 100%);
+        filter: drop-shadow(2px 3px 0 #293c3b);
+        transform-origin: left center;
+      }
+      .flag-eye,
+      .flag-mouth {
+        position: absolute;
+        z-index: 1;
+        background: #293c3b;
+      }
+      .flag-eye {
+        top: 19px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+      }
+      .flag-eye.left {
+        left: 19px;
+      }
+      .flag-eye.right {
+        left: 37px;
+      }
+      .flag-mouth {
+        left: 24px;
+        top: 34px;
+        width: 18px;
+        height: 3px;
+        border-radius: 4px;
+      }
+      .reaction::after {
+        position: absolute;
+        right: 0;
+        bottom: 3px;
+        max-width: 86px;
+        font:
+          700 9px/1.2 "DM Mono",
+          monospace;
+        letter-spacing: 0.07em;
+        text-align: left;
+        content: "NEEDS ACTUAL EVIDENCE";
+      }
+      .reaction[data-type="red"] {
+        --flag: #e9695f;
+      }
+      .reaction[data-type="red"] .flag-cloth {
+        transform: skewY(-4deg);
+      }
+      .reaction[data-type="red"] .flag-eye {
+        height: 3px;
+        border-radius: 0;
+        transform: rotate(12deg);
+      }
+      .reaction[data-type="red"] .flag-eye.right {
+        transform: rotate(-12deg);
+      }
+      .reaction[data-type="red"] .flag-mouth {
+        height: 10px;
+        width: 12px;
+        left: 27px;
+        top: 33px;
+        border-radius: 50%;
+      }
+      .reaction[data-type="red"]::after {
+        content: "OBJECTION.";
+      }
+      .reaction[data-type="green"] {
+        --flag: #91cb8d;
+      }
+      .reaction[data-type="green"] .flag-mouth {
+        top: 31px;
+        height: 9px;
+        background: transparent;
+        border-bottom: 3px solid #293c3b;
+        border-radius: 50%;
+      }
+      .reaction[data-type="green"]::after {
+        content: "CASE DISMISSED.";
+      }
+      .reaction[data-type="mixed"] {
+        --flag: #ffe477;
+      }
+      .reaction[data-type="mixed"] .flag-eye.right {
+        height: 2px;
+        border-radius: 0;
+      }
+      .reaction[data-type="mixed"] .flag-mouth {
+        transform: rotate(-7deg);
+      }
+      .reaction[data-type="mixed"]::after {
+        content: "JURY CONFUSED.";
+      }
+      .title-flag {
+        position: relative;
+        display: inline-block;
+        width: 0.68em;
+        height: 0.72em;
+        margin-left: 0.08em;
+        vertical-align: 0.04em;
+      }
+      .title-flag::before {
+        content: "";
+        position: absolute;
+        left: 10%;
+        top: 3%;
+        width: 6%;
+        height: 95%;
+        border-radius: 2px;
+        background: #293c3b;
+      }
+      .title-flag::after {
+        content: "";
+        position: absolute;
+        left: 16%;
+        top: 7%;
+        width: 76%;
+        height: 58%;
+        background: #e9695f;
+        clip-path: polygon(0 0, 100% 13%, 78% 50%, 100% 87%, 0 100%);
+        filter: drop-shadow(1px 2px 0 #293c3b);
+        transform: rotate(-4deg);
+        transform-origin: left center;
+      }
+      .verdict {
+        margin: 10px 0 8px;
+        font-size: 32px;
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+      .score {
+        margin: 0 0 10px;
+        color: #777;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .message {
+        margin: 0 auto;
+        max-width: 450px;
+        color: #555;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .copy {
+        display: none;
+        width: auto;
+        margin: 16px auto 0;
+        padding: 11px 18px;
+        background: #eee;
+        color: #111;
+        font-size: 13px;
+      }
+      .copy.show {
+        display: block;
+      }
+      .footer {
+        margin-top: 28px;
+        color: #aaa;
+        font-size: 11px;
+      }
+      .salene-home-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        margin-top: 12px;
+        padding: 8px 11px;
+        border: 2px solid #293c3b;
+        border-radius: 999px;
+        background: #fffdf7;
+        color: #293c3b;
+        box-shadow: 2px 2px 0 #293c3b;
+        font:
+          10px "DM Mono",
+          monospace;
+        text-decoration: none;
+      }
+      .salene-home-link:hover,
+      .salene-home-link:focus-visible {
+        background: #ffe477;
+        text-decoration: none;
+        outline: 2px solid #293c3b;
+        outline-offset: 2px;
+      }
+      @media (max-width: 430px) {
+        h1 {
+          font-size: clamp(31px, 9.8vw, 42px);
+        }
+      }
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@500;700&display=swap");
+      body {
+        background:
+          radial-gradient(circle at 10% 10%, #ffe477 0 42px, transparent 43px),
+          radial-gradient(circle at 91% 18%, #b9e6ee 0 58px, transparent 59px),
+          #fff8e8;
+        color: #293c3b;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+      }
+      .app {
+        padding: 28px;
+        border: 3px solid #293c3b;
+        border-radius: 32px 18px 36px 21px;
+        background: #fffdf7;
+        box-shadow: 7px 8px 0 rgba(41, 60, 59, 0.18);
+      }
+      h1,
+      .verdict {
+        font-family: Fraunces, Georgia, serif;
+        color: #293c3b;
+      }
+      h1 {
+        max-width: 100%;
+        white-space: normal;
+        font-size: clamp(2.7rem, 10vw, 4.5rem);
+        overflow-wrap: anywhere;
+      }
+      .subtitle {
+        font-family: Fraunces, Georgia, serif;
+        color: #69746d;
+      }
+      textarea {
+        border: 2px solid #293c3b;
+        border-radius: 18px;
+        background: #fff;
+        color: #293c3b;
+        font-family: "Space Grotesk", sans-serif;
+      }
+      button {
+        border: 2px solid #293c3b;
+        background: #91cb8d;
+        color: #293c3b;
+        box-shadow: 3px 3px 0 #293c3b;
+        font-family: "DM Mono", monospace;
+      }
+      .footer {
+        font-family: "DM Mono", monospace;
+      }
+      .salene-home-link {
+        font-family: "DM Mono", monospace;
+      }
+    </style>
+  </head>
 
-<body>
-<main class="app">
+  <body>
+    <main class="app">
+      <h1>
+        Am I The Red Flag?<span class="title-flag" aria-hidden="true"></span>
+      </h1>
 
-<h1>Am I The Red Flag?<span class="title-flag" aria-hidden="true"></span></h1>
+      <p class="subtitle">Tell me what happened. I'll be honest.</p>
 
-<p class="subtitle">Tell me what happened. I'll be honest.</p>
+      <label class="sr-only" for="story">What happened?</label>
+      <textarea
+        id="story"
+        maxlength="2000"
+        placeholder="What happened?"
+      ></textarea>
 
-<label class="sr-only" for="story">What happened?</label>
-<textarea id="story" maxlength="2000" placeholder="What happened?"></textarea>
+      <button id="judge">JUDGE ME</button>
 
-<button id="judge">JUDGE ME</button>
+      <section
+        class="result"
+        id="result"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <div
+          class="reaction"
+          id="reaction"
+          data-type="insufficient"
+          aria-hidden="true"
+        >
+          <span class="flag-pole"></span
+          ><span class="flag-cloth"
+            ><i class="flag-eye left"></i><i class="flag-eye right"></i
+            ><i class="flag-mouth"></i
+          ></span>
+        </div>
+        <h2 class="verdict" id="verdict"></h2>
+        <p class="score" id="score"></p>
+        <p class="message" id="message"></p>
+        <button class="copy" id="copy">COPY VERDICT</button>
+      </section>
 
-<section class="result" id="result" role="status" aria-live="polite" aria-atomic="true">
-  <div class="reaction" id="reaction" data-type="insufficient" aria-hidden="true"><span class="flag-pole"></span><span class="flag-cloth"><i class="flag-eye left"></i><i class="flag-eye right"></i><i class="flag-mouth"></i></span></div>
-  <h2 class="verdict" id="verdict"></h2>
-  <p class="score" id="score"></p>
-  <p class="message" id="message"></p>
-  <button class="copy" id="copy">COPY VERDICT</button>
-</section>
+      <div class="footer">
+        For entertainment purposes only.<br /><a
+          class="salene-home-link"
+          href="https://saleney.github.io/"
+          >← Back to Salene’s Playground</a
+        >
+      </div>
+    </main>
 
-<div class="footer">For entertainment purposes only.<br><a class="salene-home-link" href="https://saleney.github.io/">← Back to Salene’s Playground</a></div>
+    <script>
+      const story = document.getElementById("story");
+      const judge = document.getElementById("judge");
+      const result = document.getElementById("result");
+      const reaction = document.getElementById("reaction");
+      const verdict = document.getElementById("verdict");
+      const score = document.getElementById("score");
+      const message = document.getElementById("message");
+      const copy = document.getElementById("copy");
+      let lastSubmittedStory = "";
 
-</main>
-
-<script>
-const story = document.getElementById("story");
-const judge = document.getElementById("judge");
-const result = document.getElementById("result");
-const reaction = document.getElementById("reaction");
-const verdict = document.getElementById("verdict");
-const score = document.getElementById("score");
-const message = document.getElementById("message");
-const copy = document.getElementById("copy");
-let lastSubmittedStory = "";
-
-/*
+      /*
   FRESH VERSION
   The scoring is intentionally simple and direct.
 */
 
-function analyze(text){
+      function analyze(text) {
+        const t = text.toLowerCase().trim();
 
-  const t = text.toLowerCase().trim();
-
-  /*
+        /*
     First check whether the person actually gave us a story.
   */
 
-  if(t.length < 5){
-    return {
-      type:"insufficient",
-      score: randomNumber(5,20),
-      title:"INSUFFICIENT EVIDENCE",
-      message:"You cannot expect me to convict someone based on that. Give me the actual story."
-    };
-  }
+        if (t.length < 5) {
+          return {
+            type: "insufficient",
+            score: randomNumber(5, 20),
+            title: "INSUFFICIENT EVIDENCE",
+            message:
+              "You cannot expect me to convict someone based on that. Give me the actual story.",
+          };
+        }
 
-  /*
+        /*
     UNMISTAKABLY SEVERE HARM
     Keep this deliberately narrow so unusual stories still receive context.
   */
 
-  const severeHarm =
-    t.includes("ate a child") ||
-    t.includes("cannibal") ||
-    t.includes("murdered") ||
-    t.includes("killed") ||
-    t.includes("kidnapped") ||
-    t.includes("sexually assaulted") ||
-    t.includes("abused a child");
+        const severeHarm =
+          t.includes("ate a child") ||
+          t.includes("cannibal") ||
+          t.includes("murdered") ||
+          t.includes("killed") ||
+          t.includes("kidnapped") ||
+          t.includes("sexually assaulted") ||
+          t.includes("abused a child");
 
-  if(severeHarm){
-    return {
-      type:"red",
-      score: randomNumber(85,99),
-      title:"YOU ARE THE RED FLAG",
-      message:"This is not a close call. Please seek immediate real-world help."
-    };
-  }
+        if (severeHarm) {
+          return {
+            type: "red",
+            score: randomNumber(85, 99),
+            title: "YOU ARE THE RED FLAG",
+            message:
+              "This is not a close call. Please seek immediate real-world help.",
+          };
+        }
 
-  /*
+        /*
     CHEATING BY THE PERSON WRITING THE STORY
     This is an automatic red flag.
   */
 
-  const iCheated =
-    t.includes("i cheated") ||
-    t.includes("i was cheating") ||
-    t.includes("i had an affair") ||
-    t.includes("i slept with someone else") ||
-    t.includes("i hooked up with someone else");
+        const iCheated =
+          t.includes("i cheated") ||
+          t.includes("i was cheating") ||
+          t.includes("i had an affair") ||
+          t.includes("i slept with someone else") ||
+          t.includes("i hooked up with someone else");
 
-  if(iCheated){
-    return {
-      type:"red",
-      score: randomNumber(75,98),
-      title:"YOU ARE THE RED FLAG",
-      message:"Yeah... we're not going to litigate this one. You cheated."
-    };
-  }
+        if (iCheated) {
+          return {
+            type: "red",
+            score: randomNumber(75, 98),
+            title: "YOU ARE THE RED FLAG",
+            message:
+              "Yeah... we're not going to litigate this one. You cheated.",
+          };
+        }
 
-  /*
+        /*
     AGGRESSION / BREAKING THINGS
   */
 
-  const aggression =
-    t.includes("broke chopsticks") ||
-    t.includes("broke something") ||
-    t.includes("broke things") ||
-    t.includes("threw something") ||
-    t.includes("threw his phone") ||
-    t.includes("threw her phone") ||
-    t.includes("punched a wall") ||
-    t.includes("hit a wall") ||
-    t.includes("slammed the door") ||
-    t.includes("smashed something") ||
-    t.includes("destroyed something");
+        const aggression =
+          t.includes("broke chopsticks") ||
+          t.includes("broke something") ||
+          t.includes("broke things") ||
+          t.includes("threw something") ||
+          t.includes("threw his phone") ||
+          t.includes("threw her phone") ||
+          t.includes("punched a wall") ||
+          t.includes("hit a wall") ||
+          t.includes("slammed the door") ||
+          t.includes("smashed something") ||
+          t.includes("destroyed something");
 
-  if(aggression){
-    return {
-      type:"red",
-      score: randomNumber(55,82),
-      title:"WE HAVE SOME CONCERNS",
-      message:"Breaking or throwing things when you're angry is not exactly a green flag."
-    };
-  }
+        if (aggression) {
+          return {
+            type: "red",
+            score: randomNumber(55, 82),
+            title: "WE HAVE SOME CONCERNS",
+            message:
+              "Breaking or throwing things when you're angry is not exactly a green flag.",
+          };
+        }
 
-  /*
+        /*
     PRIVACY / CONTROL
   */
 
-  const privacy =
-    t.includes("went through his phone") ||
-    t.includes("went through her phone") ||
-    t.includes("checked his phone") ||
-    t.includes("checked her phone") ||
-    t.includes("read his texts") ||
-    t.includes("read her texts") ||
-    t.includes("read his messages") ||
-    t.includes("read her messages") ||
-    t.includes("tracked him") ||
-    t.includes("tracked her") ||
-    t.includes("checked his location") ||
-    t.includes("checked her location");
+        const privacy =
+          t.includes("went through his phone") ||
+          t.includes("went through her phone") ||
+          t.includes("checked his phone") ||
+          t.includes("checked her phone") ||
+          t.includes("read his texts") ||
+          t.includes("read her texts") ||
+          t.includes("read his messages") ||
+          t.includes("read her messages") ||
+          t.includes("tracked him") ||
+          t.includes("tracked her") ||
+          t.includes("checked his location") ||
+          t.includes("checked her location");
 
-  if(privacy){
-    return {
-      type:"red",
-      score: randomNumber(45,72),
-      title:"WE HAVE SOME CONCERNS",
-      message:"Respectfully, violating someone's privacy is not helping your case."
-    };
-  }
+        if (privacy) {
+          return {
+            type: "red",
+            score: randomNumber(45, 72),
+            title: "WE HAVE SOME CONCERNS",
+            message:
+              "Respectfully, violating someone's privacy is not helping your case.",
+          };
+        }
 
-  /*
+        /*
     MANIPULATION / JEALOUSY
   */
 
-  const manipulation =
-    t.includes("gave him the silent treatment") ||
-    t.includes("gave her the silent treatment") ||
-    t.includes("silent treatment") ||
-    t.includes("made him jealous") ||
-    t.includes("made her jealous") ||
-    t.includes("tested him") ||
-    t.includes("tested her") ||
-    t.includes("fake account") ||
-    t.includes("lied to him") ||
-    t.includes("lied to her");
+        const manipulation =
+          t.includes("gave him the silent treatment") ||
+          t.includes("gave her the silent treatment") ||
+          t.includes("silent treatment") ||
+          t.includes("made him jealous") ||
+          t.includes("made her jealous") ||
+          t.includes("tested him") ||
+          t.includes("tested her") ||
+          t.includes("fake account") ||
+          t.includes("lied to him") ||
+          t.includes("lied to her");
 
-  if(manipulation){
-    return {
-      type:"red",
-      score: randomNumber(35,64),
-      title:"WE HAVE SOME CONCERNS",
-      message:"I'm not saying you're the problem. I'm saying the evidence isn't exactly helping your case."
-    };
-  }
+        if (manipulation) {
+          return {
+            type: "red",
+            score: randomNumber(35, 64),
+            title: "WE HAVE SOME CONCERNS",
+            message:
+              "I'm not saying you're the problem. I'm saying the evidence isn't exactly helping your case.",
+          };
+        }
 
-  /*
+        /*
     HEALTHY / NORMAL RESPONSES
   */
 
-  const healthy =
-    t.includes("set a boundary") ||
-    t.includes("set boundaries") ||
-    t.includes("communicated") ||
-    t.includes("had a conversation") ||
-    t.includes("talked about it") ||
-    t.includes("asked for reassurance") ||
-    t.includes("asked for clarification") ||
-    t.includes("told him how i felt") ||
-    t.includes("told her how i felt") ||
-    t.includes("broke up with him") ||
-    t.includes("broke up with her") ||
-    t.includes("ended the relationship");
+        const healthy =
+          t.includes("set a boundary") ||
+          t.includes("set boundaries") ||
+          t.includes("communicated") ||
+          t.includes("had a conversation") ||
+          t.includes("talked about it") ||
+          t.includes("asked for reassurance") ||
+          t.includes("asked for clarification") ||
+          t.includes("told him how i felt") ||
+          t.includes("told her how i felt") ||
+          t.includes("broke up with him") ||
+          t.includes("broke up with her") ||
+          t.includes("ended the relationship");
 
-  if(healthy){
-    return {
-      type:"green",
-      score: randomNumber(5,21),
-      title:"NOT THE RED FLAG",
-      message:"You communicated, set a boundary, or made a reasonable choice. This one might actually be on them."
-    };
-  }
+        if (healthy) {
+          return {
+            type: "green",
+            score: randomNumber(5, 21),
+            title: "NOT THE RED FLAG",
+            message:
+              "You communicated, set a boundary, or made a reasonable choice. This one might actually be on them.",
+          };
+        }
 
-  /*
+        /*
     IF THE STORY IS REAL BUT WE DON'T RECOGNIZE THE BEHAVIOR,
     DO NOT automatically call it insufficient evidence.
   */
 
-  return {
-    type:"mixed",
-    score: randomNumber(15,35),
-    title:"IT'S COMPLICATED",
-    message:"I need more context before I'm ready to convict either party."
-  };
-}
+        return {
+          type: "mixed",
+          score: randomNumber(15, 35),
+          title: "IT'S COMPLICATED",
+          message:
+            "I need more context before I'm ready to convict either party.",
+        };
+      }
 
-function randomNumber(min,max){
-  return Math.floor(Math.random() * (max-min+1)) + min;
-}
+      function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
 
-function judgeStory(){
+      function judgeStory() {
+        const text = story.value.trim();
 
-  const text = story.value.trim();
+        if (!text) {
+          story.focus();
+          return;
+        }
 
-  if(!text){
-    story.focus();
-    return;
-  }
+        lastSubmittedStory = text;
+        judge.disabled = true;
+        judge.textContent = "JUDGING...";
 
-  lastSubmittedStory = text;
-  judge.disabled = true;
-  judge.textContent = "JUDGING...";
+        setTimeout(() => {
+          const resultData = analyze(text);
 
-  setTimeout(()=>{
+          reaction.dataset.type = resultData.type;
+          verdict.textContent = resultData.title;
+          score.textContent = "Red Flag Score: " + resultData.score + "%";
+          message.textContent = resultData.message;
 
-    const resultData = analyze(text);
+          result.classList.add("show");
+          copy.classList.add("show");
 
-    reaction.dataset.type = resultData.type;
-    verdict.textContent = resultData.title;
-    score.textContent = "Red Flag Score: " + resultData.score + "%";
-    message.textContent = resultData.message;
+          judge.disabled = false;
+          judge.textContent = "JUDGE ME";
 
-    result.classList.add("show");
-    copy.classList.add("show");
+          judge.focus({ preventScroll: true });
+        }, 450);
+      }
 
-    judge.disabled = false;
-    judge.textContent = "JUDGE ME";
+      judge.addEventListener("click", judgeStory);
 
-    judge.focus({preventScroll:true});
+      story.addEventListener("keydown", (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+          judgeStory();
+        }
+      });
 
-  },450);
-}
+      function selectSubmittedStory() {
+        if (
+          result.classList.contains("show") &&
+          story.value.trim() === lastSubmittedStory
+        ) {
+          story.select();
+        }
+      }
 
-judge.addEventListener("click",judgeStory);
+      story.addEventListener("focus", () =>
+        requestAnimationFrame(selectSubmittedStory),
+      );
+      story.addEventListener("pointerup", (event) => {
+        if (
+          result.classList.contains("show") &&
+          story.value.trim() === lastSubmittedStory
+        ) {
+          event.preventDefault();
+          selectSubmittedStory();
+        }
+      });
 
-story.addEventListener("keydown",event=>{
-  if((event.metaKey || event.ctrlKey) && event.key === "Enter"){
-    judgeStory();
-  }
-});
-
-function selectSubmittedStory(){
-  if(result.classList.contains("show") && story.value.trim() === lastSubmittedStory){
-    story.select();
-  }
-}
-
-story.addEventListener("focus",()=>requestAnimationFrame(selectSubmittedStory));
-story.addEventListener("pointerup",event=>{
-  if(result.classList.contains("show") && story.value.trim() === lastSubmittedStory){
-    event.preventDefault();
-    selectSubmittedStory();
-  }
-});
-
-copy.addEventListener("click",async()=>{
-
-  const text =
-`AM I THE RED FLAG?
+      copy.addEventListener("click", async () => {
+        const text = `AM I THE RED FLAG?
 
 ${verdict.textContent}
 ${score.textContent}
@@ -405,24 +706,18 @@ ${message.textContent}
 
 https://saleney.github.io/am-i-the-red-flag/`;
 
-  try{
+        try {
+          await navigator.clipboard.writeText(text);
 
-    await navigator.clipboard.writeText(text);
+          copy.textContent = "COPIED ✓";
 
-    copy.textContent = "COPIED ✓";
-
-    setTimeout(()=>{
-      copy.textContent = "COPY VERDICT";
-    },1600);
-
-  }catch(error){
-
-    copy.textContent = "SELECT & COPY";
-
-  }
-
-});
-</script>
-
-</body>
+          setTimeout(() => {
+            copy.textContent = "COPY VERDICT";
+          }, 1600);
+        } catch (error) {
+          copy.textContent = "SELECT & COPY";
+        }
+      });
+    </script>
+  </body>
 </html>
