@@ -3,128 +3,1096 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Salene's projects, questions, and tiny internet worlds." />
+    <meta
+      name="description"
+      content="Salene's projects, questions, and tiny internet worlds."
+    />
     <title>Salene's Brain: An Interactive Playground</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@500;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@500;700&display=swap");
 
-      :root { --ink:#27365a; --paper:#fffaf0; --pink:#ff8eaa; --yellow:#ffe36b; --blue:#84cbe9; --green:#a6d998; --line:#27365a; }
-      * { box-sizing:border-box; }
-      body { margin:0; min-height:100vh; color:var(--ink); background-color:#f6f0df; background-image:linear-gradient(rgba(39,54,90,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(39,54,90,.035) 1px,transparent 1px); background-size:28px 28px; font-family:"Space Grotesk",system-ui,sans-serif; }
-      .page { width:min(1120px,calc(100% - 34px)); margin:0 auto; padding:42px 0 60px; }
-      header { position:relative; min-height:calc(100svh - 42px); padding:35px clamp(8px,4vw,38px) 48px; display:flex; flex-direction:column; justify-content:center; }
-      .entrance-star { position:absolute; z-index:2; right:clamp(12px,5vw,62px); top:28px; border:0; padding:0; background:transparent; color:var(--yellow); font:clamp(150px,20vw,230px)/1 Fraunces,Georgia,serif; text-shadow:3px 3px 0 var(--line); cursor:pointer; transform:rotate(11deg); transform-origin:center; }
-      .entrance-star::before,.entrance-star::after { content:"✦"; position:absolute; color:var(--pink); font-size:.18em; text-shadow:none; opacity:0; pointer-events:none; }
-      .entrance-star::before { left:-.05em; top:.05em; }.entrance-star::after { right:-.04em; bottom:.12em; color:var(--blue); }
-      .entrance-star:hover,.entrance-star:focus-visible { transform:rotate(5deg) scale(1.04); }
-      .entrance-star:focus-visible { outline:3px solid var(--line); outline-offset:8px; border-radius:50%; }
-      .entrance-star.sparkle { animation:star-pop .62s ease; }
-      .entrance-star.sparkle::before { animation:spark-left .62s ease; }.entrance-star.sparkle::after { animation:spark-right .62s .06s ease; }
-      .entrance-wave { position:absolute; left:clamp(9px,4vw,38px); bottom:24px; width:clamp(112px,15vw,168px); border:0; padding:7px 5px 9px; background:transparent; color:var(--blue); cursor:pointer; transform:rotate(-3deg); transform-origin:center; }
-      .entrance-wave:focus-visible { outline:3px solid var(--line); outline-offset:7px; border-radius:50%; }
-      .entrance-wave svg { display:block; width:100%; height:auto; overflow:visible; }
-      .entrance-wave path { fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; }
-      .wave-crest { stroke-width:6; }
-      .wave-foam { stroke:var(--paper); stroke-width:2.5; opacity:.95; }
-      .wave-water { stroke-width:5; opacity:.88; }
-      .entrance-wave:hover .wave-crest,.entrance-wave:focus-visible .wave-crest { animation:water-ripple .8s ease-in-out infinite alternate; transform-origin:center; }
-      .entrance-wave:hover .wave-water,.entrance-wave:focus-visible .wave-water { animation:water-ripple .8s .13s ease-in-out infinite alternate-reverse; transform-origin:center; }
-      .entrance-wave.waving { animation:wave-rock .75s ease; }
-      .entrance-wave.waving .wave-crest { animation:wave-stretch .75s ease; transform-origin:center; }
-      .entrance-wave.waving .wave-water { animation:wave-stretch .75s .08s ease reverse; transform-origin:center; }
-      [data-bird-perch] { position:absolute; z-index:2; right:clamp(24px,6vw,76px); bottom:24px; width:54px; height:54px; }
-      .bird-visitor { display:grid; place-items:center; width:54px; height:54px; padding:0; border:0; border-radius:50%; color:var(--ink); background:transparent; cursor:pointer; }
-      .bird-visitor:focus-visible { outline:3px solid var(--pink); outline-offset:3px; }
-      .bird-illustration { position:relative; display:block; width:36px; height:29px; border:2px solid var(--ink); border-radius:58% 45% 48% 51%; background:#a36b4e; box-shadow:inset -7px -5px 0 #e9c89d, 2px 3px 0 rgba(39,54,90,.18); transform:rotate(-4deg); }
-      .bird-illustration::before { content:""; position:absolute; left:-7px; top:-10px; width:20px; height:20px; border:2px solid var(--ink); border-radius:50%; background:#a36b4e; box-shadow:inset 0 6px 0 #5e3a32; }
-      .bird-illustration::after { content:""; position:absolute; left:-13px; top:-4px; width:0; height:0; border-top:4px solid transparent; border-bottom:4px solid transparent; border-right:8px solid #e7a647; }
-      .bird-eye { position:absolute; left:-1px; top:-4px; width:3px; height:3px; border-radius:50%; background:var(--ink); }
-      .bird-wing { position:absolute; right:2px; top:8px; width:21px; height:15px; border:2px solid var(--ink); border-radius:60% 30% 55% 40%; background:#71493d; transform:rotate(-16deg); }
-      .bird-foot { position:absolute; bottom:-7px; width:2px; height:8px; background:var(--ink); }.bird-foot--left { left:13px; }.bird-foot--right { left:20px; }
-      .bird-visitor::after { content:""; position:absolute; bottom:3px; width:46px; border-bottom:2px solid var(--ink); transform:rotate(-3deg); }
-      .entrance-bird { position:fixed; z-index:8; left:-120px; top:31%; width:82px; color:var(--ink); opacity:0; pointer-events:none; }
-      .entrance-bird svg { display:block; width:100%; height:auto; overflow:visible; }
-      .entrance-bird .bird-body,.entrance-bird .bird-head,.entrance-bird .bird-tail { fill:currentColor; }
-      .entrance-bird .bird-beak { fill:var(--pink); stroke:var(--ink); stroke-width:2; }
-      .entrance-bird .bird-eye { fill:var(--paper); }
-      .entrance-bird .bird-wing { fill:var(--blue); stroke:var(--ink); stroke-width:2.5; transform-box:fill-box; transform-origin:20% 65%; }
-      .entrance-bird.flying { animation:bird-flight 4.8s linear both; }
-      .entrance-bird.flying .bird-wing { animation:bird-wing .34s ease-in-out infinite alternate; }
-      @keyframes star-pop { 0%,100%{transform:rotate(11deg) scale(1)} 42%{transform:rotate(2deg) scale(1.14)} 68%{transform:rotate(15deg) scale(.97)} }
-      @keyframes spark-left { 0%,100%{opacity:0;transform:translate(0,0) scale(.5)} 42%{opacity:1;transform:translate(-24px,-19px) scale(1.15)} }
-      @keyframes spark-right { 0%,100%{opacity:0;transform:translate(0,0) scale(.5)} 42%{opacity:1;transform:translate(25px,18px) scale(1.1)} }
-      @keyframes wave-rock { 0%,100%{transform:rotate(-3deg) translateY(0)} 35%{transform:rotate(1deg) translateY(-5px)} 70%{transform:rotate(-5deg) translateY(2px)} }
-      @keyframes wave-stretch { 0%,100%{transform:scaleX(1)} 45%{transform:scaleX(1.12)} 72%{transform:scaleX(.96)} }
-      @keyframes water-ripple { from{transform:translateX(-3px) scaleX(.97)} to{transform:translateX(3px) scaleX(1.04)} }
-      @keyframes bird-flight { 0%{opacity:0;transform:translateX(0) translateY(22px) rotate(-4deg)} 5%{opacity:1} 25%{transform:translateX(calc(25vw + 70px)) translateY(-18px) rotate(2deg)} 50%{transform:translateX(calc(50vw + 100px)) translateY(12px) rotate(-2deg)} 75%{opacity:1;transform:translateX(calc(75vw + 130px)) translateY(-24px) rotate(2deg)} 95%{opacity:1} 100%{opacity:0;transform:translateX(calc(100vw + 220px)) translateY(5px) rotate(-1deg)} }
-      @keyframes bird-wing { from{transform:rotate(-18deg) translateY(1px)} to{transform:rotate(26deg) translateY(-3px)} }
-      @keyframes bird-flight-gentle { 0%{opacity:0;transform:translateX(0)} 8%,92%{opacity:1} 100%{opacity:0;transform:translateX(calc(100vw + 220px))} }
-      .entrance-copy { width:min(930px,100%); margin:0 auto; }
-      .eyebrow,.note { position:relative; z-index:1; margin:0; font:12px "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
-      h1 { position:relative; z-index:1; max-width:930px; margin:20px 0 19px; font:700 clamp(3.4rem,9.5vw,7.35rem)/.84 Fraunces,Georgia,serif; letter-spacing:-.075em; }
-      .intro { position:relative; z-index:1; max-width:610px; margin:0; font-size:clamp(1rem,2.4vw,1.3rem); line-height:1.45; }
-      .goodness { position:relative; z-index:1; margin:24px clamp(8px,9vw,105px) 0 auto; width:max-content; font:italic 1.1rem Fraunces,Georgia,serif; transform:rotate(-1.5deg); }
-      .section-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin:35px 4px 20px; scroll-margin-top:20px; }
-      h2 { margin:0; font:700 clamp(2rem,5vw,3.45rem)/.94 Fraunces,Georgia,serif; letter-spacing:-.05em; }
-      .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:205px; gap:18px; }
-      .project { position:relative; min-height:0; height:100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:23px; overflow:hidden; border:3px solid var(--line); border-radius:27px 16px 33px 18px; color:var(--ink); text-decoration:none; box-shadow:6px 7px 0 rgba(39,54,90,.2); transition:transform .18s ease,box-shadow .18s ease; }
-      .project:hover,.project:focus-visible { transform:translate(-3px,-5px) rotate(-.5deg); box-shadow:12px 15px 0 rgba(39,54,90,.2); }
-      .project:focus-visible { outline:3px solid var(--line); outline-offset:4px; }
-      .project-world { background:#ffe982; }
-      .project-text-ex { background:#c8f0e2; border-radius:18px 40px 20px 48px; }
-      .project-eight-ball { background:#ffcfdd; border-radius:48px 20px 44px 19px; }
-      .project-bad-idea { background:#c7e8fb; border-radius:20px 45px 17px 38px; }
-      .project-what-now { background:#e8d5fc; border-radius:43px 19px 35px 23px; }
-      .project-adventure { background:#f8d3a1; border-radius:18px 35px 20px 45px; }
-      .project-red-flag { background:#d3edb8; border-radius:38px 19px 45px 21px; }
-      .project-ting-bu-dong { background:#ffb2a6; border-radius:22px 47px 35px 18px; }
-      .project-clay-studio { background:#d9a878; border-color:#553d2f; border-radius:43px 22px 37px 19px; }
-      .project::after { position:absolute; z-index:0; right:18px; bottom:14px; font:78px/1 Fraunces,serif; opacity:.3; pointer-events:none; }
-      .project > * { position:relative; z-index:1; }
-      .project > div { width:100%; margin:auto 0; transform:translateY(-8px); }
-      .project-world::after { content:""; }
-      .project-text-ex::after { content:""; right:18px; bottom:14px; width:76px; height:76px; border:3px solid rgba(39,54,90,.66); border-radius:50%; background:#e8e4d8; box-shadow:inset 0 0 0 7px rgba(39,54,90,.12),inset -7px -5px 0 rgba(39,54,90,.08),3px 4px 0 rgba(39,54,90,.16); opacity:.9; transform:rotate(-8deg); }
-      .project-text-ex::before { content:""; position:absolute; z-index:0; right:47px; bottom:43px; width:18px; height:18px; border:2px solid rgba(39,54,90,.45); border-radius:50%; box-shadow:0 0 0 5px rgba(39,54,90,.05); transform:rotate(-8deg); }
-      .project-eight-ball::after { content:"8"; }
-      .project-bad-idea::after { content:"!"; }
-      .project-what-now::after { content:""; right:18px; bottom:14px; width:88px; height:61px; border:2px solid rgba(39,54,90,.55); border-radius:2px 8px 3px 7px; background:rgba(255,250,240,.58); box-shadow:inset 0 11px 0 rgba(39,54,90,.07),4px 4px 0 rgba(39,54,90,.11); transform:rotate(4deg); }
-      .project-what-now::before { content:""; position:absolute; z-index:0; right:56px; bottom:72px; width:15px; height:15px; border:2px solid rgba(39,54,90,.62); border-radius:50%; background:#ff8eaa; box-shadow:1px 2px 0 rgba(39,54,90,.16); transform:rotate(4deg); }
-      .project-adventure::after { content:""; right:19px; bottom:13px; width:60px; height:74px; border:3px solid rgba(39,54,90,.56); border-bottom:0; border-radius:45px 45px 0 0; background:rgba(255,250,240,.23); box-shadow:inset -15px 0 0 rgba(39,54,90,.08); transform:rotate(4deg); }
-      .project-adventure::before { content:""; position:absolute; z-index:0; right:33px; bottom:42px; width:7px; height:7px; border-radius:50%; background:rgba(39,54,90,.56); transform:rotate(4deg); }
-      .project-red-flag::after { content:"⚑"; }
-      .project-ting-bu-dong::after { content:"听"; font-family:"Noto Sans SC",sans-serif; }
-      .project-clay-studio::after { content:""; }
-      .clay-wheel-mark { position:absolute; z-index:0; right:-18px; bottom:-27px; width:140px; aspect-ratio:1; border:3px solid rgba(85,61,47,.54); border-radius:52% 48% 46% 54%; box-shadow:inset 0 0 0 13px rgba(106,69,50,.17),inset 0 0 0 26px rgba(255,237,210,.19),inset 0 0 0 39px rgba(106,69,50,.14),inset 0 0 0 55px rgba(255,237,210,.18); opacity:.9; pointer-events:none; transform:rotate(-8deg); }
-      .clay-wheel-mark::before { content:""; position:absolute; left:36px; top:40px; width:62px; height:45px; border:3px solid rgba(85,61,47,.55); border-radius:52% 48% 40% 45%; background:rgba(236,194,145,.45); box-shadow:inset -8px -5px 0 rgba(106,69,50,.12); transform:rotate(6deg); }
-      .clay-wheel-mark::after { content:""; position:absolute; left:50px; top:49px; width:36px; height:22px; border:2px solid rgba(85,61,47,.42); border-radius:50%; transform:rotate(6deg); }
-      .world-map-mark { position:absolute; z-index:0; right:18px; bottom:14px; width:98px; color:rgba(39,54,90,.52); opacity:.84; pointer-events:none; transform:rotate(-5deg); }
-      .world-map-mark svg { display:block; width:100%; height:auto; overflow:visible; }
-      .world-map-mark .map-edge { fill:rgba(255,250,240,.2); stroke:currentColor; stroke-width:2.4; stroke-linejoin:round; }
-      .world-map-mark .map-route { fill:none; stroke:currentColor; stroke-width:2.4; stroke-dasharray:4 5; stroke-linecap:round; }
-      .world-map-mark .map-marker { fill:#ff8eaa; stroke:var(--line); stroke-width:1.6; }
-      .project-autobiography { color:#1e2924; background:#f2eee4; border-color:#1e2924; border-radius:18px 54px 24px 42px; box-shadow:8px 9px 0 rgba(30,41,36,.2); }
-      .project-autobiography::before { content:""; position:absolute; z-index:0; right:18px; bottom:14px; width:88px; height:120px; border:2px solid rgba(30,41,36,.48); border-radius:2px 4px 3px 2px; background:#fffaf0; box-shadow:6px 6px 0 rgba(30,41,36,.13),-8px 10px 0 rgba(255,250,240,.74); transform:rotate(3deg); }
-      .project-autobiography::after { content:""; right:39px; bottom:33px; width:68px; height:84px; border:2px solid rgba(30,41,36,.45); border-radius:1px; background:rgba(169,78,53,.1); box-shadow:inset 0 0 0 7px #f2eee4; opacity:.78; transform:rotate(-4deg); }
-      .archive-folio { position:absolute; z-index:0; right:28px; bottom:28px; width:75px; height:104px; border-top:1px solid rgba(30,41,36,.4); border-bottom:1px solid rgba(30,41,36,.4); opacity:.64; transform:rotate(3deg); }
-      .archive-folio::before,.archive-folio::after { content:""; position:absolute; left:15%; width:70%; border-top:1px solid rgba(30,41,36,.25); }.archive-folio::before { top:28px; }.archive-folio::after { bottom:29px; }
-      .tag { position:absolute; z-index:2; top:50%; left:50%; margin:0; padding:0; color:var(--ink); background:transparent; font:700 clamp(1rem,2vw,1.35rem)/1 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; opacity:0; pointer-events:none; transform:translate(-50%,-42%); transition:opacity .18s ease,transform .18s ease; }
-      .project > * { transition:opacity .18s ease; }
-      .project:focus-visible > :not(.tag) { opacity:.2; }.project:focus-visible .tag { opacity:1; transform:translate(-50%,-50%); }
-      @media (hover:hover) { .project:hover > :not(.tag) { opacity:.2; }.project:hover .tag { opacity:1; transform:translate(-50%,-50%); } }
-      h3 { position:relative; z-index:1; max-width:85%; margin:0; font:700 clamp(1.5rem,2.65vw,2.05rem)/.98 Fraunces,Georgia,serif; letter-spacing:-.045em; }
-      .project-autobiography h3 { max-width:100%; font-size:clamp(1.25rem,2vw,1.55rem); }
-      .project-what-now h3,.project-red-flag h3 { font-size:clamp(1.4rem,2.35vw,1.85rem); }
-      .project p { position:relative; z-index:1; max-width:85%; margin:11px 0 0; font-size:.93rem; line-height:1.35; }
-      .arrow { position:relative; z-index:1; margin-top:22px; font:700 1.2rem "DM Mono",monospace; }
-      .pocket { margin-top:44px; padding:0 0 clamp(120px,18vw,210px); }
-      .pocket h2 { font:500 clamp(1rem,2vw,1.5rem)/1.2 "DM Mono",monospace; letter-spacing:.04em; text-transform:uppercase; }
-      .pocket p { max-width:none; margin:18px 0 0; font-size:clamp(1.25rem,2.5vw,2rem); font-weight:700; line-height:1.25; }
-      .pocket::after { content:"✦"; display:block; margin-top:26px; color:var(--pink); font:1rem Fraunces,Georgia,serif; }
-      .bird-field-guide { width:min(420px,calc(100vw - 32px)); max-height:min(550px,calc(100dvh - 32px)); margin:auto; overflow:auto; border:3px solid var(--line); border-radius:24px 38px 21px 34px; color:var(--ink); background:var(--paper); box-shadow:9px 10px 0 rgba(39,54,90,.22); }
-      .bird-field-guide::backdrop { background:rgba(39,54,90,.22); }
-      .bird-field-guide__inside { padding:26px; }.bird-field-guide h2 { margin:10px 0 4px; font-size:clamp(2rem,9vw,2.8rem); }.bird-field-guide p { margin:14px 0 0; font-size:1rem; line-height:1.45; }.bird-field-guide__scientific { margin-top:0 !important; font:italic 1rem Fraunces,Georgia,serif; }.bird-field-guide__note { font-family:Fraunces,Georgia,serif; font-size:1.17rem !important; }.bird-field-guide__close { position:absolute; top:10px; right:10px; display:grid; place-items:center; width:44px; height:44px; border:2px solid var(--line); border-radius:50%; color:inherit; background:var(--yellow); cursor:pointer; font-size:1.2rem; }.bird-field-guide__song { min-height:44px; margin-top:24px; border:2px solid var(--line); border-radius:999px; padding:10px 15px; color:inherit; background:var(--blue); box-shadow:3px 3px 0 rgba(39,54,90,.24); font:700 .78rem "DM Mono",monospace; cursor:pointer; }.bird-field-guide__song:disabled { cursor:not-allowed; opacity:.58; }.bird-field-guide__status { margin-top:10px !important; font:11px "DM Mono",monospace; }
-      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 96px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:5px; bottom:17px; width:116px; } [data-bird-perch] { right:12px; bottom:17px; } .bird-visitor { width:48px; height:48px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { margin:23px auto 0 18%; } .grid { grid-template-columns:1fr; grid-auto-rows:220px; } .project { min-height:0; } .project-ting-bu-dong::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } }
-      @media (prefers-reduced-motion:reduce) { .project,.project > *,.tag { transition:none; } .entrance-star.sparkle { animation:none; color:var(--pink); transform:rotate(11deg) scale(1.04); } .entrance-star.sparkle::before,.entrance-star.sparkle::after { animation:none; } .entrance-wave:hover path,.entrance-wave:focus-visible path,.entrance-wave.waving,.entrance-wave.waving path { animation:none; color:var(--green); } .entrance-bird.flying { animation:bird-flight-gentle 4.8s linear both; } .entrance-bird.flying .bird-wing { animation:none; } }
+      /* Foundations */
+      :root {
+        --ink: #27365a;
+        --paper: #fffaf0;
+        --pink: #ff8eaa;
+        --yellow: #ffe36b;
+        --blue: #84cbe9;
+        --green: #a6d998;
+        --line: #27365a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background-color: #f6f0df;
+        background-image:
+          linear-gradient(rgba(39, 54, 90, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(39, 54, 90, 0.035) 1px, transparent 1px);
+        background-size: 28px 28px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+      }
+      .page {
+        width: min(1120px, calc(100% - 34px));
+        margin: 0 auto;
+        padding: 42px 0 60px;
+      }
+      /* Entrance interactions */
+      header {
+        position: relative;
+        min-height: calc(100svh - 42px);
+        padding: 35px clamp(8px, 4vw, 38px) 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .entrance-star {
+        position: absolute;
+        z-index: 2;
+        right: clamp(12px, 5vw, 62px);
+        top: 28px;
+        border: 0;
+        padding: 0;
+        background: transparent;
+        color: var(--yellow);
+        font:
+          clamp(150px, 20vw, 230px) / 1 Fraunces,
+          Georgia,
+          serif;
+        text-shadow: 3px 3px 0 var(--line);
+        cursor: pointer;
+        transform: rotate(11deg);
+        transform-origin: center;
+      }
+      .entrance-star::before,
+      .entrance-star::after {
+        content: "✦";
+        position: absolute;
+        color: var(--pink);
+        font-size: 0.18em;
+        text-shadow: none;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .entrance-star::before {
+        left: -0.05em;
+        top: 0.05em;
+      }
+      .entrance-star::after {
+        right: -0.04em;
+        bottom: 0.12em;
+        color: var(--blue);
+      }
+      .entrance-star:hover,
+      .entrance-star:focus-visible {
+        transform: rotate(5deg) scale(1.04);
+      }
+      .entrance-star:focus-visible {
+        outline: 3px solid var(--line);
+        outline-offset: 8px;
+        border-radius: 50%;
+      }
+      .entrance-star.sparkle {
+        animation: star-pop 0.62s ease;
+      }
+      .entrance-star.sparkle::before {
+        animation: spark-left 0.62s ease;
+      }
+      .entrance-star.sparkle::after {
+        animation: spark-right 0.62s 0.06s ease;
+      }
+      .entrance-wave {
+        position: absolute;
+        left: clamp(9px, 4vw, 38px);
+        bottom: 24px;
+        width: clamp(112px, 15vw, 168px);
+        border: 0;
+        padding: 7px 5px 9px;
+        background: transparent;
+        color: var(--blue);
+        cursor: pointer;
+        transform: rotate(-3deg);
+        transform-origin: center;
+      }
+      .entrance-wave:focus-visible {
+        outline: 3px solid var(--line);
+        outline-offset: 7px;
+        border-radius: 50%;
+      }
+      .entrance-wave svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+      .entrance-wave path {
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .wave-crest {
+        stroke-width: 6;
+      }
+      .wave-foam {
+        stroke: var(--paper);
+        stroke-width: 2.5;
+        opacity: 0.95;
+      }
+      .wave-water {
+        stroke-width: 5;
+        opacity: 0.88;
+      }
+      .entrance-wave:hover .wave-crest,
+      .entrance-wave:focus-visible .wave-crest {
+        animation: water-ripple 0.8s ease-in-out infinite alternate;
+        transform-origin: center;
+      }
+      .entrance-wave:hover .wave-water,
+      .entrance-wave:focus-visible .wave-water {
+        animation: water-ripple 0.8s 0.13s ease-in-out infinite
+          alternate-reverse;
+        transform-origin: center;
+      }
+      .entrance-wave.waving {
+        animation: wave-rock 0.75s ease;
+      }
+      .entrance-wave.waving .wave-crest {
+        animation: wave-stretch 0.75s ease;
+        transform-origin: center;
+      }
+      .entrance-wave.waving .wave-water {
+        animation: wave-stretch 0.75s 0.08s ease reverse;
+        transform-origin: center;
+      }
+      [data-bird-perch] {
+        position: absolute;
+        z-index: 2;
+        right: clamp(24px, 6vw, 76px);
+        bottom: 24px;
+        width: 54px;
+        height: 54px;
+      }
+      .bird-visitor {
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        color: var(--ink);
+        background: transparent;
+        cursor: pointer;
+      }
+      .bird-visitor:focus-visible {
+        outline: 3px solid var(--pink);
+        outline-offset: 3px;
+      }
+      .bird-illustration {
+        position: relative;
+        display: block;
+        width: 36px;
+        height: 29px;
+        border: 2px solid var(--ink);
+        border-radius: 58% 45% 48% 51%;
+        background: #a36b4e;
+        box-shadow:
+          inset -7px -5px 0 #e9c89d,
+          2px 3px 0 rgba(39, 54, 90, 0.18);
+        transform: rotate(-4deg);
+      }
+      .bird-illustration::before {
+        content: "";
+        position: absolute;
+        left: -7px;
+        top: -10px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: #a36b4e;
+        box-shadow: inset 0 6px 0 #5e3a32;
+      }
+      .bird-illustration::after {
+        content: "";
+        position: absolute;
+        left: -13px;
+        top: -4px;
+        width: 0;
+        height: 0;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-right: 8px solid #e7a647;
+      }
+      .bird-eye {
+        position: absolute;
+        left: -1px;
+        top: -4px;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--ink);
+      }
+      .bird-wing {
+        position: absolute;
+        right: 2px;
+        top: 8px;
+        width: 21px;
+        height: 15px;
+        border: 2px solid var(--ink);
+        border-radius: 60% 30% 55% 40%;
+        background: #71493d;
+        transform: rotate(-16deg);
+      }
+      .bird-foot {
+        position: absolute;
+        bottom: -7px;
+        width: 2px;
+        height: 8px;
+        background: var(--ink);
+      }
+      .bird-foot--left {
+        left: 13px;
+      }
+      .bird-foot--right {
+        left: 20px;
+      }
+      .bird-visitor::after {
+        content: "";
+        position: absolute;
+        bottom: 3px;
+        width: 46px;
+        border-bottom: 2px solid var(--ink);
+        transform: rotate(-3deg);
+      }
+      .entrance-bird {
+        position: fixed;
+        z-index: 8;
+        left: -120px;
+        top: 31%;
+        width: 82px;
+        color: var(--ink);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .entrance-bird svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+      .entrance-bird .bird-body,
+      .entrance-bird .bird-head,
+      .entrance-bird .bird-tail {
+        fill: currentColor;
+      }
+      .entrance-bird .bird-beak {
+        fill: var(--pink);
+        stroke: var(--ink);
+        stroke-width: 2;
+      }
+      .entrance-bird .bird-eye {
+        fill: var(--paper);
+      }
+      .entrance-bird .bird-wing {
+        fill: var(--blue);
+        stroke: var(--ink);
+        stroke-width: 2.5;
+        transform-box: fill-box;
+        transform-origin: 20% 65%;
+      }
+      .entrance-bird.flying {
+        animation: bird-flight 4.8s linear both;
+      }
+      .entrance-bird.flying .bird-wing {
+        animation: bird-wing 0.34s ease-in-out infinite alternate;
+      }
+      @keyframes star-pop {
+        0%,
+        100% {
+          transform: rotate(11deg) scale(1);
+        }
+        42% {
+          transform: rotate(2deg) scale(1.14);
+        }
+        68% {
+          transform: rotate(15deg) scale(0.97);
+        }
+      }
+      @keyframes spark-left {
+        0%,
+        100% {
+          opacity: 0;
+          transform: translate(0, 0) scale(0.5);
+        }
+        42% {
+          opacity: 1;
+          transform: translate(-24px, -19px) scale(1.15);
+        }
+      }
+      @keyframes spark-right {
+        0%,
+        100% {
+          opacity: 0;
+          transform: translate(0, 0) scale(0.5);
+        }
+        42% {
+          opacity: 1;
+          transform: translate(25px, 18px) scale(1.1);
+        }
+      }
+      @keyframes wave-rock {
+        0%,
+        100% {
+          transform: rotate(-3deg) translateY(0);
+        }
+        35% {
+          transform: rotate(1deg) translateY(-5px);
+        }
+        70% {
+          transform: rotate(-5deg) translateY(2px);
+        }
+      }
+      @keyframes wave-stretch {
+        0%,
+        100% {
+          transform: scaleX(1);
+        }
+        45% {
+          transform: scaleX(1.12);
+        }
+        72% {
+          transform: scaleX(0.96);
+        }
+      }
+      @keyframes water-ripple {
+        from {
+          transform: translateX(-3px) scaleX(0.97);
+        }
+        to {
+          transform: translateX(3px) scaleX(1.04);
+        }
+      }
+      @keyframes bird-flight {
+        0% {
+          opacity: 0;
+          transform: translateX(0) translateY(22px) rotate(-4deg);
+        }
+        5% {
+          opacity: 1;
+        }
+        25% {
+          transform: translateX(calc(25vw + 70px)) translateY(-18px)
+            rotate(2deg);
+        }
+        50% {
+          transform: translateX(calc(50vw + 100px)) translateY(12px)
+            rotate(-2deg);
+        }
+        75% {
+          opacity: 1;
+          transform: translateX(calc(75vw + 130px)) translateY(-24px)
+            rotate(2deg);
+        }
+        95% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(calc(100vw + 220px)) translateY(5px)
+            rotate(-1deg);
+        }
+      }
+      @keyframes bird-wing {
+        from {
+          transform: rotate(-18deg) translateY(1px);
+        }
+        to {
+          transform: rotate(26deg) translateY(-3px);
+        }
+      }
+      @keyframes bird-flight-gentle {
+        0% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+        8%,
+        92% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(calc(100vw + 220px));
+        }
+      }
+      .entrance-copy {
+        width: min(930px, 100%);
+        margin: 0 auto;
+      }
+      .eyebrow,
+      .note {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        font:
+          12px "DM Mono",
+          monospace;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      h1 {
+        position: relative;
+        z-index: 1;
+        max-width: 930px;
+        margin: 20px 0 19px;
+        font:
+          700 clamp(3.4rem, 9.5vw, 7.35rem) / 0.84 Fraunces,
+          Georgia,
+          serif;
+        letter-spacing: -0.075em;
+      }
+      .intro {
+        position: relative;
+        z-index: 1;
+        max-width: 610px;
+        margin: 0;
+        font-size: clamp(1rem, 2.4vw, 1.3rem);
+        line-height: 1.45;
+      }
+      .goodness {
+        position: relative;
+        z-index: 1;
+        margin: 24px clamp(8px, 9vw, 105px) 0 auto;
+        width: max-content;
+        font:
+          italic 1.1rem Fraunces,
+          Georgia,
+          serif;
+        transform: rotate(-1.5deg);
+      }
+      /* Project directory */
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 18px;
+        margin: 35px 4px 20px;
+        scroll-margin-top: 20px;
+      }
+      h2 {
+        margin: 0;
+        font:
+          700 clamp(2rem, 5vw, 3.45rem) / 0.94 Fraunces,
+          Georgia,
+          serif;
+        letter-spacing: -0.05em;
+      }
+      /* Shared card system */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 205px;
+        gap: 18px;
+      }
+      .project {
+        position: relative;
+        min-height: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 23px;
+        overflow: hidden;
+        border: 3px solid var(--line);
+        border-radius: 27px 16px 33px 18px;
+        color: var(--ink);
+        text-decoration: none;
+        box-shadow: 6px 7px 0 rgba(39, 54, 90, 0.2);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+      .project:hover,
+      .project:focus-visible {
+        transform: translate(-3px, -5px) rotate(-0.5deg);
+        box-shadow: 12px 15px 0 rgba(39, 54, 90, 0.2);
+      }
+      .project:focus-visible {
+        outline: 3px solid var(--line);
+        outline-offset: 4px;
+      }
+      /* Project-specific card treatments */
+      .project-world {
+        background: #ffe982;
+      }
+      .project-text-ex {
+        background: #c8f0e2;
+        border-radius: 18px 40px 20px 48px;
+      }
+      .project-eight-ball {
+        background: #ffcfdd;
+        border-radius: 48px 20px 44px 19px;
+      }
+      .project-bad-idea {
+        background: #c7e8fb;
+        border-radius: 20px 45px 17px 38px;
+      }
+      .project-what-now {
+        background: #e8d5fc;
+        border-radius: 43px 19px 35px 23px;
+      }
+      .project-adventure {
+        background: #f8d3a1;
+        border-radius: 18px 35px 20px 45px;
+      }
+      .project-red-flag {
+        background: #d3edb8;
+        border-radius: 38px 19px 45px 21px;
+      }
+      .project-ting-bu-dong {
+        background: #ffb2a6;
+        border-radius: 22px 47px 35px 18px;
+      }
+      .project-clay-studio {
+        background: #d9a878;
+        border-color: #553d2f;
+        border-radius: 43px 22px 37px 19px;
+      }
+      .project::after {
+        position: absolute;
+        z-index: 0;
+        right: 18px;
+        bottom: 14px;
+        font:
+          78px/1 Fraunces,
+          serif;
+        opacity: 0.3;
+        pointer-events: none;
+      }
+      .project > * {
+        position: relative;
+        z-index: 1;
+      }
+      .project > div {
+        width: 100%;
+        margin: auto 0;
+        transform: translateY(-8px);
+      }
+      .project-world::after {
+        content: "";
+      }
+      .project-text-ex::after {
+        content: "";
+        right: 18px;
+        bottom: 14px;
+        width: 76px;
+        height: 76px;
+        border: 3px solid rgba(39, 54, 90, 0.66);
+        border-radius: 50%;
+        background: #e8e4d8;
+        box-shadow:
+          inset 0 0 0 7px rgba(39, 54, 90, 0.12),
+          inset -7px -5px 0 rgba(39, 54, 90, 0.08),
+          3px 4px 0 rgba(39, 54, 90, 0.16);
+        opacity: 0.9;
+        transform: rotate(-8deg);
+      }
+      .project-text-ex::before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        right: 47px;
+        bottom: 43px;
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(39, 54, 90, 0.45);
+        border-radius: 50%;
+        box-shadow: 0 0 0 5px rgba(39, 54, 90, 0.05);
+        transform: rotate(-8deg);
+      }
+      .project-eight-ball::after {
+        content: "8";
+      }
+      .project-bad-idea::after {
+        content: "!";
+      }
+      .project-what-now::after {
+        content: "";
+        right: 18px;
+        bottom: 14px;
+        width: 88px;
+        height: 61px;
+        border: 2px solid rgba(39, 54, 90, 0.55);
+        border-radius: 2px 8px 3px 7px;
+        background: rgba(255, 250, 240, 0.58);
+        box-shadow:
+          inset 0 11px 0 rgba(39, 54, 90, 0.07),
+          4px 4px 0 rgba(39, 54, 90, 0.11);
+        transform: rotate(4deg);
+      }
+      .project-what-now::before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        right: 56px;
+        bottom: 72px;
+        width: 15px;
+        height: 15px;
+        border: 2px solid rgba(39, 54, 90, 0.62);
+        border-radius: 50%;
+        background: #ff8eaa;
+        box-shadow: 1px 2px 0 rgba(39, 54, 90, 0.16);
+        transform: rotate(4deg);
+      }
+      .project-adventure::after {
+        content: "";
+        right: 19px;
+        bottom: 13px;
+        width: 60px;
+        height: 74px;
+        border: 3px solid rgba(39, 54, 90, 0.56);
+        border-bottom: 0;
+        border-radius: 45px 45px 0 0;
+        background: rgba(255, 250, 240, 0.23);
+        box-shadow: inset -15px 0 0 rgba(39, 54, 90, 0.08);
+        transform: rotate(4deg);
+      }
+      .project-adventure::before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        right: 33px;
+        bottom: 42px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: rgba(39, 54, 90, 0.56);
+        transform: rotate(4deg);
+      }
+      .project-red-flag::after {
+        content: "⚑";
+      }
+      .project-ting-bu-dong::after {
+        content: "听";
+        font-family: "Noto Sans SC", sans-serif;
+      }
+      .project-clay-studio::after {
+        content: "";
+      }
+      .clay-wheel-mark {
+        position: absolute;
+        z-index: 0;
+        right: -18px;
+        bottom: -27px;
+        width: 140px;
+        aspect-ratio: 1;
+        border: 3px solid rgba(85, 61, 47, 0.54);
+        border-radius: 52% 48% 46% 54%;
+        box-shadow:
+          inset 0 0 0 13px rgba(106, 69, 50, 0.17),
+          inset 0 0 0 26px rgba(255, 237, 210, 0.19),
+          inset 0 0 0 39px rgba(106, 69, 50, 0.14),
+          inset 0 0 0 55px rgba(255, 237, 210, 0.18);
+        opacity: 0.9;
+        pointer-events: none;
+        transform: rotate(-8deg);
+      }
+      .clay-wheel-mark::before {
+        content: "";
+        position: absolute;
+        left: 36px;
+        top: 40px;
+        width: 62px;
+        height: 45px;
+        border: 3px solid rgba(85, 61, 47, 0.55);
+        border-radius: 52% 48% 40% 45%;
+        background: rgba(236, 194, 145, 0.45);
+        box-shadow: inset -8px -5px 0 rgba(106, 69, 50, 0.12);
+        transform: rotate(6deg);
+      }
+      .clay-wheel-mark::after {
+        content: "";
+        position: absolute;
+        left: 50px;
+        top: 49px;
+        width: 36px;
+        height: 22px;
+        border: 2px solid rgba(85, 61, 47, 0.42);
+        border-radius: 50%;
+        transform: rotate(6deg);
+      }
+      .world-map-mark {
+        position: absolute;
+        z-index: 0;
+        right: 18px;
+        bottom: 14px;
+        width: 98px;
+        color: rgba(39, 54, 90, 0.52);
+        opacity: 0.84;
+        pointer-events: none;
+        transform: rotate(-5deg);
+      }
+      .world-map-mark svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+      .world-map-mark .map-edge {
+        fill: rgba(255, 250, 240, 0.2);
+        stroke: currentColor;
+        stroke-width: 2.4;
+        stroke-linejoin: round;
+      }
+      .world-map-mark .map-route {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.4;
+        stroke-dasharray: 4 5;
+        stroke-linecap: round;
+      }
+      .world-map-mark .map-marker {
+        fill: #ff8eaa;
+        stroke: var(--line);
+        stroke-width: 1.6;
+      }
+      .project-autobiography {
+        color: #1e2924;
+        background: #f2eee4;
+        border-color: #1e2924;
+        border-radius: 18px 54px 24px 42px;
+        box-shadow: 8px 9px 0 rgba(30, 41, 36, 0.2);
+      }
+      .project-autobiography::before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        right: 18px;
+        bottom: 14px;
+        width: 88px;
+        height: 120px;
+        border: 2px solid rgba(30, 41, 36, 0.48);
+        border-radius: 2px 4px 3px 2px;
+        background: #fffaf0;
+        box-shadow:
+          6px 6px 0 rgba(30, 41, 36, 0.13),
+          -8px 10px 0 rgba(255, 250, 240, 0.74);
+        transform: rotate(3deg);
+      }
+      .project-autobiography::after {
+        content: "";
+        right: 39px;
+        bottom: 33px;
+        width: 68px;
+        height: 84px;
+        border: 2px solid rgba(30, 41, 36, 0.45);
+        border-radius: 1px;
+        background: rgba(169, 78, 53, 0.1);
+        box-shadow: inset 0 0 0 7px #f2eee4;
+        opacity: 0.78;
+        transform: rotate(-4deg);
+      }
+      .archive-folio {
+        position: absolute;
+        z-index: 0;
+        right: 28px;
+        bottom: 28px;
+        width: 75px;
+        height: 104px;
+        border-top: 1px solid rgba(30, 41, 36, 0.4);
+        border-bottom: 1px solid rgba(30, 41, 36, 0.4);
+        opacity: 0.64;
+        transform: rotate(3deg);
+      }
+      .archive-folio::before,
+      .archive-folio::after {
+        content: "";
+        position: absolute;
+        left: 15%;
+        width: 70%;
+        border-top: 1px solid rgba(30, 41, 36, 0.25);
+      }
+      .archive-folio::before {
+        top: 28px;
+      }
+      .archive-folio::after {
+        bottom: 29px;
+      }
+      /* Hover and keyboard doorway */
+      .tag {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        margin: 0;
+        padding: 0;
+        color: var(--ink);
+        background: transparent;
+        font:
+          700 clamp(1rem, 2vw, 1.35rem) / 1 "DM Mono",
+          monospace;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -42%);
+        transition:
+          opacity 0.18s ease,
+          transform 0.18s ease;
+      }
+      .project > * {
+        transition: opacity 0.18s ease;
+      }
+      .project:focus-visible > :not(.tag) {
+        opacity: 0.2;
+      }
+      .project:focus-visible .tag {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+      @media (hover: hover) {
+        .project:hover > :not(.tag) {
+          opacity: 0.2;
+        }
+        .project:hover .tag {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
+      h3 {
+        position: relative;
+        z-index: 1;
+        max-width: 85%;
+        margin: 0;
+        font:
+          700 clamp(1.5rem, 2.65vw, 2.05rem) / 0.98 Fraunces,
+          Georgia,
+          serif;
+        letter-spacing: -0.045em;
+      }
+      .project-autobiography h3 {
+        max-width: 100%;
+        font-size: clamp(1.25rem, 2vw, 1.55rem);
+      }
+      .project-what-now h3,
+      .project-red-flag h3 {
+        font-size: clamp(1.4rem, 2.35vw, 1.85rem);
+      }
+      .project p {
+        position: relative;
+        z-index: 1;
+        max-width: 85%;
+        margin: 11px 0 0;
+        font-size: 0.93rem;
+        line-height: 1.35;
+      }
+      .arrow {
+        position: relative;
+        z-index: 1;
+        margin-top: 22px;
+        font:
+          700 1.2rem "DM Mono",
+          monospace;
+      }
+      /* Closing note and bird field guide */
+      .pocket {
+        margin-top: 44px;
+        padding: 0 0 clamp(120px, 18vw, 210px);
+      }
+      .pocket h2 {
+        font:
+          500 clamp(1rem, 2vw, 1.5rem) / 1.2 "DM Mono",
+          monospace;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .pocket p {
+        max-width: none;
+        margin: 18px 0 0;
+        font-size: clamp(1.25rem, 2.5vw, 2rem);
+        font-weight: 700;
+        line-height: 1.25;
+      }
+      .pocket::after {
+        content: "✦";
+        display: block;
+        margin-top: 26px;
+        color: var(--pink);
+        font:
+          1rem Fraunces,
+          Georgia,
+          serif;
+      }
+      .bird-field-guide {
+        width: min(420px, calc(100vw - 32px));
+        max-height: min(550px, calc(100dvh - 32px));
+        margin: auto;
+        overflow: auto;
+        border: 3px solid var(--line);
+        border-radius: 24px 38px 21px 34px;
+        color: var(--ink);
+        background: var(--paper);
+        box-shadow: 9px 10px 0 rgba(39, 54, 90, 0.22);
+      }
+      .bird-field-guide::backdrop {
+        background: rgba(39, 54, 90, 0.22);
+      }
+      .bird-field-guide__inside {
+        padding: 26px;
+      }
+      .bird-field-guide h2 {
+        margin: 10px 0 4px;
+        font-size: clamp(2rem, 9vw, 2.8rem);
+      }
+      .bird-field-guide p {
+        margin: 14px 0 0;
+        font-size: 1rem;
+        line-height: 1.45;
+      }
+      .bird-field-guide__scientific {
+        margin-top: 0 !important;
+        font:
+          italic 1rem Fraunces,
+          Georgia,
+          serif;
+      }
+      .bird-field-guide__note {
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.17rem !important;
+      }
+      .bird-field-guide__close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border: 2px solid var(--line);
+        border-radius: 50%;
+        color: inherit;
+        background: var(--yellow);
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+      .bird-field-guide__song {
+        min-height: 44px;
+        margin-top: 24px;
+        border: 2px solid var(--line);
+        border-radius: 999px;
+        padding: 10px 15px;
+        color: inherit;
+        background: var(--blue);
+        box-shadow: 3px 3px 0 rgba(39, 54, 90, 0.24);
+        font:
+          700 0.78rem "DM Mono",
+          monospace;
+        cursor: pointer;
+      }
+      .bird-field-guide__song:disabled {
+        cursor: not-allowed;
+        opacity: 0.58;
+      }
+      .bird-field-guide__status {
+        margin-top: 10px !important;
+        font:
+          11px "DM Mono",
+          monospace;
+      }
+      /* Responsive behavior and motion preferences */
+      @media (max-width: 650px) {
+        .page {
+          width: min(100% - 22px, 1120px);
+          padding-top: 17px;
+        }
+        header {
+          min-height: calc(100svh - 17px);
+          padding: 138px 9px 96px;
+          justify-content: flex-end;
+        }
+        .entrance-star {
+          right: 12px;
+          top: 13px;
+          font-size: 128px;
+        }
+        .entrance-wave {
+          left: 5px;
+          bottom: 17px;
+          width: 116px;
+        }
+        [data-bird-perch] {
+          right: 12px;
+          bottom: 17px;
+        }
+        .bird-visitor {
+          width: 48px;
+          height: 48px;
+        }
+        h1 {
+          max-width: 100%;
+          font-size: clamp(3.2rem, 16vw, 4.25rem);
+        }
+        .intro {
+          max-width: 94%;
+        }
+        .goodness {
+          margin: 23px auto 0 18%;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+          grid-auto-rows: 220px;
+        }
+        .project {
+          min-height: 0;
+        }
+        .project-ting-bu-dong::after {
+          right: 14px;
+          bottom: 12px;
+          font-size: 72px;
+          opacity: 0.22;
+        }
+        .section-head {
+          display: block;
+          margin-top: 34px;
+        }
+        .note {
+          margin-top: 9px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .project,
+        .project > *,
+        .tag {
+          transition: none;
+        }
+        .entrance-star.sparkle {
+          animation: none;
+          color: var(--pink);
+          transform: rotate(11deg) scale(1.04);
+        }
+        .entrance-star.sparkle::before,
+        .entrance-star.sparkle::after {
+          animation: none;
+        }
+        .entrance-wave:hover path,
+        .entrance-wave:focus-visible path,
+        .entrance-wave.waving,
+        .entrance-wave.waving path {
+          animation: none;
+          color: var(--green);
+        }
+        .entrance-bird.flying {
+          animation: bird-flight-gentle 4.8s linear both;
+        }
+        .entrance-bird.flying .bird-wing {
+          animation: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -135,23 +1103,48 @@
         <circle class="bird-head" cx="78" cy="29" r="16" />
         <path class="bird-beak" d="m92 27 16 6-16 6Z" />
         <circle class="bird-eye" cx="83" cy="25" r="3" />
-        <path class="bird-wing" d="M52 42C38 32 31 14 40 5c15 7 25 21 27 37-4 7-10 9-15 0Z" />
+        <path
+          class="bird-wing"
+          d="M52 42C38 32 31 14 40 5c15 7 25 21 27 37-4 7-10 9-15 0Z"
+        />
       </svg>
     </div>
     <main class="page">
       <header>
-        <button class="entrance-star" type="button" aria-label="Make the entrance star sparkle">✦</button>
+        <button
+          class="entrance-star"
+          type="button"
+          aria-label="Make the entrance star sparkle"
+        >
+          ✦
+        </button>
         <div class="entrance-copy">
           <h1>Salene’s<br />Playground.</h1>
-          <p class="intro">A growing collection of tiny worlds, strange questions, unhinged buttons, and things I made because I wanted them to exist.</p>
+          <p class="intro">
+            A growing collection of tiny worlds, strange questions, unhinged
+            buttons, and things I made because I wanted them to exist.
+          </p>
           <p class="goodness">Come wander with me.</p>
         </div>
-        <button class="entrance-wave" type="button" aria-label="Ripple the ocean and send a bird flying">
+        <button
+          class="entrance-wave"
+          type="button"
+          aria-label="Ripple the ocean and send a bird flying"
+        >
           <svg viewBox="0 0 170 76" aria-hidden="true">
-            <path class="wave-crest" d="M7 48c15-3 22-17 34-29 13-13 31-14 43-3 8 7 10 18 7 27-2-13-10-20-20-21-13-2-22 7-29 17 13-7 25-6 36 1 12 8 22 13 36 9 12-3 23-12 49-2" />
+            <path
+              class="wave-crest"
+              d="M7 48c15-3 22-17 34-29 13-13 31-14 43-3 8 7 10 18 7 27-2-13-10-20-20-21-13-2-22 7-29 17 13-7 25-6 36 1 12 8 22 13 36 9 12-3 23-12 49-2"
+            />
             <path class="wave-foam" d="M43 38c10-7 20-8 29-3 6 3 10 8 17 9" />
-            <path class="wave-water" d="M10 60c14-8 27-8 40 0s27 8 40 0 27-8 40 0 24 7 34 2" />
-            <path class="wave-water" d="M31 70c10-5 20-5 30 0s20 5 30 0 20-5 31 0" />
+            <path
+              class="wave-water"
+              d="M10 60c14-8 27-8 40 0s27 8 40 0 27-8 40 0 24 7 34 2"
+            />
+            <path
+              class="wave-water"
+              d="M31 70c10-5 20-5 30 0s20 5 30 0 20-5 31 0"
+            />
           </svg>
         </button>
         <div data-bird-perch></div>
@@ -163,35 +1156,105 @@
 
       <section class="grid" aria-label="Salene's projects">
         <a class="project project-world" href="/salenes-world/">
-          <span class="tag">enter</span><div><h3>My World</h3><p>A world for practicing love, wonder, and presence.</p></div>
-          <span class="world-map-mark" aria-hidden="true"><svg viewBox="0 0 116 75"><path class="map-edge" d="M6 14 35 7l25 10 28-10 22 8-4 46-28 8-26-10-29 9Z" /><path class="map-route" d="M16 48c11-15 19-7 28-17 10-11 20-2 30-13 8-9 16-4 27-10" /><circle class="map-marker" cx="45" cy="30" r="4.5" /></svg></span>
+          <span class="tag">enter</span>
+          <div>
+            <h3>My World</h3>
+            <p>A world for practicing love, wonder, and presence.</p>
+          </div>
+          <span class="world-map-mark" aria-hidden="true"
+            ><svg viewBox="0 0 116 75">
+              <path
+                class="map-edge"
+                d="M6 14 35 7l25 10 28-10 22 8-4 46-28 8-26-10-29 9Z"
+              />
+              <path
+                class="map-route"
+                d="M16 48c11-15 19-7 28-17 10-11 20-2 30-13 8-9 16-4 27-10"
+              />
+              <circle class="map-marker" cx="45" cy="30" r="4.5" /></svg
+          ></span>
         </a>
-        <a class="project project-autobiography" href="/autobiography-through-love/">
-          <span class="tag">enter the collection</span><div><h3>An Autobiography Told Through Love</h3><p>A collection of things that delighted me, changed me, broke me, and brought me home.</p></div><span class="archive-folio" aria-hidden="true"></span>
+        <a
+          class="project project-autobiography"
+          href="/autobiography-through-love/"
+        >
+          <span class="tag">enter the collection</span>
+          <div>
+            <h3>An Autobiography Told Through Love</h3>
+            <p>
+              A collection of things that delighted me, changed me, broke me,
+              and brought me home.
+            </p>
+          </div>
+          <span class="archive-folio" aria-hidden="true"></span>
         </a>
         <a class="project project-ting-bu-dong" href="/ting-bu-dong/">
-          <span class="tag">enter china</span><div><h3>听不懂</h3><p>You booked the ticket. Now figure it out.</p></div>
+          <span class="tag">enter china</span>
+          <div>
+            <h3>听不懂</h3>
+            <p>You booked the ticket. Now figure it out.</p>
+          </div>
         </a>
-        <a class="project project-clay-studio" href="https://saleney.github.io/virtual-clay-studio/">
-          <span class="tag">sit at the wheel</span><div><h3>Virtual Clay Studio</h3><p>Throw a little clay in your browser. Open, pull, shape, and see what happens.</p></div><span class="clay-wheel-mark" aria-hidden="true"></span>
+        <a
+          class="project project-clay-studio"
+          href="https://saleney.github.io/virtual-clay-studio/"
+        >
+          <span class="tag">sit at the wheel</span>
+          <div>
+            <h3>Virtual Clay Studio</h3>
+            <p>
+              Throw a little clay in your browser. Open, pull, shape, and see
+              what happens.
+            </p>
+          </div>
+          <span class="clay-wheel-mark" aria-hidden="true"></span>
         </a>
         <a class="project project-eight-ball" href="/unhinged-8-ball/">
-          <span class="tag">consult it</span><div><h3>Unhinged 8 Ball</h3><p>For questions that deserve an equally unhinged answer.</p></div>
+          <span class="tag">consult it</span>
+          <div>
+            <h3>Unhinged 8 Ball</h3>
+            <p>For questions that deserve an equally unhinged answer.</p>
+          </div>
         </a>
         <a class="project project-bad-idea" href="/bad-idea-generator/">
-          <span class="tag">generate</span><div><h3>Bad Idea Generator</h3><p>Because sometimes the worst idea is the beginning of something.</p></div>
+          <span class="tag">generate</span>
+          <div>
+            <h3>Bad Idea Generator</h3>
+            <p>
+              Because sometimes the worst idea is the beginning of something.
+            </p>
+          </div>
         </a>
         <a class="project project-what-now" href="/what-now/">
-          <span class="tag">figure it out</span><div><h3>What Should We Do?</h3><p>Screen-free activity ideas for when your kids are bored and your brain is done.</p></div>
+          <span class="tag">figure it out</span>
+          <div>
+            <h3>What Should We Do?</h3>
+            <p>
+              Screen-free activity ideas for when your kids are bored and your
+              brain is done.
+            </p>
+          </div>
         </a>
         <a class="project project-adventure" href="/a-little-adventure/">
-          <span class="tag">begin</span><div><h3>A Little Adventure</h3><p>A choose-your-own-way story for kids and their grown-ups.</p></div>
+          <span class="tag">begin</span>
+          <div>
+            <h3>A Little Adventure</h3>
+            <p>A choose-your-own-way story for kids and their grown-ups.</p>
+          </div>
         </a>
         <a class="project project-text-ex" href="/should-i-text-my-ex/">
-          <span class="tag">ask it</span><div><h3>Should I Text My Ex?</h3><p>Ask the coin. It has opinions.</p></div>
+          <span class="tag">ask it</span>
+          <div>
+            <h3>Should I Text My Ex?</h3>
+            <p>Ask the coin. It has opinions.</p>
+          </div>
         </a>
         <a class="project project-red-flag" href="/am-i-the-red-flag/">
-          <span class="tag">be judged</span><div><h3>Am I the Red Flag?</h3><p>Tell the story. Receive a completely objective-ish verdict.</p></div>
+          <span class="tag">be judged</span>
+          <div>
+            <h3>Am I the Red Flag?</h3>
+            <p>Tell the story. Receive a completely objective-ish verdict.</p>
+          </div>
         </a>
       </section>
 
@@ -200,60 +1263,88 @@
         <p>I’m still making things.</p>
       </section>
     </main>
-    <dialog class="bird-field-guide" id="bird-field-guide" aria-labelledby="bird-field-guide-title">
+    <dialog
+      class="bird-field-guide"
+      id="bird-field-guide"
+      aria-labelledby="bird-field-guide-title"
+    >
       <div class="bird-field-guide__inside">
-        <button class="bird-field-guide__close" type="button" data-bird-close aria-label="Close bird field guide">×</button>
+        <button
+          class="bird-field-guide__close"
+          type="button"
+          data-bird-close
+          aria-label="Close bird field guide"
+        >
+          ×
+        </button>
         <p class="eyebrow">field guide discovery</p>
         <h2 id="bird-field-guide-title" data-bird-name></h2>
-        <p class="bird-field-guide__scientific"><em data-bird-scientific-name></em></p>
+        <p class="bird-field-guide__scientific">
+          <em data-bird-scientific-name></em>
+        </p>
         <p class="bird-field-guide__note" data-bird-note></p>
-        <button class="bird-field-guide__song" type="button" data-bird-song></button>
-        <p class="bird-field-guide__status" data-bird-song-status>Song recording coming soon.</p>
+        <button
+          class="bird-field-guide__song"
+          type="button"
+          data-bird-song
+        ></button>
+        <p class="bird-field-guide__status" data-bird-song-status>
+          Song recording coming soon.
+        </p>
       </div>
     </dialog>
     <script type="module" src="/bird-visitors.js"></script>
     <script>
-      const entranceStar = document.querySelector('.entrance-star');
-      entranceStar.addEventListener('click', () => {
-        entranceStar.classList.remove('sparkle');
-        requestAnimationFrame(() => entranceStar.classList.add('sparkle'));
-        window.setTimeout(() => entranceStar.classList.remove('sparkle'), 700);
+      const entranceStar = document.querySelector(".entrance-star");
+      entranceStar.addEventListener("click", () => {
+        entranceStar.classList.remove("sparkle");
+        requestAnimationFrame(() => entranceStar.classList.add("sparkle"));
+        window.setTimeout(() => entranceStar.classList.remove("sparkle"), 700);
       });
 
-      const entranceWave = document.querySelector('.entrance-wave');
-      const entranceBird = document.querySelector('.entrance-bird');
+      const entranceWave = document.querySelector(".entrance-wave");
+      const entranceBird = document.querySelector(".entrance-bird");
       let birdFlightTimer;
-      entranceWave.addEventListener('click', () => {
-        entranceWave.classList.remove('waving');
-        entranceBird.classList.remove('flying');
+      entranceWave.addEventListener("click", () => {
+        entranceWave.classList.remove("waving");
+        entranceBird.classList.remove("flying");
         void entranceBird.offsetWidth;
-        entranceWave.classList.add('waving');
-        entranceBird.classList.add('flying');
+        entranceWave.classList.add("waving");
+        entranceBird.classList.add("flying");
         window.clearTimeout(birdFlightTimer);
-        window.setTimeout(() => entranceWave.classList.remove('waving'), 850);
-        birdFlightTimer = window.setTimeout(() => entranceBird.classList.remove('flying'), 5000);
+        window.setTimeout(() => entranceWave.classList.remove("waving"), 850);
+        birdFlightTimer = window.setTimeout(
+          () => entranceBird.classList.remove("flying"),
+          5000,
+        );
       });
 
-      const placesToVisit = document.querySelector('.section-head');
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const placesToVisit = document.querySelector(".section-head");
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
       let entranceHandoffComplete = false;
       let entranceHandoffTimer;
 
-      window.addEventListener('scroll', () => {
-        if (entranceHandoffComplete || window.scrollY <= 4) return;
-        window.clearTimeout(entranceHandoffTimer);
-        entranceHandoffTimer = window.setTimeout(() => {
-          if (window.scrollY < placesToVisit.offsetTop) {
-            entranceHandoffComplete = true;
-            placesToVisit.scrollIntoView({
-              behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
-              block: 'start'
-            });
-          } else {
-            entranceHandoffComplete = true;
-          }
-        }, 90);
-      }, { passive: true });
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (entranceHandoffComplete || window.scrollY <= 4) return;
+          window.clearTimeout(entranceHandoffTimer);
+          entranceHandoffTimer = window.setTimeout(() => {
+            if (window.scrollY < placesToVisit.offsetTop) {
+              entranceHandoffComplete = true;
+              placesToVisit.scrollIntoView({
+                behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+                block: "start",
+              });
+            } else {
+              entranceHandoffComplete = true;
+            }
+          }, 90);
+        },
+        { passive: true },
+      );
     </script>
   </body>
 </html>
