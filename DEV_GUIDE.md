@@ -44,6 +44,15 @@ Do not redesign unrelated areas unless explicitly requested.
 
 Because these projects are also a way for Salene to learn web development, briefly explain important new concepts when introducing them.
 
+## Source hygiene
+
+Keep source code readable as the collection grows.
+
+- Prefer the existing file boundaries rather than merging unrelated markup, styling, data, and behavior into one new file.
+- When formatting or reorganizing working code, keep that work behavior-preserving and commit it separately from design, copy, or feature changes.
+- Review large formatting diffs carefully; a readable file is useful only when the cleanup does not obscure a real functional change.
+- Do not reformat an entire project solely for consistency when it would create a noisy diff around embedded assets or otherwise stable code.
+
 ## Token and agent efficiency
 
 Coding-agent usage should be deliberate and frugal.
