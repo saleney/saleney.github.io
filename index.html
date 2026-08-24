@@ -66,8 +66,8 @@
       .goodness { position:relative; z-index:1; margin:24px clamp(8px,9vw,105px) 0 auto; width:max-content; font:italic 1.1rem Fraunces,Georgia,serif; transform:rotate(-1.5deg); }
       .section-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin:35px 4px 20px; scroll-margin-top:20px; }
       h2 { margin:0; font:700 clamp(2rem,5vw,3.45rem)/.94 Fraunces,Georgia,serif; letter-spacing:-.05em; }
-      .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:232px; gap:18px; }
-      .project { position:relative; min-height:0; height:100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:27px; overflow:hidden; border:3px solid var(--line); border-radius:27px 16px 33px 18px; color:var(--ink); text-decoration:none; box-shadow:6px 7px 0 rgba(39,54,90,.2); transition:transform .18s ease,box-shadow .18s ease; }
+      .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:205px; gap:18px; }
+      .project { position:relative; min-height:0; height:100%; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:23px; overflow:hidden; border:3px solid var(--line); border-radius:27px 16px 33px 18px; color:var(--ink); text-decoration:none; box-shadow:6px 7px 0 rgba(39,54,90,.2); transition:transform .18s ease,box-shadow .18s ease; }
       .project:hover,.project:focus-visible { transform:translate(-3px,-5px) rotate(-.5deg); box-shadow:12px 15px 0 rgba(39,54,90,.2); }
       .project:focus-visible { outline:3px solid var(--line); outline-offset:4px; }
       .project-world { background:#ffe982; }
@@ -79,39 +79,41 @@
       .project-red-flag { background:#d3edb8; border-radius:38px 19px 45px 21px; }
       .project-ting-bu-dong { background:#ffb2a6; border-radius:22px 47px 35px 18px; }
       .project-clay-studio { background:#d9a878; border-color:#553d2f; border-radius:43px 22px 37px 19px; }
-      .project::after { position:absolute; z-index:0; right:20px; bottom:8px; font:90px/1 Fraunces,serif; opacity:.3; pointer-events:none; }
+      .project::after { position:absolute; z-index:0; right:18px; bottom:14px; font:78px/1 Fraunces,serif; opacity:.3; pointer-events:none; }
       .project > * { position:relative; z-index:1; }
-      .project-world::after { content:"◌"; }
+      .project > div { width:100%; margin:auto 0; transform:translateY(-8px); }
+      .project-world::after { content:""; }
       .project-text-ex::after { content:""; right:18px; bottom:14px; width:76px; height:76px; border:3px solid rgba(39,54,90,.66); border-radius:50%; background:#e8e4d8; box-shadow:inset 0 0 0 7px rgba(39,54,90,.12),inset -7px -5px 0 rgba(39,54,90,.08),3px 4px 0 rgba(39,54,90,.16); opacity:.9; transform:rotate(-8deg); }
       .project-text-ex::before { content:""; position:absolute; z-index:0; right:47px; bottom:43px; width:18px; height:18px; border:2px solid rgba(39,54,90,.45); border-radius:50%; box-shadow:0 0 0 5px rgba(39,54,90,.05); transform:rotate(-8deg); }
       .project-eight-ball::after { content:"8"; }
       .project-bad-idea::after { content:"!"; }
-      .project-what-now::after { content:""; right:15px; bottom:13px; width:94px; height:66px; border:2px solid rgba(39,54,90,.55); border-radius:2px 8px 3px 7px; background:rgba(255,250,240,.58); box-shadow:inset 0 11px 0 rgba(39,54,90,.07),4px 4px 0 rgba(39,54,90,.11); transform:rotate(4deg); }
-      .project-what-now::before { content:""; position:absolute; z-index:0; right:56px; bottom:74px; width:15px; height:15px; border:2px solid rgba(39,54,90,.62); border-radius:50%; background:#ff8eaa; box-shadow:1px 2px 0 rgba(39,54,90,.16); transform:rotate(4deg); }
-      .project-adventure::after { content:""; right:21px; bottom:11px; width:57px; height:76px; border:3px solid rgba(39,54,90,.56); border-bottom:0; border-radius:45px 45px 0 0; background:rgba(255,250,240,.23); box-shadow:inset -15px 0 0 rgba(39,54,90,.08); transform:rotate(4deg); }
+      .project-what-now::after { content:""; right:18px; bottom:14px; width:88px; height:61px; border:2px solid rgba(39,54,90,.55); border-radius:2px 8px 3px 7px; background:rgba(255,250,240,.58); box-shadow:inset 0 11px 0 rgba(39,54,90,.07),4px 4px 0 rgba(39,54,90,.11); transform:rotate(4deg); }
+      .project-what-now::before { content:""; position:absolute; z-index:0; right:56px; bottom:72px; width:15px; height:15px; border:2px solid rgba(39,54,90,.62); border-radius:50%; background:#ff8eaa; box-shadow:1px 2px 0 rgba(39,54,90,.16); transform:rotate(4deg); }
+      .project-adventure::after { content:""; right:19px; bottom:13px; width:60px; height:74px; border:3px solid rgba(39,54,90,.56); border-bottom:0; border-radius:45px 45px 0 0; background:rgba(255,250,240,.23); box-shadow:inset -15px 0 0 rgba(39,54,90,.08); transform:rotate(4deg); }
       .project-adventure::before { content:""; position:absolute; z-index:0; right:33px; bottom:42px; width:7px; height:7px; border-radius:50%; background:rgba(39,54,90,.56); transform:rotate(4deg); }
       .project-red-flag::after { content:"⚑"; }
       .project-ting-bu-dong::after { content:"听"; font-family:"Noto Sans SC",sans-serif; }
       .project-clay-studio::after { content:""; }
-      .clay-wheel-mark { position:absolute; z-index:0; right:-34px; bottom:-42px; width:164px; aspect-ratio:1; border:3px solid rgba(85,61,47,.54); border-radius:52% 48% 46% 54%; box-shadow:inset 0 0 0 15px rgba(106,69,50,.17),inset 0 0 0 30px rgba(255,237,210,.19),inset 0 0 0 46px rgba(106,69,50,.14),inset 0 0 0 64px rgba(255,237,210,.18); opacity:.9; pointer-events:none; transform:rotate(-8deg); }
-      .clay-wheel-mark::before { content:""; position:absolute; left:42px; top:47px; width:72px; height:52px; border:3px solid rgba(85,61,47,.55); border-radius:52% 48% 40% 45%; background:rgba(236,194,145,.45); box-shadow:inset -8px -5px 0 rgba(106,69,50,.12); transform:rotate(6deg); }
-      .clay-wheel-mark::after { content:""; position:absolute; left:58px; top:57px; width:42px; height:25px; border:2px solid rgba(85,61,47,.42); border-radius:50%; transform:rotate(6deg); }
-      .world-map-mark { position:absolute; z-index:0; right:13px; bottom:11px; width:116px; color:rgba(39,54,90,.52); opacity:.84; pointer-events:none; transform:rotate(-5deg); }
+      .clay-wheel-mark { position:absolute; z-index:0; right:-18px; bottom:-27px; width:140px; aspect-ratio:1; border:3px solid rgba(85,61,47,.54); border-radius:52% 48% 46% 54%; box-shadow:inset 0 0 0 13px rgba(106,69,50,.17),inset 0 0 0 26px rgba(255,237,210,.19),inset 0 0 0 39px rgba(106,69,50,.14),inset 0 0 0 55px rgba(255,237,210,.18); opacity:.9; pointer-events:none; transform:rotate(-8deg); }
+      .clay-wheel-mark::before { content:""; position:absolute; left:36px; top:40px; width:62px; height:45px; border:3px solid rgba(85,61,47,.55); border-radius:52% 48% 40% 45%; background:rgba(236,194,145,.45); box-shadow:inset -8px -5px 0 rgba(106,69,50,.12); transform:rotate(6deg); }
+      .clay-wheel-mark::after { content:""; position:absolute; left:50px; top:49px; width:36px; height:22px; border:2px solid rgba(85,61,47,.42); border-radius:50%; transform:rotate(6deg); }
+      .world-map-mark { position:absolute; z-index:0; right:18px; bottom:14px; width:98px; color:rgba(39,54,90,.52); opacity:.84; pointer-events:none; transform:rotate(-5deg); }
       .world-map-mark svg { display:block; width:100%; height:auto; overflow:visible; }
       .world-map-mark .map-edge { fill:rgba(255,250,240,.2); stroke:currentColor; stroke-width:2.4; stroke-linejoin:round; }
       .world-map-mark .map-route { fill:none; stroke:currentColor; stroke-width:2.4; stroke-dasharray:4 5; stroke-linecap:round; }
       .world-map-mark .map-marker { fill:#ff8eaa; stroke:var(--line); stroke-width:1.6; }
       .project-autobiography { color:#1e2924; background:#f2eee4; border-color:#1e2924; border-radius:18px 54px 24px 42px; box-shadow:8px 9px 0 rgba(30,41,36,.2); }
-      .project-autobiography::before { content:""; position:absolute; z-index:0; right:26px; top:28px; width:min(32%,248px); height:208px; border:2px solid rgba(30,41,36,.48); border-radius:2px 4px 3px 2px; background:#fffaf0; box-shadow:7px 7px 0 rgba(30,41,36,.13),-10px 13px 0 rgba(255,250,240,.74); transform:rotate(3deg); }
-      .project-autobiography::after { content:""; right:46px; bottom:39px; width:min(25%,190px); height:116px; border:2px solid rgba(30,41,36,.45); border-radius:1px; background:rgba(169,78,53,.1); box-shadow:inset 0 0 0 9px #f2eee4; opacity:.78; transform:rotate(-4deg); }
-      .archive-folio { position:absolute; z-index:0; right:37px; top:43px; width:min(29%,220px); height:180px; border-top:1px solid rgba(30,41,36,.4); border-bottom:1px solid rgba(30,41,36,.4); opacity:.64; transform:rotate(3deg); }
+      .project-autobiography::before { content:""; position:absolute; z-index:0; right:18px; bottom:14px; width:88px; height:120px; border:2px solid rgba(30,41,36,.48); border-radius:2px 4px 3px 2px; background:#fffaf0; box-shadow:6px 6px 0 rgba(30,41,36,.13),-8px 10px 0 rgba(255,250,240,.74); transform:rotate(3deg); }
+      .project-autobiography::after { content:""; right:39px; bottom:33px; width:68px; height:84px; border:2px solid rgba(30,41,36,.45); border-radius:1px; background:rgba(169,78,53,.1); box-shadow:inset 0 0 0 7px #f2eee4; opacity:.78; transform:rotate(-4deg); }
+      .archive-folio { position:absolute; z-index:0; right:28px; bottom:28px; width:75px; height:104px; border-top:1px solid rgba(30,41,36,.4); border-bottom:1px solid rgba(30,41,36,.4); opacity:.64; transform:rotate(3deg); }
       .archive-folio::before,.archive-folio::after { content:""; position:absolute; left:15%; width:70%; border-top:1px solid rgba(30,41,36,.25); }.archive-folio::before { top:28px; }.archive-folio::after { bottom:29px; }
       .tag { position:absolute; z-index:2; top:50%; left:50%; margin:0; padding:0; color:var(--ink); background:transparent; font:700 clamp(1rem,2vw,1.35rem)/1 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; opacity:0; pointer-events:none; transform:translate(-50%,-42%); transition:opacity .18s ease,transform .18s ease; }
       .project > * { transition:opacity .18s ease; }
       .project:focus-visible > :not(.tag) { opacity:.2; }.project:focus-visible .tag { opacity:1; transform:translate(-50%,-50%); }
       @media (hover:hover) { .project:hover > :not(.tag) { opacity:.2; }.project:hover .tag { opacity:1; transform:translate(-50%,-50%); } }
-      h3 { position:relative; z-index:1; max-width:85%; margin:0; font:700 clamp(1.65rem,4vw,2.45rem)/.96 Fraunces,Georgia,serif; letter-spacing:-.045em; }
-      .project-autobiography h3 { max-width:100%; font-size:clamp(1.35rem,2.2vw,1.65rem); }
+      h3 { position:relative; z-index:1; max-width:85%; margin:0; font:700 clamp(1.5rem,2.65vw,2.05rem)/.98 Fraunces,Georgia,serif; letter-spacing:-.045em; }
+      .project-autobiography h3 { max-width:100%; font-size:clamp(1.25rem,2vw,1.55rem); }
+      .project-what-now h3,.project-red-flag h3 { font-size:clamp(1.4rem,2.35vw,1.85rem); }
       .project p { position:relative; z-index:1; max-width:85%; margin:11px 0 0; font-size:.93rem; line-height:1.35; }
       .arrow { position:relative; z-index:1; margin-top:22px; font:700 1.2rem "DM Mono",monospace; }
       .pocket { margin-top:44px; padding:0 0 clamp(120px,18vw,210px); }
@@ -121,8 +123,8 @@
       .bird-field-guide { width:min(420px,calc(100vw - 32px)); max-height:min(550px,calc(100dvh - 32px)); margin:auto; overflow:auto; border:3px solid var(--line); border-radius:24px 38px 21px 34px; color:var(--ink); background:var(--paper); box-shadow:9px 10px 0 rgba(39,54,90,.22); }
       .bird-field-guide::backdrop { background:rgba(39,54,90,.22); }
       .bird-field-guide__inside { padding:26px; }.bird-field-guide h2 { margin:10px 0 4px; font-size:clamp(2rem,9vw,2.8rem); }.bird-field-guide p { margin:14px 0 0; font-size:1rem; line-height:1.45; }.bird-field-guide__scientific { margin-top:0 !important; font:italic 1rem Fraunces,Georgia,serif; }.bird-field-guide__note { font-family:Fraunces,Georgia,serif; font-size:1.17rem !important; }.bird-field-guide__close { position:absolute; top:10px; right:10px; display:grid; place-items:center; width:44px; height:44px; border:2px solid var(--line); border-radius:50%; color:inherit; background:var(--yellow); cursor:pointer; font-size:1.2rem; }.bird-field-guide__song { min-height:44px; margin-top:24px; border:2px solid var(--line); border-radius:999px; padding:10px 15px; color:inherit; background:var(--blue); box-shadow:3px 3px 0 rgba(39,54,90,.24); font:700 .78rem "DM Mono",monospace; cursor:pointer; }.bird-field-guide__song:disabled { cursor:not-allowed; opacity:.58; }.bird-field-guide__status { margin-top:10px !important; font:11px "DM Mono",monospace; }
-      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 96px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:5px; bottom:17px; width:116px; } [data-bird-perch] { right:12px; bottom:17px; } .bird-visitor { width:48px; height:48px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { margin:23px auto 0 18%; } .grid { grid-template-columns:1fr; grid-auto-rows:240px; } .project { min-height:0; } .project-ting-bu-dong::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } }
-      @media (prefers-reduced-motion:reduce) { .project { transition:none; } .entrance-star.sparkle { animation:none; color:var(--pink); transform:rotate(11deg) scale(1.04); } .entrance-star.sparkle::before,.entrance-star.sparkle::after { animation:none; } .entrance-wave:hover path,.entrance-wave:focus-visible path,.entrance-wave.waving,.entrance-wave.waving path { animation:none; color:var(--green); } .entrance-bird.flying { animation:bird-flight-gentle 4.8s linear both; } .entrance-bird.flying .bird-wing { animation:none; } }
+      @media (max-width:650px) { .page { width:min(100% - 22px,1120px); padding-top:17px; } header { min-height:calc(100svh - 17px); padding:138px 9px 96px; justify-content:flex-end; } .entrance-star { right:12px; top:13px; font-size:128px; } .entrance-wave { left:5px; bottom:17px; width:116px; } [data-bird-perch] { right:12px; bottom:17px; } .bird-visitor { width:48px; height:48px; } h1 { max-width:100%; font-size:clamp(3.2rem,16vw,4.25rem); } .intro { max-width:94%; } .goodness { margin:23px auto 0 18%; } .grid { grid-template-columns:1fr; grid-auto-rows:220px; } .project { min-height:0; } .project-ting-bu-dong::after { right:14px; bottom:12px; font-size:72px; opacity:.22; } .section-head { display:block; margin-top:34px; } .note { margin-top:9px; } }
+      @media (prefers-reduced-motion:reduce) { .project,.project > *,.tag { transition:none; } .entrance-star.sparkle { animation:none; color:var(--pink); transform:rotate(11deg) scale(1.04); } .entrance-star.sparkle::before,.entrance-star.sparkle::after { animation:none; } .entrance-wave:hover path,.entrance-wave:focus-visible path,.entrance-wave.waving,.entrance-wave.waving path { animation:none; color:var(--green); } .entrance-bird.flying { animation:bird-flight-gentle 4.8s linear both; } .entrance-bird.flying .bird-wing { animation:none; } }
     </style>
   </head>
   <body>
@@ -161,35 +163,35 @@
 
       <section class="grid" aria-label="Salene's projects">
         <a class="project project-world" href="/salenes-world/">
-          <span class="tag">explore</span><div><h3>My World</h3><p>A world for practicing love, wonder, and presence.</p></div><span class="arrow">enter ↗</span>
+          <span class="tag">enter</span><div><h3>My World</h3><p>A world for practicing love, wonder, and presence.</p></div>
           <span class="world-map-mark" aria-hidden="true"><svg viewBox="0 0 116 75"><path class="map-edge" d="M6 14 35 7l25 10 28-10 22 8-4 46-28 8-26-10-29 9Z" /><path class="map-route" d="M16 48c11-15 19-7 28-17 10-11 20-2 30-13 8-9 16-4 27-10" /><circle class="map-marker" cx="45" cy="30" r="4.5" /></svg></span>
         </a>
         <a class="project project-autobiography" href="/autobiography-through-love/">
-          <span class="tag">personal museum</span><div><h3>An Autobiography Told Through Love</h3><p>A collection of things that delighted me, changed me, broke me, and brought me home.</p></div><span class="arrow">enter the collection ↗</span><span class="archive-folio" aria-hidden="true"></span>
+          <span class="tag">enter the collection</span><div><h3>An Autobiography Told Through Love</h3><p>A collection of things that delighted me, changed me, broke me, and brought me home.</p></div><span class="archive-folio" aria-hidden="true"></span>
         </a>
         <a class="project project-ting-bu-dong" href="/ting-bu-dong/">
-          <span class="tag">mandarin survival simulator</span><div><h3>听不懂</h3><p>You booked the ticket. Now figure it out.</p></div><span class="arrow">enter china ↗</span>
+          <span class="tag">enter china</span><div><h3>听不懂</h3><p>You booked the ticket. Now figure it out.</p></div>
         </a>
         <a class="project project-clay-studio" href="https://saleney.github.io/virtual-clay-studio/">
-          <span class="tag">interactive / 3D</span><div><h3>Virtual Clay Studio</h3><p>Throw a little clay in your browser. Open, pull, shape, and see what happens.</p></div><span class="arrow">sit at the wheel ↗</span><span class="clay-wheel-mark" aria-hidden="true"></span>
+          <span class="tag">sit at the wheel</span><div><h3>Virtual Clay Studio</h3><p>Throw a little clay in your browser. Open, pull, shape, and see what happens.</p></div><span class="clay-wheel-mark" aria-hidden="true"></span>
         </a>
         <a class="project project-eight-ball" href="/unhinged-8-ball/">
-          <span class="tag">oracle-ish</span><div><h3>Unhinged 8 Ball</h3><p>For questions that deserve an equally unhinged answer.</p></div><span class="arrow">consult it ↗</span>
+          <span class="tag">consult it</span><div><h3>Unhinged 8 Ball</h3><p>For questions that deserve an equally unhinged answer.</p></div>
         </a>
         <a class="project project-bad-idea" href="/bad-idea-generator/">
-          <span class="tag">use at your own risk</span><div><h3>Bad Idea Generator</h3><p>Because sometimes the worst idea is the beginning of something.</p></div><span class="arrow">generate ↗</span>
+          <span class="tag">generate</span><div><h3>Bad Idea Generator</h3><p>Because sometimes the worst idea is the beginning of something.</p></div>
         </a>
         <a class="project project-what-now" href="/what-now/">
-          <span class="tag">for parents of bored kids</span><div><h3>What Should We Do?</h3><p>Screen-free activity ideas for when your kids are bored and your brain is done.</p></div><span class="arrow">figure it out ↗</span>
+          <span class="tag">figure it out</span><div><h3>What Should We Do?</h3><p>Screen-free activity ideas for when your kids are bored and your brain is done.</p></div>
         </a>
         <a class="project project-adventure" href="/a-little-adventure/">
-          <span class="tag">a read-aloud adventure for kids</span><div><h3>A Little Adventure</h3><p>A choose-your-own-way story for kids and their grown-ups.</p></div><span class="arrow">begin ↗</span>
+          <span class="tag">begin</span><div><h3>A Little Adventure</h3><p>A choose-your-own-way story for kids and their grown-ups.</p></div>
         </a>
         <a class="project project-text-ex" href="/should-i-text-my-ex/">
-          <span class="tag">very important decision</span><div><h3>Should I Text My Ex?</h3><p>Ask the coin. It has opinions.</p></div><span class="arrow">ask it ↗</span>
+          <span class="tag">ask it</span><div><h3>Should I Text My Ex?</h3><p>Ask the coin. It has opinions.</p></div>
         </a>
         <a class="project project-red-flag" href="/am-i-the-red-flag/">
-          <span class="tag">relationship court</span><div><h3>Am I the Red Flag?</h3><p>Tell the story. Receive a completely objective-ish verdict.</p></div><span class="arrow">be judged ↗</span>
+          <span class="tag">be judged</span><div><h3>Am I the Red Flag?</h3><p>Tell the story. Receive a completely objective-ish verdict.</p></div>
         </a>
       </section>
 
