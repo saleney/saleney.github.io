@@ -218,6 +218,7 @@ const loss = [
   "Looking up at leaves fluttering on a tree and realized I couldn’t feel joy.",
 ];
 const thresholds = [
+  ["KOREA", "My last minute decision to study abroad became the best decision of my life. That summer changed the way I interacted with the world."],
   ["SAUSALITO", "The first time I saw the empty Sausalito townhouse before we moved in."],
   ["INFINITY", "The last night in Infinity. We cleaned the apartment and closed the door for the last time."],
   ["BUENA VISTA", "The first night alone in my Buena Vista apartment after my mom and brother left."],
