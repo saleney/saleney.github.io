@@ -206,6 +206,7 @@ const awe = [
 const adult = [
   "Being asked to be my friends’ child emergency contact",
   "Working through a worksheet about consent with a child, and hearing him name me as one of his trusted adults",
+  "At the dentist, someone asked if I was the mom. For a second, I thought: Oh my God. I’ve reached the age where I could actually be someone’s mother. Somewhere along the way, I stopped being automatically mistaken for the big sister.",
 ];
 const loss = [
   "An endocrinologist I met for the first time that day told me I had cancer.",
@@ -217,93 +218,39 @@ const loss = [
   "I looked up at leaves fluttering on a tree and realized I couldn’t feel joy.",
 ];
 const thresholds = [
-  [
-    "SAUSALITO",
-    "The first time I saw the empty Sausalito townhouse before we moved in.",
-  ],
-  [
-    "INFINITY",
-    "The last night in Infinity. We cleaned the apartment and closed the door for the last time.",
-  ],
-  [
-    "BUENA VISTA",
-    "The first night alone in my Buena Vista apartment after my mom and brother left.",
-  ],
-  [
-    "WHOLE FOODS",
-    "I stood in the frozen aisle, cried, and left. I could not imagine cooking just for one.",
-  ],
-  [
-    "THE OLD VIEW",
-    "I returned to the home we had shared and realized the view was no longer mine.",
-  ],
-  [
-    "THE FIRST DATE",
-    "I went on my first date after my long term relationship ended. I did not throw up.",
-  ],
-  [
-    "SEND",
-    "The moment I pressed “Send” on my resignation email after loving a place for seven years, with nothing lined up.",
-  ],
+  ["SAUSALITO", "The first time I saw the empty Sausalito townhouse before we moved in."],
+  ["INFINITY", "The last night in Infinity. We cleaned the apartment and closed the door for the last time."],
+  ["BUENA VISTA", "The first night alone in my Buena Vista apartment after my mom and brother left."],
+  ["WHOLE FOODS", "I stood in the frozen aisle, cried, and left. I could not imagine cooking just for one."],
+  ["THE OLD VIEW", "I returned to the home we had shared and realized the view was no longer mine."],
+  ["THE FIRST DATE", "I went on my first date after my long term relationship ended. I did not throw up."],
+  ["SEND", "The moment I pressed “Send” on my resignation email after loving a place for seven years, with nothing lined up."],
 ];
 
-const esc = (s) =>
-  s.replace(
-    /[&<>"']/g,
-    (c) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
-        c
-      ],
-  );
-const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)",
-);
+const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const scrollBehavior = () => (prefersReducedMotion.matches ? "auto" : "smooth");
 const roomsEl = document.querySelector("#rooms");
 rooms.forEach((room) => {
   const article = document.createElement("article");
   article.className = `room room-${room.number}`;
-  article.innerHTML = `<header><span>${room.number}</span><h3>${esc(room.title)}</h3><small>${String(room.items.length).padStart(2, "0")} OBJECTS</small></header><div class="object-grid">${room.items
-    .map((item, i) => {
-      const tag = item.memory ? "button" : "div";
-      const attrs = item.memory
-        ? `type="button" data-room="${room.number}" data-item="${i}"`
-        : "";
-      return `<${tag} class="object ${item.name.includes("Aspen") ? "aspen" : ""} ${item.name === "Stracciatella" ? "quiet" : ""}" ${attrs}><span class="kind">${esc(item.kind || "")}</span><strong>${esc(item.name)}</strong>${item.memory ? '<span class="inspect">open memory ↗</span>' : ""}${item.name.includes("Aspen") ? '<i class="leaves" aria-hidden="true">● ● ● ● ● ●</i>' : ""}</${tag}>`;
-    })
-    .join(
-      "",
-    )}</div>${room.title === "Nature" ? '<button class="sound" type="button"><span>♪</span> a small impression of birdsong</button>' : ""}`;
+  article.innerHTML = `<header><span>${room.number}</span><h3>${esc(room.title)}</h3><small>${String(room.items.length).padStart(2, "0")} OBJECTS</small></header><div class="object-grid">${room.items.map((item, i) => {
+    const tag = item.memory ? "button" : "div";
+    const attrs = item.memory ? `type="button" data-room="${room.number}" data-item="${i}"` : "";
+    return `<${tag} class="object ${item.name.includes("Aspen") ? "aspen" : ""} ${item.name === "Stracciatella" ? "quiet" : ""}" ${attrs}><span class="kind">${esc(item.kind || "")}</span><strong>${esc(item.name)}</strong>${item.memory ? '<span class="inspect">open memory ↗</span>' : ""}${item.name.includes("Aspen") ? '<i class="leaves" aria-hidden="true">● ● ● ● ● ●</i>' : ""}</${tag}>`;
+  }).join("")}</div>${room.title === "Nature" ? '<button class="sound" type="button"><span>♪</span> a small impression of birdsong</button>' : ""}`;
   roomsEl.append(article);
 });
 const renderList = (id, data) => {
-  document.querySelector(id).innerHTML = data
-    .map(
-      (x, i) =>
-        `<li><span>${String(i + 1).padStart(2, "0")}</span><p>${esc(x)}</p>${x.includes("Matterhorn") ? '<div class="matterhorn" aria-hidden="true"><i></i><b>clouds clear on hover</b></div>' : ""}</li>`,
-    )
-    .join("");
+  document.querySelector(id).innerHTML = data.map((x, i) => `<li><span>${String(i + 1).padStart(2, "0")}</span><p>${esc(x)}</p>${x.includes("Matterhorn") ? '<div class="matterhorn" aria-hidden="true"><i></i><b>clouds clear on hover</b></div>' : ""}</li>`).join("");
 };
 renderList("#awe-list", awe);
 renderList("#adult-list", adult);
-document.querySelector("#loss-list").innerHTML = loss
-  .map(
-    (x, i) => `<p><span>${String(i + 1).padStart(2, "0")}</span>${esc(x)}</p>`,
-  )
-  .join("");
-document.querySelector("#hallway").innerHTML = thresholds
-  .map(
-    ([label, text], i) =>
-      `<button class="door" type="button" aria-expanded="false"><span class="door-number">${String(i + 1).padStart(2, "0")}</span><span class="door-face"><i></i><b>${esc(label)}</b><em>enter</em></span><span class="door-memory">${esc(text)}</span></button>`,
-  )
-  .join("");
+document.querySelector("#loss-list").innerHTML = loss.map((x, i) => `<p><span>${String(i + 1).padStart(2, "0")}</span>${esc(x)}</p>`).join("");
+document.querySelector("#hallway").innerHTML = thresholds.map(([label, text], i) => `<button class="door" type="button" aria-expanded="false"><span class="door-number">${String(i + 1).padStart(2, "0")}</span><span class="door-face"><i></i><b>${esc(label)}</b><em>enter</em></span><span class="door-memory">${esc(text)}</span></button>`).join("");
 
-const portal = document.querySelector("#portal"),
-  box = portal.querySelector(".portal"),
-  closeButton = portal.querySelector(".close"),
-  main = document.querySelector("main");
-let lockedScrollY = 0,
-  lastTrigger = null;
+const portal = document.querySelector("#portal"), box = portal.querySelector(".portal"), closeButton = portal.querySelector(".close"), main = document.querySelector("main");
+let lockedScrollY = 0, lastTrigger = null;
 const lockPage = () => {
   lockedScrollY = window.scrollY;
   main.setAttribute("inert", "");
@@ -320,8 +267,7 @@ const unlockPage = () => {
 document.addEventListener("click", (e) => {
   const object = e.target.closest(".object[data-room]");
   if (object) {
-    const room = rooms.find((r) => r.number === object.dataset.room),
-      item = room.items[Number(object.dataset.item)];
+    const room = rooms.find((r) => r.number === object.dataset.room), item = room.items[Number(object.dataset.item)];
     lastTrigger = object;
     document.querySelector("#portal-kind").textContent = item.kind || "OBJECT";
     document.querySelector("#portal-title").textContent = item.name;
@@ -344,42 +290,21 @@ const closePortal = () => {
   unlockPage();
 };
 closeButton.addEventListener("click", closePortal);
-portal.addEventListener("click", (e) => {
-  if (e.target === portal) closePortal();
-});
+portal.addEventListener("click", (e) => { if (e.target === portal) closePortal(); });
 document.addEventListener("keydown", (e) => {
   if (portal.hidden) return;
   if (e.key === "Escape") closePortal();
-  if (e.key === "Tab") {
-    e.preventDefault();
-    closeButton.focus();
-  }
+  if (e.key === "Tab") { e.preventDefault(); closeButton.focus(); }
 });
-document
-  .querySelector(".enter")
-  .addEventListener("click", () =>
-    document
-      .querySelector("#collection")
-      .scrollIntoView({ behavior: scrollBehavior() }),
-  );
+document.querySelector(".enter").addEventListener("click", () => document.querySelector("#collection").scrollIntoView({ behavior: scrollBehavior() }));
 document.addEventListener("click", (e) => {
   const sound = e.target.closest(".sound");
   if (!sound) return;
-  sound.classList.add("playing");
-  const Ctx = window.AudioContext || window.webkitAudioContext;
-  if (Ctx) {
-    const ctx = new Ctx();
-    [0, 0.12, 0.21].forEach((t, i) => {
-      const o = ctx.createOscillator(),
-        g = ctx.createGain();
-      o.frequency.value = [2400, 3100, 2700][i];
-      g.gain.setValueAtTime(0, ctx.currentTime + t);
-      g.gain.linearRampToValueAtTime(0.035, ctx.currentTime + t + 0.015);
-      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + t + 0.09);
-      o.connect(g).connect(ctx.destination);
-      o.start(ctx.currentTime + t);
-      o.stop(ctx.currentTime + t + 0.1);
-    });
+  if (sound.dataset.playing === "true") {
+    sound.dataset.playing = "false";
+    sound.innerHTML = "<span>♪</span> a small impression of birdsong";
+    return;
   }
-  setTimeout(() => sound.classList.remove("playing"), 650);
+  sound.dataset.playing = "true";
+  sound.innerHTML = "<span>♫</span> birdsong playing · tap to stop";
 });
