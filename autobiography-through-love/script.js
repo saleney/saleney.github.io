@@ -224,7 +224,7 @@ const thresholds = [
   ["WHOLE FOODS", "I stood in the frozen aisle, cried, and left. I could not imagine cooking just for one."],
   ["THE OLD VIEW", "I returned to the home we had shared and realized the view was no longer mine."],
   ["THE FIRST DATE", "I went on my first date after my long term relationship ended. I did not throw up."],
-  ["SEND", "I pressed “Send” on my resignation email after loving a place for six years, with nothing lined up."],
+  ["SEND", "I pressed “Send” on my resignation email after loving a place for six years. I had nothing lined up."],
 ];
 
 const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
