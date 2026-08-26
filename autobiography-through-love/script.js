@@ -209,13 +209,13 @@ const adult = [
   "At the dentist, someone asked if I was the mom. For a second, I thought: Oh my God. I’ve reached the age where I could actually be someone’s mother. Somewhere along the way, I stopped being automatically mistaken for the big sister.",
 ];
 const loss = [
-  "An endocrinologist I met for the first time that day told me I had cancer.",
-  "I woke up from surgery and took the first pill I would need for the rest of my life. I understood, all at once, that my body had changed.",
-  "I woke to the call that Grandpa had passed away. I took a shower. I never saw his body.",
-  "I was on the way to my parents’ house when I received the call that Grandpa had moved on. There was a rainbow.",
-  "I was at work when I received the call that Richard, a dear friend of mine, had passed. I broke down in my classroom.",
-  "I packed Mr. Bear and Mr. Sheep in a box.",
-  "I looked up at leaves fluttering on a tree and realized I couldn’t feel joy.",
+  "Meeting my endocrinologist for the first time that day, and her telling me I had cancer.",
+  "Waking up from surgery and taking the first pill I would need for the rest of my life. I understood, all at once, that my body had changed.",
+  "Waking up to the call that Grandpa had passed away. I took a shower. I never saw his body.",
+  "Receiving a phone call on the way to my parents’ house that Grandpa had moved on. There was a rainbow.",
+  "Receiving the call while I was at work that Richard, a dear friend of mine, had passed. I broke down in my classroom.",
+  "Packing Mr. Bear and Mr. Sheep in a box.",
+  "Looking up at leaves fluttering on a tree and realized I couldn’t feel joy.",
 ];
 const thresholds = [
   ["SAUSALITO", "The first time I saw the empty Sausalito townhouse before we moved in."],
