@@ -106,6 +106,7 @@
       }
       .entrance-wave {
         position: absolute;
+        z-index: 3;
         left: clamp(9px, 4vw, 38px);
         bottom: 24px;
         width: clamp(112px, 15vw, 168px);
@@ -273,9 +274,9 @@
         position: fixed;
         z-index: 8;
         left: -120px;
-        top: 31%;
-        width: 82px;
-        color: var(--ink);
+        top: var(--bird-top, 31%);
+        width: var(--bird-size, 82px);
+        color: var(--bird-color, var(--ink));
         opacity: 0;
         pointer-events: none;
       }
@@ -306,7 +307,8 @@
         transform-origin: 20% 65%;
       }
       .entrance-bird.flying {
-        animation: bird-flight 4.8s linear both;
+        animation: bird-flight var(--bird-duration, 4.8s)
+          var(--bird-delay, 0s) linear both;
       }
       .entrance-bird.flying .bird-wing {
         animation: bird-wing 0.34s ease-in-out infinite alternate;
@@ -1087,7 +1089,8 @@
           color: var(--green);
         }
         .entrance-bird.flying {
-          animation: bird-flight-gentle 4.8s linear both;
+          animation: bird-flight-gentle var(--bird-duration, 4.8s)
+            var(--bird-delay, 0s) linear both;
         }
         .entrance-bird.flying .bird-wing {
           animation: none;
@@ -1303,19 +1306,64 @@
       });
 
       const entranceWave = document.querySelector(".entrance-wave");
-      const entranceBird = document.querySelector(".entrance-bird");
+      const entranceBirdTemplate = document.querySelector(".entrance-bird");
+      const birdFlightPlans = [
+        {
+          top: "31%",
+          size: "82px",
+          color: "var(--ink)",
+          delay: "0s",
+          duration: "4.8s",
+        },
+        {
+          top: "19%",
+          size: "52px",
+          color: "var(--green)",
+          delay: "0.32s",
+          duration: "5.2s",
+        },
+        {
+          top: "43%",
+          size: "60px",
+          color: "#9a604c",
+          delay: "0.7s",
+          duration: "4.7s",
+        },
+        {
+          top: "27%",
+          size: "44px",
+          color: "var(--blue)",
+          delay: "1.05s",
+          duration: "5.4s",
+        },
+      ];
+      const entranceBirds = birdFlightPlans.map((plan, index) => {
+        const bird = index
+          ? entranceBirdTemplate.cloneNode(true)
+          : entranceBirdTemplate;
+        bird.style.setProperty("--bird-top", plan.top);
+        bird.style.setProperty("--bird-size", plan.size);
+        bird.style.setProperty("--bird-color", plan.color);
+        bird.style.setProperty("--bird-delay", plan.delay);
+        bird.style.setProperty("--bird-duration", plan.duration);
+        if (index) entranceBirdTemplate.after(bird);
+        return bird;
+      });
       let birdFlightTimer;
       entranceWave.addEventListener("click", () => {
         entranceWave.classList.remove("waving");
-        entranceBird.classList.remove("flying");
-        void entranceBird.offsetWidth;
+        entranceBirds.forEach((bird) => bird.classList.remove("flying"));
+        void entranceBirdTemplate.offsetWidth;
         entranceWave.classList.add("waving");
-        entranceBird.classList.add("flying");
+        entranceBirds.forEach((bird) => bird.classList.add("flying"));
         window.clearTimeout(birdFlightTimer);
         window.setTimeout(() => entranceWave.classList.remove("waving"), 850);
         birdFlightTimer = window.setTimeout(
-          () => entranceBird.classList.remove("flying"),
-          5000,
+          () =>
+            entranceBirds.forEach((bird) =>
+              bird.classList.remove("flying"),
+            ),
+          6600,
         );
       });
 
