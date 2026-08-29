@@ -95,11 +95,10 @@ Master guide: `DEV_GUIDE.md`
 
 #### An Autobiography Told Through Love
 
+- Repository: `saleney/autobiography-through-love`
 - Public: `https://saleney.github.io/autobiography-through-love/`
-- Structure: `autobiography-through-love/index.html`
-- Behavior/content logic: `autobiography-through-love/script.js`
-- Styling: `autobiography-through-love/styles.css`
-- Social preview: `autobiography-through-love/og.png`
+- Canonical files: root `index.html`, `script.js`, `styles.css`, and `og.png` in the dedicated repository.
+- Important: the `autobiography-through-love/` folder in this hub repository is a legacy copy. GitHub Pages routes the public path to the dedicated project repository, so edits to the hub copy do not change the live page.
 
 #### 听不懂
 

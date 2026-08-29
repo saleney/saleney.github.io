@@ -46,10 +46,10 @@ Preserve that distinction. Do not turn the front door into a generic portfolio t
 
 ### An Autobiography Told Through Love
 
-- `autobiography-through-love/index.html` contains structure.
-- `autobiography-through-love/script.js` contains interactive behavior/content logic.
-- `autobiography-through-love/styles.css` contains styling.
-- `autobiography-through-love/og.png` is the social preview image.
+- Canonical repository: `saleney/autobiography-through-love`.
+- Public URL: `https://saleney.github.io/autobiography-through-love/`.
+- The `autobiography-through-love/` folder in this repository is a legacy copy and does not serve the public project URL.
+- Make public content and behavior changes in the dedicated repository, whose root `index.html`, `script.js`, `styles.css`, and `og.png` are the deployed files.
 - Preserve emotional nuance and narrative clarity.
 - Do not imply that every important person in the autobiography is a romantic partner.
 - Distinguish romantic heartbreak, friendship, family, grief, memory, and other forms of love when context requires it.
