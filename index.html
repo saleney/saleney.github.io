@@ -1303,6 +1303,12 @@
         entranceStar.classList.remove("sparkle");
         requestAnimationFrame(() => entranceStar.classList.add("sparkle"));
         window.setTimeout(() => entranceStar.classList.remove("sparkle"), 700);
+        startBirdFlight(starBirds);
+        window.clearTimeout(starBirdFlightTimer);
+        starBirdFlightTimer = window.setTimeout(
+          () => starBirds.forEach((bird) => bird.classList.remove("flying")),
+          6600,
+        );
       });
 
       const entranceWave = document.querySelector(".entrance-wave");
@@ -1349,21 +1355,26 @@
         if (index) entranceBirdTemplate.after(bird);
         return bird;
       });
-      let birdFlightTimer;
+      const entranceBird = entranceBirds[0];
+      const starBirds = entranceBirds.slice(1);
+      let waveBirdFlightTimer;
+      let starBirdFlightTimer;
+
+      function startBirdFlight(birds) {
+        birds.forEach((bird) => bird.classList.remove("flying"));
+        void entranceBirdTemplate.offsetWidth;
+        birds.forEach((bird) => bird.classList.add("flying"));
+      }
+
       entranceWave.addEventListener("click", () => {
         entranceWave.classList.remove("waving");
-        entranceBirds.forEach((bird) => bird.classList.remove("flying"));
-        void entranceBirdTemplate.offsetWidth;
         entranceWave.classList.add("waving");
-        entranceBirds.forEach((bird) => bird.classList.add("flying"));
-        window.clearTimeout(birdFlightTimer);
+        startBirdFlight([entranceBird]);
+        window.clearTimeout(waveBirdFlightTimer);
         window.setTimeout(() => entranceWave.classList.remove("waving"), 850);
-        birdFlightTimer = window.setTimeout(
-          () =>
-            entranceBirds.forEach((bird) =>
-              bird.classList.remove("flying"),
-            ),
-          6600,
+        waveBirdFlightTimer = window.setTimeout(
+          () => entranceBird.classList.remove("flying"),
+          5000,
         );
       });
 
