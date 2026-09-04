@@ -86,6 +86,12 @@ Master guide: `DEV_GUIDE.md`
 - Main files: `index.html`, `atelier.js`
 - Role: a standalone real-time WebGL pottery-wheel experience. Its repository is separate from this hub; the front door only links to it.
 
+### The Aviary
+
+- Repository: `saleney/the-aviary`
+- Public: `https://my-gentle-aviary.yuan-salene.chatgpt.site/`
+- Role: a living field guide to the birds Salene has heard and met along the way. Its repository is separate from this hub; the front door only links to it.
+
 #### Am I the Red Flag?
 
 - Public: `https://saleney.github.io/am-i-the-red-flag/`
