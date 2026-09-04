@@ -88,8 +88,8 @@ Master guide: `DEV_GUIDE.md`
 
 ### The Aviary
 
-- Repository: `saleney/the-aviary`
-- Public: `https://my-gentle-aviary.yuan-salene.chatgpt.site/`
+- Repository: `saleney/my-aviary`
+- Public: `https://saleney.github.io/my-aviary/`
 - Role: a living field guide to the birds Salene has heard and met along the way. Its repository is separate from this hub; the front door only links to it.
 
 #### Am I the Red Flag?
