@@ -49,3 +49,17 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); o
  .feature-art{grid-row:1;}
  .feature-heading h2{margin:16px 0;}
 }
+
+/* Resumed entrance: one tactile object and one in-place discovery. */
+.clay-object{position:absolute;right:3%;top:8%;width:145px;padding:0;border:0;background:none;color:var(--studio-ink);cursor:pointer;transform:rotate(-12deg);transition:transform .4s ease;z-index:2}
+.clay-object svg{display:block;width:100%;filter:drop-shadow(0 12px 8px #25262210)}
+.clay-object>span{display:block;font:11px Arial,sans-serif;transform:rotate(12deg)}
+.clay-object:hover,.clay-object[aria-expanded=true]{transform:rotate(8deg) translateY(-5px)}
+.artifact-note{position:absolute;right:0;top:38%;width:240px;padding:28px;background:#e6e2d9;border:1px solid #c2bcb0;z-index:5;transform:rotate(2deg)}
+.artifact-note[hidden]{display:none}.artifact-note p{font:italic 27px/1.1 'Cormorant Garamond',Georgia,serif;margin:8px 0 20px}.artifact-note a{font:12px Arial,sans-serif;color:inherit;text-underline-offset:5px}.note-close{position:absolute;right:0;top:0;width:44px;height:44px;border:0;background:none;font-size:22px;cursor:pointer}
+@keyframes arrive{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.studio-signature,.studio-hero h1,.hero-enter,.studio-index nav{animation:arrive .9s both}.studio-hero h1{animation-delay:.12s}.hero-enter{animation-delay:.35s}.studio-index nav{animation-delay:.5s}
+@media(hover:hover) and (pointer:fine){.clay-object,.feature-art{cursor:crosshair}.artifact-note a,.studio-index a{cursor:pointer}}
+@media(max-width:650px){.clay-object{width:92px;top:auto;bottom:65px;right:0}.artifact-note{top:auto;bottom:35px;right:0;width:225px}.studio-orbit{right:40%;bottom:20px}.studio-line{top:46%;width:23%}}
+.motion-paused *{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){.studio-signature,.studio-hero h1,.hero-enter,.studio-index nav{animation:none}.clay-object{transition:none}}
