@@ -43,3 +43,9 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); o
  .studio-feature{grid-template-columns:1fr;gap:28px;padding:38px 0 55px}.feature-heading h2{font-size:48px;margin:20px 0}.feature-art img{height:370px}.feature-heading>span{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.studio-orbit,.studio-line path{animation:none!important}}
+/* Complete the mobile handoff: the project itself appears before its label. */
+@media(max-width:650px){
+ .studio-feature{gap:24px; padding-top:28px;}
+ .feature-art{grid-row:1;}
+ .feature-heading h2{margin:16px 0;}
+}
