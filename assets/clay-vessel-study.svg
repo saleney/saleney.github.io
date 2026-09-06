@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 550" fill="none">
+<title>Clay vessel study</title>
+<g stroke="#78685e" stroke-linecap="round" stroke-linejoin="round">
+<path d="M191 126C186 173 151 204 143 272C131 337 147 392 173 410C216 431 294 431 330 405C353 378 359 325 347 271C337 221 303 177 305 125" fill="#c3afa0" stroke-width="2"/>
+<ellipse cx="248" cy="126" rx="57" ry="15" fill="#968174" stroke-width="2"/>
+<path d="M201 127C224 116 275 118 294 127M189 168C218 179 278 180 311 165M170 215C208 234 301 236 330 214M152 265C193 288 315 288 345 265M145 316C187 340 315 343 353 315M151 367C190 387 310 394 346 367" stroke-width="1.2" opacity=".65"/>
+<path d="M203 196C183 246 177 281 179 316" stroke="#e1d3c6" stroke-width="3"/>
+<path d="M111 442C168 452 339 457 390 440M124 451C186 465 325 465 374 455" stroke-width="1" opacity=".5"/>
+<path d="M358 188L409 162M404 157L411 162L405 170" stroke-width="1"/>
+</g>
+</svg>

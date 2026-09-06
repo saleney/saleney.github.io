@@ -63,3 +63,6 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); o
 @media(max-width:650px){.clay-object{width:92px;top:auto;bottom:65px;right:0}.artifact-note{top:auto;bottom:35px;right:0;width:225px}.studio-orbit{right:40%;bottom:20px}.studio-line{top:46%;width:23%}}
 .motion-paused *{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){.studio-signature,.studio-hero h1,.hero-enter,.studio-index nav{animation:none}.clay-object{transition:none}}
+
+/* A vessel study stands for Clay while its own visual rebrand is pending. */
+.feature-art img{object-fit:contain;object-position:center;}
