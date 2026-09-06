@@ -1143,38 +1143,16 @@
     <link rel="stylesheet" href="front-door.css">
   </head>
   <body>
-    <div class="entrance-bird" aria-hidden="true">
-      <svg viewBox="0 0 110 68">
-        <path class="bird-tail" d="M25 38 2 27l9 19-5 13 25-8Z" />
-        <ellipse class="bird-body" cx="49" cy="42" rx="31" ry="18" />
-        <circle class="bird-head" cx="78" cy="29" r="16" />
-        <path class="bird-beak" d="m92 27 16 6-16 6Z" />
-        <circle class="bird-eye" cx="83" cy="25" r="3" />
-        <path
-          class="bird-wing"
-          d="M52 42C38 32 31 14 40 5c15 7 25 21 27 37-4 7-10 9-15 0Z"
-        />
-      </svg>
-    </div>
     <main class="page">
-      <header class="lab-entrance">
-        <nav class="lab-nav" aria-label="Main navigation"><a href="#clay">Come wander <span aria-hidden="true">↘</span></a></nav>
-        <div class="lab-title"><h1>Salene’s<br><em>Playground.</em></h1><button
-          class="entrance-star"
-          type="button"
-          aria-label="Make the entrance star sparkle"
-        >
-          ✦
-        </button></div>
-        <div class="lab-bottom"><p class="lab-intro">Tiny worlds. Useful things.<br>Occasionally questionable ideas.</p></div>
+      <header class="studio-entrance" id="entrance">
+        <a class="studio-signature" href="#entrance">Salene’s Playground</a>
+        <button class="index-toggle" aria-expanded="false" aria-controls="studio-index">Index <span aria-hidden="true">+</span></button>
+        <aside class="studio-index" id="studio-index"><nav aria-label="Studio index"><p class="index-label">A FEW PLACES TO BEGIN</p><a href="#clay"><span>01</span> Virtual Clay Studio</a><a href="https://saleney.github.io/my-aviary/"><span>02</span> The Aviary</a><a href="#collection"><span>03</span> More curiosities</a></nav><div class="index-foot"><p>Made out of curiosity.</p><button id="motion-toggle" aria-pressed="false">Pause motion</button></div></aside>
+        <div class="studio-hero"><h1>A place for<br><em>curious</em><br><span class="hero-last">things.</span></h1><svg class="studio-line" viewBox="0 0 270 150" fill="none" aria-hidden="true"><path d="M8 119C48-28 80 28 124 93S214 151 260 13"/><path d="M40 31C96 78 137-9 207 30"/></svg><a class="hero-enter" href="#clay">Wander in <span aria-hidden="true">↓</span></a><div class="studio-orbit" aria-hidden="true"><span>PLAY</span><span>MAKE</span><span>WANDER</span></div></div>
       </header>
-      <section class="lab-clay" id="clay" aria-labelledby="clay-title">
+      <section class="studio-feature" id="clay" aria-labelledby="clay-title"><div class="feature-heading"><span>01 / MAKE</span><h2 id="clay-title">Virtual<br><em>Clay Studio</em></h2><a href="https://saleney.github.io/virtual-clay-studio/">Sit at the wheel <span aria-hidden="true">↗</span></a></div><a class="feature-art" href="https://saleney.github.io/virtual-clay-studio/" aria-label="Enter Virtual Clay Studio"><img src="assets/clay-studio.jpg" width="1440" height="1000" alt="Clay on a pottery wheel inside Virtual Clay Studio"></a></section>
 
-        <a class="lab-clay-image" href="https://saleney.github.io/virtual-clay-studio/" aria-label="Enter Virtual Clay Studio"><img src="assets/clay-studio.jpg" width="1440" height="1000" alt="Clay on a pottery wheel in the warm, sunlit Virtual Clay Studio"><span class="lab-image-link">Sit at the wheel <span aria-hidden="true">↗</span></span></a>
-        <div class="lab-feature-copy"><h2 id="clay-title">Virtual Clay Studio</h2></div>
-      </section>
-
-      <div class="section-head">
+      <div class="section-head" id="collection">
         <h2>Places to visit</h2>
       </div>
 
@@ -1292,105 +1270,6 @@
         <p>I’m still making things.</p>
       </section>
     </main>
-    <dialog
-      class="bird-field-guide"
-      id="bird-field-guide"
-      aria-labelledby="bird-field-guide-title"
-    >
-      <div class="bird-field-guide__inside">
-        <button
-          class="bird-field-guide__close"
-          type="button"
-          data-bird-close
-          aria-label="Close bird field guide"
-        >
-          ×
-        </button>
-        <p class="eyebrow">field guide discovery</p>
-        <h2 id="bird-field-guide-title" data-bird-name></h2>
-        <p class="bird-field-guide__scientific">
-          <em data-bird-scientific-name></em>
-        </p>
-        <p class="bird-field-guide__note" data-bird-note></p>
-        <button
-          class="bird-field-guide__song"
-          type="button"
-          data-bird-song
-        ></button>
-        <p class="bird-field-guide__status" data-bird-song-status>
-          Song recording coming soon.
-        </p>
-      </div>
-    </dialog>
-    <script type="module" src="/bird-visitors.js"></script>
-    <script>
-      const entranceStar = document.querySelector(".entrance-star");
-      entranceStar.addEventListener("click", () => {
-        entranceStar.classList.remove("sparkle");
-        requestAnimationFrame(() => entranceStar.classList.add("sparkle"));
-        window.setTimeout(() => entranceStar.classList.remove("sparkle"), 700);
-        startBirdFlight(starBirds);
-        window.clearTimeout(starBirdFlightTimer);
-        starBirdFlightTimer = window.setTimeout(
-          () => starBirds.forEach((bird) => bird.classList.remove("flying")),
-          6600,
-        );
-      });
-
-      const entranceBirdTemplate = document.querySelector(".entrance-bird");
-      const birdFlightPlans = [
-        {
-          top: "31%",
-          size: "82px",
-          color: "var(--ink)",
-          delay: "0s",
-          duration: "4.8s",
-        },
-        {
-          top: "19%",
-          size: "52px",
-          color: "var(--green)",
-          delay: "0.32s",
-          duration: "5.2s",
-        },
-        {
-          top: "43%",
-          size: "60px",
-          color: "#9a604c",
-          delay: "0.7s",
-          duration: "4.7s",
-        },
-        {
-          top: "27%",
-          size: "44px",
-          color: "var(--blue)",
-          delay: "1.05s",
-          duration: "5.4s",
-        },
-      ];
-      const entranceBirds = birdFlightPlans.map((plan, index) => {
-        const bird = index
-          ? entranceBirdTemplate.cloneNode(true)
-          : entranceBirdTemplate;
-        bird.style.setProperty("--bird-top", plan.top);
-        bird.style.setProperty("--bird-size", plan.size);
-        bird.style.setProperty("--bird-color", plan.color);
-        bird.style.setProperty("--bird-delay", plan.delay);
-        bird.style.setProperty("--bird-duration", plan.duration);
-        if (index) entranceBirdTemplate.after(bird);
-        return bird;
-      });
-      const starBirds = entranceBirds.slice(1);
-      let starBirdFlightTimer;
-
-      function startBirdFlight(birds) {
-        birds.forEach((bird) => bird.classList.remove("flying"));
-        void entranceBirdTemplate.offsetWidth;
-        birds.forEach((bird) => bird.classList.add("flying"));
-      }
-
-
-
-    </script>
+    <script src="front-door.js"></script>
   </body>
 </html>
