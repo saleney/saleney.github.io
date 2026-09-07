@@ -1140,38 +1140,37 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="front-door.css?v=collection01">
+    <link rel="stylesheet" href="front-door.css?v=blurbs02">
   </head>
   <body>
     <main class="page">
       <header class="studio-entrance" id="entrance">
-        <a class="studio-signature" href="#entrance">Salene’s Playground</a>
-        <button class="index-toggle" aria-expanded="false" aria-controls="studio-index">Index <span aria-hidden="true">+</span></button>
-        <aside class="studio-index" id="studio-index"><nav aria-label="Studio index"><p class="index-label">A FEW PLACES TO BEGIN</p><a href="#clay"><span>01</span> Virtual Clay Studio</a><a href="https://saleney.github.io/my-aviary/"><span>02</span> The Aviary</a><a href="#collection"><span>03</span> More curiosities</a></nav><div class="index-foot"><p>Made out of curiosity.</p><button id="motion-toggle" aria-pressed="false">Pause motion</button></div></aside>
-        <div class="studio-hero"><h1>A place for<br><em>curious</em><br><span class="hero-last">things.</span></h1><svg class="studio-line" viewBox="0 0 270 150" fill="none" aria-hidden="true"><path d="M8 119C48-28 80 28 124 93S214 151 260 13"/><path d="M40 31C96 78 137-9 207 30"/></svg><button class="clay-object" aria-expanded="false" aria-controls="artifact-note" aria-label="Inspect a piece of clay"><svg viewBox="0 0 160 160" aria-hidden="true"><path d="M35 111C19 87 37 41 67 33C91 20 122 42 129 72C146 103 121 131 88 133C63 139 45 130 35 111Z" fill="#b5a398"/><path d="M43 99C58 113 99 116 121 89M44 82C65 96 105 96 122 74M53 62C72 72 104 76 113 59" fill="none" stroke="#75665e" stroke-width="1.2"/></svg><span>Turn it over <span aria-hidden="true">↗</span></span></button><div class="artifact-note" id="artifact-note" hidden><button class="note-close" aria-label="Close clay note">×</button><p>A little clay.<br>A thousand possibilities.</p><a href="#clay">Find the wheel ↓</a></div><a class="hero-enter" href="#clay">Wander in <span aria-hidden="true">↓</span></a><div class="studio-orbit" aria-hidden="true"><span>PLAY</span><span>MAKE</span><span>WANDER</span></div></div>
+        <nav class="room-spine" aria-label="Homepage rooms"><a href="#entrance"><span>01</span> Entrance</a><a href="#clay"><span>02</span> Workshop</a><a href="#field-guide"><span>03</span> Field Guide</a><a href="#keepsakes"><span>04</span> Keepsakes</a><a href="#side-quests"><span>05</span> Small Diversions</a><button id="motion-toggle" aria-pressed="false">Pause motion</button></nav>
+        <div class="mobile-room"><label for="room-select">You are in</label><select id="room-select" aria-label="Current room; choose a section"><option value="entrance">01 Entrance</option><option value="clay">02 Workshop</option><option value="field-guide">03 Field Guide</option><option value="keepsakes">04 Keepsakes</option><option value="side-quests">05 Small Diversions</option></select></div>
+        <div class="studio-hero"><h1>Salene’s<br><em>Playground</em></h1><p class="entrance-poem">A place for curious things.</p><a class="hero-enter" href="#clay">Wander in. <span aria-hidden="true">↓</span></a><div class="studio-orbit" aria-hidden="true"><span>PLAY</span><span>MAKE</span><span>WANDER</span></div></div>
       </header>
-      <section class="studio-feature" id="clay" aria-labelledby="clay-title"><div class="feature-heading"><span>01 / MAKE</span><h2 id="clay-title">Virtual<br><em>Clay Studio</em></h2><a href="https://saleney.github.io/virtual-clay-studio/">Sit at the wheel <span aria-hidden="true">↗</span></a></div><a class="feature-art" href="https://saleney.github.io/virtual-clay-studio/" aria-label="Enter Virtual Clay Studio"><img src="assets/clay-vessel-study.svg" width="500" height="550" alt="Hand-drawn clay vessel with gently uneven wheel-thrown rings"></a></section>
+      <section class="studio-feature" id="clay" aria-labelledby="clay-title"><div class="feature-heading"><span>01 / MAKE</span><h2 id="clay-title">Virtual<br><em>Clay Studio</em></h2><p class="project-blurb">Shape a little clay. See what it becomes.</p><a href="https://saleney.github.io/virtual-clay-studio/">Sit at the wheel <span aria-hidden="true">↗</span></a></div><a class="feature-art" href="https://saleney.github.io/virtual-clay-studio/" aria-label="Enter Virtual Clay Studio"><img src="assets/clay-vessel-study.svg" width="500" height="550" alt="Hand-drawn clay vessel with gently uneven wheel-thrown rings"></a></section>
 
       <section class="collection-field" id="collection" aria-label="Places to wander">
-        <a class="aviary-world" href="https://saleney.github.io/my-aviary/">
+        <a class="aviary-world" id="field-guide" href="https://saleney.github.io/my-aviary/">
           <svg viewBox="0 0 500 350" fill="none" aria-hidden="true"><g stroke="#596450" stroke-width="1.5" stroke-linecap="round"><path d="M56 287C174 256 298 281 438 233M178 269l20-35m21 31 8-29"/><path d="M143 210C142 166 176 137 218 149C237 105 285 117 290 151L322 166L287 176C279 225 242 253 199 238L112 255Z" fill="#d9dace"/><path d="M170 192C191 166 231 170 262 183C244 214 207 229 176 210M187 193l45-2m-39 13 30-5M144 211l-31 34"/><circle cx="270" cy="146" r="3" fill="#596450"/><path d="M69 70l70-7m-62 18 43-3M364 108l40 9m-35 3 25 7" opacity=".6"/></g></svg>
           <span class="world-caption"><span class="collection-number">02 / OBSERVE</span><h2>The <em>Aviary</em> <span class="visit-mark">↗</span></h2></span>
-        </a>
-        <div class="world-pair">
-          <a class="map-world" href="/salenes-world/"><svg viewBox="0 0 300 210" fill="none" aria-hidden="true"><g stroke="#817663" stroke-width="1.4"><path d="M20 42 89 21l74 24 99-26-10 141-81 28-77-27-67 19Z"/><path d="m89 21 5 140m69-116 8 143" opacity=".4"/><path d="M50 127c38-90 53 45 99-32s72-7 89-46" stroke-dasharray="3 5"/><circle cx="149" cy="95" r="6"/></g></svg><h3>My World <span class="visit-mark">↗</span></h3></a>
-          <a class="folio-world" href="/autobiography-through-love/"><span class="folio-drawing" aria-hidden="true"><i></i><i></i><i>Love,<br><em> & other things.</em></i></span><h3>An Autobiography<br>Told Through Love <span class="visit-mark">↗</span></h3></a>
+        <span class="project-blurb">Birds I’ve met along the way.</span></a>
+        <div class="world-pair" id="keepsakes">
+          <a class="map-world" href="/salenes-world/"><svg viewBox="0 0 300 210" fill="none" aria-hidden="true"><g stroke="#817663" stroke-width="1.4"><path d="M20 42 89 21l74 24 99-26-10 141-81 28-77-27-67 19Z"/><path d="m89 21 5 140m69-116 8 143" opacity=".4"/><path d="M50 127c38-90 53 45 99-32s72-7 89-46" stroke-dasharray="3 5"/><circle cx="149" cy="95" r="6"/></g></svg><h3>My World <span class="visit-mark">↗</span></h3><span class="project-blurb">A world for practicing love, wonder, and presence.</span></a>
+          <a class="folio-world" href="/autobiography-through-love/"><span class="folio-drawing" aria-hidden="true"><i></i><i></i><i>Love,<br><em> & other things.</em></i></span><h3>An Autobiography<br>Told Through Love <span class="visit-mark">↗</span></h3><span class="project-blurb">Things that delighted me, changed me, and brought me home.</span></a>
         </div>
-        <section class="discovery-cluster" aria-labelledby="small-title"><h2 id="small-title">Small <em>diversions.</em></h2>
-          <a class="discovery discovery-language" href="/ting-bu-dong/"><span class="object-mark" aria-hidden="true">听</span><span>听不懂 ↗</span></a>
-          <a class="discovery discovery-eight" href="/unhinged-8-ball/"><span class="object-mark" aria-hidden="true">8</span><span>Unhinged 8 Ball ↗</span></a>
-          <a class="discovery discovery-idea" href="/bad-idea-generator/"><span class="object-mark" aria-hidden="true">BAD<br><em>IDEA</em></span><span>Bad Idea Generator ↗</span></a>
-          <a class="discovery discovery-now" href="/what-now/"><span class="object-mark" aria-hidden="true">What<br><em>now?</em></span><span>What Should We Do? ↗</span></a>
-          <a class="discovery discovery-adventure" href="/a-little-adventure/"><span class="object-mark" aria-hidden="true">↝</span><span>A Little Adventure ↗</span></a>
-          <a class="discovery discovery-ex" href="/should-i-text-my-ex/"><span class="object-mark" aria-hidden="true">yes?<br><em>no.</em></span><span>Should I Text My Ex? ↗</span></a>
-          <a class="discovery discovery-flag" href="/am-i-the-red-flag/"><span class="object-mark" aria-hidden="true">⚑</span><span>Am I the Red Flag? ↗</span></a>
+        <section class="discovery-cluster" id="side-quests" aria-labelledby="small-title"><h2 id="small-title">Small <em>diversions.</em></h2>
+          <a class="discovery discovery-language" href="/ting-bu-dong/"><span class="object-mark" aria-hidden="true">听</span><span>听不懂 ↗</span><span class="project-blurb">You booked the ticket. Now figure it out.</span></a>
+          <a class="discovery discovery-eight" href="/unhinged-8-ball/"><span class="object-mark" aria-hidden="true">8</span><span>Unhinged 8 Ball ↗</span><span class="project-blurb">For questions that deserve an equally unhinged answer.</span></a>
+          <a class="discovery discovery-idea" href="/bad-idea-generator/"><span class="object-mark" aria-hidden="true">BAD<br><em>IDEA</em></span><span>Bad Idea Generator ↗</span><span class="project-blurb">Sometimes the worst idea is the beginning of something.</span></a>
+          <a class="discovery discovery-now" href="/what-now/"><span class="object-mark" aria-hidden="true">What<br><em>now?</em></span><span>What Should We Do? ↗</span><span class="project-blurb">Screen-free ideas for bored kids and tired grown-ups.</span></a>
+          <a class="discovery discovery-adventure" href="/a-little-adventure/"><span class="object-mark" aria-hidden="true">↝</span><span>A Little Adventure ↗</span><span class="project-blurb">A choose-your-own-way story for kids and their grown-ups.</span></a>
+          <a class="discovery discovery-ex" href="/should-i-text-my-ex/"><span class="object-mark" aria-hidden="true">yes?<br><em>no.</em></span><span>Should I Text My Ex? ↗</span><span class="project-blurb">Ask the coin. It has opinions.</span></a>
+          <a class="discovery discovery-flag" href="/am-i-the-red-flag/"><span class="object-mark" aria-hidden="true">⚑</span><span>Am I the Red Flag? ↗</span><span class="project-blurb">Tell the story. Receive a completely objective-ish verdict.</span></a>
         </section>
       </section>
     </main>
-    <script src="front-door.js?v=collection01"></script>
+    <script src="front-door.js?v=blurbs02"></script>
   </body>
 </html>
