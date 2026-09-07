@@ -20,7 +20,7 @@ body { background:var(--studio-paper); color:var(--studio-ink); }
 .studio-line path { stroke-dasharray:400; animation:trace 12s ease-in-out infinite alternate; }
 .studio-line path+path { stroke-width:.7; animation-delay:-5s; }
 .hero-enter { display:inline-flex; gap:42px; align-items:center; min-height:48px; margin:42px 0 0 15%; color:inherit; text-decoration:none; border-bottom:1px solid var(--studio-ink); font:14px Arial,sans-serif; }
-.studio-orbit { position:absolute; right:7%; bottom:40px; width:90px; height:90px; border:1px solid var(--studio-line); border-radius:50%; animation:orbit 28s linear infinite; }
+.studio-orbit { position:absolute; right:7%; bottom:40px; width:90px; height:90px; border:1px solid var(--studio-line); border-radius:50%; animation:studio-circle-turn 28s linear infinite; }
 .studio-orbit span { position:absolute; font:8px 'DM Mono',monospace; letter-spacing:.12em; background:var(--studio-paper); padding:3px; }
 .studio-orbit span:nth-child(1){top:-7px;left:28px}.studio-orbit span:nth-child(2){right:-18px;top:43px;transform:rotate(110deg)}.studio-orbit span:nth-child(3){left:-20px;top:48px;transform:rotate(240deg)}
 .studio-feature { border-top:1px solid var(--studio-line); padding:65px 0 90px; display:grid; grid-template-columns:.75fr 1.25fr; gap:40px; align-items:center; scroll-margin-top:20px; }
@@ -32,7 +32,7 @@ body { background:var(--studio-paper); color:var(--studio-ink); }
 #collection { scroll-margin-top:24px; }
 a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); outline-offset:5px; }
 .motion-paused .studio-orbit,.motion-paused .studio-line path { animation-play-state:paused; }
-@keyframes orbit {to{transform:rotate(360deg)}}
+
 @keyframes trace {from{stroke-dashoffset:0}to{stroke-dashoffset:75}}
 @media(min-width:1600px){.studio-hero{padding-top:7vh}.studio-hero h1{font-size:170px}}
 @media(max-width:900px){.page{margin-right:205px;padding-left:30px;padding-right:30px}.studio-index{width:205px;padding:30px 18px}.studio-feature{gap:24px;grid-template-columns:1fr}.feature-art img{height:420px}.studio-hero h1{font-size:clamp(70px,10vw,100px)}}
@@ -61,7 +61,9 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); o
 .studio-signature,.studio-hero h1,.hero-enter,.studio-index nav{animation:arrive .9s both}.studio-hero h1{animation-delay:.12s}.hero-enter{animation-delay:.35s}.studio-index nav{animation-delay:.5s}
 @media(hover:hover) and (pointer:fine){.clay-object,.feature-art{cursor:crosshair}.artifact-note a,.studio-index a{cursor:pointer}}
 @media(max-width:650px){.clay-object{width:92px;top:auto;bottom:65px;right:0}.artifact-note{top:auto;bottom:35px;right:0;width:225px}.studio-orbit{right:40%;bottom:20px}.studio-line{top:46%;width:23%}}
-.motion-paused *{animation-play-state:paused!important}
+.motion-paused .studio-orbit,.motion-paused .studio-line path{animation-play-state:paused!important}
+.motion-paused .artifact-back p,.motion-paused .studio-hero h1,.motion-paused .hero-enter{animation:none!important}
+.motion-paused .discovery{transition:none}
 @media(prefers-reduced-motion:reduce){.studio-signature,.studio-hero h1,.hero-enter,.studio-index nav{animation:none}.clay-object{transition:none}}
 
 /* A vessel study stands for Clay while its own visual rebrand is pending. */
@@ -126,3 +128,45 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); o
 .project-invitation{display:block;margin-top:14px;font:10px/1.5 'DM Mono',monospace;letter-spacing:.03em;color:var(--studio-ink)}
 .discovery .project-blurb{margin:12px auto;max-width:24ch;font-size:12px}
 .room-spine{width:190px}
+
+/* Preview study: the reverse of an artifact, without changing its footprint. */
+.inspectable{position:relative}
+.artifact-front{display:block;color:inherit;text-decoration:none}
+.turn-artifact{position:absolute;right:0;top:0;z-index:2;min-height:44px;padding:8px 4px;border:0;background:transparent;color:#68675e;font:italic 15px 'Cormorant Garamond',Georgia,serif;cursor:pointer;text-underline-offset:4px}
+.turn-artifact:hover,.turn-artifact:focus-visible{text-decoration:underline;color:var(--studio-ink)}
+.artifact-back{position:absolute;inset:0;z-index:1;background:var(--studio-paper);display:flex;align-items:center;justify-content:center;padding:48px 24px;}
+.artifact-back[hidden]{display:none}
+.artifact-back p{max-width:22ch;margin:0;font:italic 27px/1.35 'Cormorant Garamond',Georgia,serif;color:var(--studio-ink);transform:rotate(-2deg);border-bottom:1px solid var(--studio-line);padding:24px 0}
+.inspectable.is-inspected>.artifact-front{visibility:hidden}
+@media(prefers-reduced-motion:no-preference){.artifact-back:not([hidden]) p{animation:paper-settle .22s ease-out both}@keyframes paper-settle{from{opacity:0;transform:translateY(4px) rotate(-1deg)}to{opacity:1;transform:translateY(0) rotate(-2deg)}}}
+@media(max-width:650px){.artifact-back{padding:45px 12px 20px}.artifact-back p{font-size:22px}.turn-artifact{font-size:15px}}
+
+/* Four-fix preview: owned icons and one consistent ambient-motion control. */
+.site-icon{display:inline-block;width:1em;height:1em;vertical-align:-.12em;flex:none}
+.studio-orbit{animation:studio-circle-turn 28s linear infinite}
+@keyframes studio-circle-turn{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.motion-paused .studio-orbit{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){.studio-orbit{animation:none!important}}
+.mobile-motion{display:none}
+@media(max-width:650px){.mobile-room select{appearance:none;-webkit-appearance:none;padding-right:20px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23252622'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");background-position:right center;background-repeat:no-repeat;background-size:14px}.mobile-motion{display:block;background:none;border:0;color:inherit;min-width:44px;min-height:36px;padding:8px}.mobile-motion .site-icon{width:14px;height:14px}}
+
+/* Quiet proof marks occupy existing air, without changing document flow. */
+.feature-heading,.discovery-cluster{position:relative}
+.production-mark{position:absolute;left:0;top:-22px;display:block;color:#77776d;font:8px/1.4 'DM Mono',monospace;letter-spacing:.08em;pointer-events:none;white-space:nowrap}
+.studio-hero>.production-mark{top:40px}
+.feature-heading>.production-mark{top:-20px}
+.map-world>.production-mark{transform:rotate(2deg)}
+.folio-world>.production-mark{transform:rotate(-2deg)}
+.discovery-cluster>.production-mark{top:12px}
+@media(max-width:650px){.production-mark{font-size:7px;letter-spacing:.025em;white-space:normal;max-width:100%}.studio-hero>.production-mark{top:68px}}
+
+/* Reduced motion changes timing only; disclosure visibility remains state-controlled. */
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ .studio-orbit,.studio-line path,.studio-signature,.studio-hero h1,.hero-enter,.studio-index nav,.artifact-back p{animation:none!important}
+ .discovery,.clay-object,.artifact-front,.artifact-back,.turn-artifact{transition:none!important}
+}
+
+.artifact-inspect{display:block;width:100%;padding:0;margin:0;border:0;background:none;color:inherit;text-align:inherit;font:inherit;cursor:crosshair}
+.artifact-inspect>svg{display:block;width:100%}
+.feature-heading .clay-title-link{display:inline;font:inherit;letter-spacing:inherit;border:0;min-height:0;color:inherit;text-decoration:none}
