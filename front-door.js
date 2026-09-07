@@ -3,6 +3,13 @@ motion.addEventListener('click',()=>{const paused=document.body.classList.toggle
 
 const roomLinks = [...document.querySelectorAll('.room-spine a')];
 const roomSelect = document.querySelector('#room-select');
+roomSelect.style.appearance = 'none';
+roomSelect.style.webkitAppearance = 'none';
+roomSelect.style.paddingRight = '22px';
+roomSelect.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23252622' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")";
+roomSelect.style.backgroundRepeat = 'no-repeat';
+roomSelect.style.backgroundPosition = 'right 2px center';
+roomSelect.style.backgroundSize = '10px 7px';
 const rooms = roomLinks.map(link => document.querySelector(link.getAttribute('href')));
 let framePending = false;
 function updateRoom() {
