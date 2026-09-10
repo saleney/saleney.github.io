@@ -170,3 +170,80 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); o
 .artifact-inspect{display:block;width:100%;padding:0;margin:0;border:0;background:none;color:inherit;text-align:inherit;font:inherit;cursor:crosshair}
 .artifact-inspect>svg{display:block;width:100%}
 .feature-heading .clay-title-link{display:inline;font:inherit;letter-spacing:inherit;border:0;min-height:0;color:inherit;text-decoration:none}
+
+/* Editorial synthesis study: Entrance + Workshop only. */
+#entrance,#clay{--clay-rust:#98553d}
+#entrance .studio-hero h1{font-weight:500;line-height:.86;font-size:clamp(78px,10vw,156px)}
+#entrance .studio-hero h1 em{font-style:normal;font-weight:500}
+#entrance .production-mark{color:var(--clay-rust);letter-spacing:.12em;font-size:9px}
+#entrance .entrance-poem{font-size:28px;margin-top:32px}
+#entrance .clay-accent{color:var(--clay-rust)}
+#clay{width:100%;margin:0;display:grid;grid-template-columns:.85fr 1.15fr;gap:5%;align-items:center;padding:110px 0 130px;min-height:800px}
+#clay .feature-art{order:0;grid-column:2;grid-row:1;transform:rotate(-3deg)}
+#clay .feature-heading{grid-column:1;grid-row:1;align-self:end;margin-bottom:90px}
+#clay .feature-heading>.production-mark{color:var(--clay-rust);font-size:9px;letter-spacing:.07em;top:-36px}
+#clay .feature-heading>span:not(.production-mark){font-size:8px;color:#77776d;letter-spacing:.06em}
+#clay .feature-heading h2{font-size:clamp(42px,5vw,76px);line-height:.91;font-weight:500;margin:23px 0}
+#clay .feature-heading h2 br{display:initial}
+#clay .feature-heading h2 em{color:var(--clay-rust);font-style:normal}
+#clay .feature-heading .project-blurb{font:italic 23px/1.35 'Cormorant Garamond',Georgia,serif;max-width:23ch;color:var(--studio-ink)}
+#clay .feature-art img{height:550px;width:100%;object-fit:cover;object-position:center}
+.clay-object-caption{position:absolute;right:0;bottom:0;font:8px 'DM Mono',monospace;color:#77776d;letter-spacing:.08em;pointer-events:none}
+@media(max-width:900px){#clay{gap:4%;min-height:680px}#clay .feature-art img{height:440px}#clay .feature-heading h2{font-size:45px}#clay .feature-heading .project-blurb{font-size:21px}}
+@media(max-width:650px){#entrance .studio-hero h1{font-size:clamp(60px,16vw,100px);line-height:.95}#entrance .production-mark{font-size:7px}#entrance .entrance-poem{font-size:24px}#clay{display:flex;flex-direction:column;gap:55px;min-height:0;padding:65px 0 95px}#clay .feature-art{order:-1;width:88%;align-self:flex-end;transform:rotate(-3deg)}#clay .feature-art img{height:390px}#clay .feature-heading{align-self:flex-start;margin:0;width:100%}#clay .feature-heading h2{font-size:48px}#clay .feature-heading>.production-mark{font-size:8px}.clay-object-caption{font-size:7px}}
+
+/* Publication continuity: retain room architecture and personal plates. */
+:root{--publication-rust:#98553d}
+.room-spine a{font:17px/1.2 'Cormorant Garamond',Georgia,serif;letter-spacing:.01em}
+.room-spine a span{font:9px 'DM Mono',monospace;letter-spacing:.05em}
+.room-spine a[aria-current]{color:var(--publication-rust);font-weight:500}
+.room-spine a[aria-current]:before{background:var(--publication-rust)}
+.room-spine button{font:9px 'DM Mono',monospace}
+.collection-field .production-mark{color:var(--publication-rust);font-size:9px;letter-spacing:.08em}
+#field-guide{width:70%;margin:80px 0 180px 28%;}
+#field-guide>.artifact-inspect{width:100%;transform:rotate(-2deg)}
+#field-guide .world-caption{margin:30px 0 0 15%}
+#field-guide .world-caption h2{font-size:clamp(48px,5.8vw,78px);font-weight:500;line-height:.95}
+#field-guide .world-caption h2 em{font-style:normal;color:#596450}
+#field-guide .collection-number{font-size:8px;letter-spacing:.08em;color:#77776d}
+#field-guide .project-blurb{margin-left:15%;font:italic 23px/1.35 'Cormorant Garamond',Georgia,serif;max-width:26ch}
+#keepsakes{display:block;width:100%;margin:0 0 180px;padding:75px 0 0;border-top:1px solid var(--studio-line)}
+#keepsakes .map-world{width:75%;margin:0 0 140px;transform:rotate(-2deg)}
+#keepsakes .map-world>.artifact-inspect{width:100%;padding:35px 0 0}
+#keepsakes .map-world h3{font-size:clamp(42px,5vw,65px);font-weight:500;color:var(--publication-rust);margin-top:35px}
+#keepsakes .project-blurb{font:italic 22px/1.4 'Cormorant Garamond',Georgia,serif;max-width:29ch}
+#keepsakes .folio-world{width:52%;margin:0 3% 0 auto;transform:rotate(2deg)}
+#keepsakes .folio-drawing{height:330px}
+#keepsakes .folio-drawing i:last-child{padding:75px 28px;font-size:38px;color:#674d41}
+#keepsakes .folio-drawing em{font-size:27px}
+#keepsakes .folio-world h3{font-size:clamp(34px,4vw,52px);line-height:1.03;font-weight:500;margin-top:35px}
+#side-quests{padding-top:65px;column-gap:10%;row-gap:100px}
+#side-quests h2{font-size:clamp(44px,5.5vw,72px);font-weight:500;line-height:.95;margin-bottom:35px}
+#side-quests h2 em{color:var(--publication-rust)}
+#side-quests .discovery>span:not(.object-mark):not(.project-blurb){font:23px/1.1 'Cormorant Garamond',Georgia,serif}
+#side-quests .project-blurb{font:12px/1.5 Arial,sans-serif;color:#66675e}
+#side-quests .discovery-language .object-mark{font-size:110px}
+#side-quests .discovery-idea .object-mark{color:var(--publication-rust);border-color:var(--publication-rust)}
+#side-quests .discovery-flag .object-mark{color:var(--publication-rust)}
+@media(max-width:650px){
+ .mobile-room select{font:14px 'Cormorant Garamond',Georgia,serif}.mobile-room label{font:8px 'DM Mono',monospace}
+ .collection-field .production-mark{font-size:7px;letter-spacing:.04em}
+ #field-guide{width:90%;margin:75px 0 110px 10%}#field-guide .world-caption{margin:25px 0 0 5%}#field-guide .world-caption h2{font-size:48px}#field-guide .project-blurb{margin-left:5%;font-size:21px}
+ #keepsakes{padding-top:55px;margin-bottom:110px}#keepsakes .map-world{width:92%;margin:0 0 110px 2%}#keepsakes .map-world h3{font-size:44px}#keepsakes .folio-world{width:78%;margin-left:auto;margin-right:2%}#keepsakes .folio-drawing{height:270px}#keepsakes .folio-drawing i:last-child{padding:65px 20px;font-size:32px}#keepsakes .folio-world h3{font-size:35px}#keepsakes .project-blurb{font-size:21px}
+ #side-quests{column-gap:9%;row-gap:60px;padding-top:55px}#side-quests h2{font-size:43px}#side-quests .discovery>span:not(.object-mark):not(.project-blurb){font-size:21px}#side-quests .discovery-language .object-mark{font-size:85px}
+}
+@media(max-width:650px){#keepsakes .folio-world{width:76%;margin-right:4%}}
+
+/* Small Diversions: distinct plates, one shared editorial vocabulary. */
+#side-quests .discovery{position:relative}
+#side-quests .discovery>.specimen-label{display:block;font:7px/1.5 'DM Mono',monospace;letter-spacing:.075em;color:#77776d;margin:0 0 23px;text-transform:uppercase}
+#side-quests .discovery-language .object-mark{border:1px solid #b7aa9b;min-height:165px;margin:0 8% 24px;padding:12px 0;font-size:95px}
+#side-quests .discovery-eight .object-mark{border:1px solid #30332f;width:110px;height:110px;min-height:110px;margin:12px auto 30px}
+#side-quests .discovery-idea .object-mark{border:1px solid var(--publication-rust);min-height:110px;margin:5px 0 24px;outline:1px solid #c7b4a6;outline-offset:5px;font-size:40px}
+#side-quests .discovery-now .object-mark{position:relative;background:#e8e2d7;clip-path:polygon(0 0,88% 0,100% 14%,100% 100%,0 96%);min-height:165px;margin:0 3% 23px;padding:22px 8px;font-size:48px}
+#side-quests .discovery-adventure .object-mark{border:0;background:none;min-height:145px;font-size:115px;margin:12px 0 20px}
+#side-quests .discovery-ex .object-mark{border:0;border-bottom:1px solid #b8aea0;min-height:155px;margin:0 12% 25px;font-size:56px}
+#side-quests .discovery-flag .object-mark{border:1px solid #b7aa9b;border-left:0;border-right:0;min-height:130px;margin:0 18% 24px;font-size:85px}
+@media(max-width:650px){#side-quests .discovery>.specimen-label{font-size:6px;letter-spacing:.03em;margin-bottom:18px}#side-quests .discovery-language .object-mark{min-height:145px;font-size:80px;margin-left:3%;margin-right:3%}#side-quests .discovery-now .object-mark{font-size:40px;min-height:145px;padding:18px 5px}#side-quests .discovery-ex .object-mark{font-size:49px;min-height:145px}#side-quests .discovery-adventure .object-mark{font-size:100px}}
+#side-quests .discovery>span.specimen-label:not(.object-mark):not(.project-blurb){font:7px/1.5 'DM Mono',monospace}
+@media(max-width:650px){#side-quests .discovery>span.specimen-label:not(.object-mark):not(.project-blurb){font-size:6px}}
