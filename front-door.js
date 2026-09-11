@@ -45,11 +45,10 @@ document.querySelectorAll('.inspectable').forEach(artifact => {
  const process = artifact.querySelector('.artifact-back p').textContent;
  const original = blurb.textContent;
  const name = front.querySelector('h3,h2')?.textContent || front.getAttribute('aria-label') || 'Project';
- const button = document.createElement('button');
+ const button = document.createElement('a');
  button.className = 'artifact-inspect';
- button.type = 'button';
- button.setAttribute('aria-label', name.replace('Enter ', '') + ' process note');
- button.setAttribute('aria-pressed', 'false');
+ button.href = front.href;
+ button.setAttribute('aria-label', 'Visit ' + name.replace('Enter ', ''));
  if (!blurb.id) blurb.id = artifact.querySelector('.artifact-back').id + '-caption';
  button.setAttribute('aria-describedby', blurb.id);
  graphic.before(button);
@@ -63,12 +62,10 @@ document.querySelectorAll('.inspectable').forEach(artifact => {
  }
  artifact.querySelector('.turn-artifact').remove();
  artifact.querySelector('.artifact-back').remove();
- let toggled = false;
  const hover = matchMedia('(hover:hover) and (pointer:fine)');
- function show(active) {blurb.textContent = active ? process : original;button.setAttribute('aria-pressed', String(active));}
+ function show(active) {blurb.textContent = active ? process : original;}
  button.addEventListener('pointerenter', event => {if(hover.matches && event.pointerType !== 'touch') show(true);});
- button.addEventListener('pointerleave', () => {if(hover.matches) {toggled=false;show(false);}});
- button.addEventListener('click', event => {if(!hover.matches || event.detail === 0) {toggled=!toggled;show(toggled);}});
- button.addEventListener('blur', () => {toggled=false;show(false);});
- button.addEventListener('keydown', event => {if(event.key === 'Escape') {toggled=false;show(false);}});
+ button.addEventListener('pointerleave', () => show(document.activeElement === button));
+ button.addEventListener('focus', () => show(true));
+ button.addEventListener('blur', () => show(false));
 });
