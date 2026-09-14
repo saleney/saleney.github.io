@@ -164,6 +164,13 @@ Master guide: `DEV_GUIDE.md`
 - Project instructions: `AGENTS.md`
 - Main/only app file: `index.html`
 
+### Preschool Emergency Brain
+
+- Repository: `saleney/preschool-emergency-brain`
+- Canonical public URL: `https://saleney.github.io/preschool-emergency-brain/`
+- App: `app/page.tsx`; styling: `app/globals.css`; build: Vite/React.
+- GitHub Pages deploys from its standalone repository. The old Sites URL is a temporary fallback, not a homepage destination.
+
 ## Definition of done
 
 A feature is not complete simply because it works on desktop.

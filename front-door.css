@@ -247,3 +247,6 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); o
 @media(max-width:650px){#side-quests .discovery>.specimen-label{font-size:6px;letter-spacing:.03em;margin-bottom:18px}#side-quests .discovery-language .object-mark{min-height:145px;font-size:80px;margin-left:3%;margin-right:3%}#side-quests .discovery-now .object-mark{font-size:40px;min-height:145px;padding:18px 5px}#side-quests .discovery-ex .object-mark{font-size:49px;min-height:145px}#side-quests .discovery-adventure .object-mark{font-size:100px}}
 #side-quests .discovery>span.specimen-label:not(.object-mark):not(.project-blurb){font:7px/1.5 'DM Mono',monospace}
 @media(max-width:650px){#side-quests .discovery>span.specimen-label:not(.object-mark):not(.project-blurb){font-size:6px}}
+
+/* Preschool joins the existing collection as a quiet typographic artifact. */
+#side-quests .discovery-preschool .object-mark{font-size:clamp(28px,3.5vw,44px);line-height:1.05;color:var(--publication-rust);border-bottom:1px solid var(--publication-rust)}
