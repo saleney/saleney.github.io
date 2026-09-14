@@ -249,4 +249,5 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); o
 @media(max-width:650px){#side-quests .discovery>span.specimen-label:not(.object-mark):not(.project-blurb){font-size:6px}}
 
 /* Preschool joins the existing collection as a quiet typographic artifact. */
-#side-quests .discovery-preschool .object-mark{font-size:clamp(28px,3.5vw,44px);line-height:1.05;color:var(--publication-rust);border-bottom:1px solid var(--publication-rust)}
+#side-quests .discovery-preschool .object-mark{min-height:135px}
+#side-quests .discovery-preschool .object-mark img{display:block;width:100%;max-width:170px;height:auto;transform:rotate(-4deg)}
