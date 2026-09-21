@@ -251,3 +251,11 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--studio-accent); o
 /* Preschool joins the existing collection as a quiet typographic artifact. */
 #side-quests .discovery-preschool .object-mark{min-height:135px}
 #side-quests .discovery-preschool .object-mark img{display:block;width:100%;max-width:170px;height:auto;transform:rotate(-4deg)}
+
+/* Approved hand-drawn project illustrations; retain the original vase, bird and map. */
+#side-quests .discovery .object-mark{width:100%;height:auto;min-height:0;aspect-ratio:1;margin:0 auto 18px;padding:0;border:0;outline:0;border-radius:0;background:none;clip-path:none;}
+#side-quests .discovery .object-mark img{display:block;width:100%;max-width:240px;height:auto;max-height:none;object-fit:contain;transform:none;}
+#keepsakes .refined-folio{height:auto;aspect-ratio:1;}
+.refined-folio img{display:block;width:100%;height:auto;}
+.hero-enter .entrance-door-icon{display:block;width:72px;height:72px;object-fit:contain;flex-shrink:0;}
+@media(max-width:650px){#side-quests .discovery .object-mark{margin-bottom:14px}.hero-enter .entrance-door-icon{width:52px;height:52px}}
