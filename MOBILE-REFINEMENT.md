@@ -7,3 +7,5 @@ Playroom uses a compact 5:3 floor-plan proportion on phones, with project positi
 Validation: TypeScript check and static build passed. Browser previews inspected at 390×844 and 320×640; Playroom project reveal, Clay tracing reveal and flag reveal checked. Screenshots retained locally. Physical device testing remains outstanding.
 
 Follow-up: replaced Aviary annotation's Unicode diagonal-arrow glyph with an inline drawn SVG arrow to avoid Apple/mobile font substitution. TypeScript and production build passed.
+
+Follow-up: removed the translation icon (including its Latin A) from 听不懂. Chinese title remains the cover mark. Production build passed.
