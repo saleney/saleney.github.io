@@ -827,3 +827,28 @@
 @media(min-width:701px) { .field-study .zone-playroom .curiosity--drawer { top:54vh; bottom:auto; height:15vh; min-height:110px; } }
 @media(max-width:700px) { .field-study .zone-playroom .curiosity--storybook { width:29vw; height:16vh; } .field-study .zone-playroom .curiosity--tin { width:28vw; height:14vh; } .field-study .zone-playroom .curiosity--drawer { width:32vw; height:16vh; } }
 @media(max-width:700px) { .field-study .zone-playroom .return-stamp { bottom:1.5vh; font-size:8px; padding:10px; min-height:44px; } .field-study .folio-spine button { min-height:44px; } .field-study .field-reveal-close { min-width:44px; min-height:44px; } }
+
+/* Mobile refinement: compact compositions above navigation, drawn oracle symbols. */
+.slot-reels svg { width:25px; height:32px; fill:none; stroke:var(--color-foreground); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; }
+.field-study .curiosity--flag .curiosity-object { clip-path:none; background:transparent; transform:none; overflow:visible; }
+.field-study .curiosity--flag.is-open .curiosity-object { transform:none; }
+.oracle-flag { position:absolute; inset:0; width:100%; height:100%; stroke:var(--color-foreground); stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.flag-cloth { fill:color-mix(in oklab,var(--color-terracotta) 55%,var(--color-paper-light)); transform-origin:23px 50px; transform:scaleX(.4); transition:transform .7s ease; }
+.is-open .flag-cloth { transform:scaleX(1); }
+.field-study .curiosity--flag .object-prompt { position:absolute; bottom:0; right:0; }
+@media(max-width:700px) {
+ .field-study .major-artifact--clay, .field-study .zone-field .major-artifact--aviary, .field-study .zone-field.has-field-reveal .major-artifact--aviary { top:18vh; height:36vh; }
+ .field-study .zone-archive .major-artifact--archive { top:18vh; }
+ .field-study .zone-archive .major-artifact--language { top:21vh; }
+ .field-study .zone-oracles .curiosity--orb { left:14vw; top:18vh; width:28vw; height:28vw; }
+ .field-study .zone-oracles .curiosity--slip { left:54vw; top:18vh; width:32vw; height:27vw; }
+ .field-study .zone-oracles .curiosity--coin { left:14vw; top:39vh; width:28vw; height:28vw; }
+ .field-study .zone-oracles .curiosity--flag { left:55vw; top:36vh; width:28vw; height:34vw; }
+ .playroom-blueprint { left:5vw; top:17vh; width:90vw; height:54vw; }
+ .field-study .zone-playroom .curiosity--storybook { left:13vw; top:calc(17vh + 13vw); width:29vw; height:20vw; }
+ .field-study .zone-playroom .curiosity--tin { right:12vw; top:calc(17vh + 11vw); width:28vw; height:18vw; }
+ .field-study .zone-playroom .curiosity--drawer, .field-study .zone-playroom.has-field-reveal .curiosity--drawer { left:44vw; top:calc(17vh + 33vw); width:32vw; height:17vw; }
+ .field-study .zone-playroom .rescue-book-art { width:28px; height:22px; margin-top:2px; }
+ .field-study .zone-playroom .return-stamp { top:calc(17vh + 54vw + 30px); bottom:auto; right:7vw; }
+}
+.field-study .curiosity--flag .curiosity-object { border:0; box-shadow:none; }

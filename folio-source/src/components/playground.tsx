@@ -9,7 +9,6 @@ import {
   List,
   Map,
   RotateCcw,
-  Sparkles,
   X,
 } from "lucide-react";
 
@@ -298,11 +297,11 @@ function Curiosity({
         {kind === "storybook" && <FieldArt kind="mountains" />}
         <span className="object-mark" aria-hidden="true">
           {kind === "orb" && "8"}
-          {kind === "slip" && <span className="slot-machine" aria-hidden="true"><span className="slot-reels"><i>?</i><i>✳</i><i>!</i></span><span className="slot-caption">bad ideas</span><span className="slot-lever" /></span>}
+          {kind === "slip" && <span className="slot-machine" aria-hidden="true"><span className="slot-reels"><i><svg viewBox="0 0 30 36"><path d="M12 25 Q4 13 11 7 Q19 1 23 11 Q25 17 19 25 Z M12 29 h7 M13 33 h5 M14 17 l4 8" /></svg></i><i><svg viewBox="0 0 30 36"><path d="M6 19 L23 8 L19 29 L14 21 Z M14 21 l9 -13" /></svg></i><i><svg viewBox="0 0 30 36"><path d="M16 3 l-5 12 10 -1 -14 19 5 -13 -8 1 Z" /></svg></i></span><span className="slot-caption">bad ideas</span><span className="slot-lever" /></span>}
           {kind === "tin" && "What Should We Do?"}
           {kind === "storybook" && "A Little Adventure"}
           {kind === "coin" && (revealed ? "NO" : "?")}
-          {kind === "flag" && "?"}
+          {kind === "flag" && <svg className="oracle-flag" viewBox="0 0 130 150" fill="none"><path className="flag-pole" d="M22 12 Q20 70 23 138 M12 139 h25" /><path className="flag-cloth" d="M23 18 Q48 6 70 20 Q93 32 117 17 L113 78 Q91 93 69 79 Q47 66 23 78 Z" /><path d="M27 25 Q47 16 64 27" /></svg>}
           {kind === "drawer" && <><span className="desk-project-name">Preschool<br />Emergency Brain</span><svg className="rescue-book-art" viewBox="0 0 120 100" fill="none" aria-hidden="true"><path d="M17 12 Q40 6 60 15 Q82 7 104 13 L103 83 Q80 78 60 89 Q40 79 17 83 Z" /><path d="M60 15 L60 89 M27 64 L49 64 M72 64 L94 64 M27 72 L44 72 M73 72 L94 72" /><path d="M31 37 l7 -13 7 13 14 3 -11 9 2 14 -12 -7 -12 7 2 -14 -11 -9 Z" /><path d="M83 30 v24 M71 42 h24" /></svg></>}
         </span>
         <span className="object-prompt">{prompt}</span>
@@ -326,8 +325,6 @@ export function Playground() {
   const [folioIndexOpen, setFolioIndexOpen] = useState(false);
   const [indexOpen, setIndexOpen] = useState(false);
   const [projectSearch, setProjectSearch] = useState("");
-  const [explored, setExplored] = useState<string[]>([]);
-  const [logOpen, setLogOpen] = useState(false);
   const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
@@ -361,7 +358,7 @@ export function Playground() {
   }, []);
 
   useEffect(() => {
-    const dismiss = (event: KeyboardEvent) => { if (event.key === "Escape") { setIndexOpen(false); setFolioIndexOpen(false); setLogOpen(false); setHovered(null); setOpened([]); } };
+    const dismiss = (event: KeyboardEvent) => { if (event.key === "Escape") { setIndexOpen(false); setFolioIndexOpen(false); setHovered(null); setOpened([]); } };
     window.addEventListener("keydown", dismiss);
     return () => window.removeEventListener("keydown", dismiss);
   }, []);
@@ -375,14 +372,12 @@ export function Playground() {
   };
 
   const findProject = (project: Project) => {
-    setExplored((current) => current.includes(project.id) ? current : [...current, project.id]);
     goToZone(project.zone);
     setOpened((current) => (current.includes(project.id) ? current : [...current, project.id]));
     window.setTimeout(() => document.querySelector<HTMLButtonElement>(`#artifact-${project.id} > button`)?.focus({ preventScroll: true }), 450);
   };
 
   const explore = (id: string) => {
-    setExplored((current) => current.includes(id) ? current : [...current, id]);
     setHovered(id);
   };
   const leave = (id: string) => {
@@ -391,7 +386,6 @@ export function Playground() {
   };
 
   const toggle = (id: string) => {
-    setExplored((current) => current.includes(id) ? current : [...current, id]);
     setOpened((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
   };
 
@@ -404,25 +398,11 @@ export function Playground() {
         </div>
         <p className="header-note">A place for curious things · folio {activeZone + 1} of {folios.length}</p>
         <div className="header-actions">
-          <Button variant="ghost" size="icon" onClick={() => setLogOpen(!logOpen)} aria-label={logOpen ? "Close things explored" : "Open things explored"}>
-            <Sparkles aria-hidden="true" />
-          </Button>
           <Button variant="outline" onClick={() => setIndexOpen(true)}>
             <List aria-hidden="true" /> Projects
           </Button>
         </div>
       </header>
-
-      <div className={cn("field-log", logOpen && "is-open")} aria-hidden={!logOpen}>
-        <div>
-          <span>THINGS EXPLORED</span>
-          <strong>{explored.length} / {projects.length}</strong>
-        </div>
-        <p>{explored.length ? "A little record of your wandering." : "Begin anywhere."}</p>
-        <div className="stamp-row">
-          {projects.map((project) => <span key={project.id} className={cn(explored.includes(project.id) && "found")} title={project.title} />)}
-        </div>
-      </div>
 
       <div className="table-viewport" ref={scroller} tabIndex={0} aria-label="Scrollable folios">
         <div className="tabletop">
