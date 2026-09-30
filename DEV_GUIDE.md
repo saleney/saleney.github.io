@@ -76,7 +76,9 @@ Master guide: `DEV_GUIDE.md`
 #### Front door
 
 - Public: `https://saleney.github.io/`
-- Main file: `index.html`
+- Deployed entry: `index.html`; generated assets: `folio-assets/`; editable React/CSS source: `folio-source/`
+- Six folios: The Atlas, The Studio, The Field, The Archive, Games & Oracles, The Playroom. Twelve project destinations remain centralized.
+- Rebuild instructions: `folio-source/README.md`.
 - Role: hub/index for the whole collection.
 
 ### Virtual Clay Studio
