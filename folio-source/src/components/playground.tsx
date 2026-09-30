@@ -234,7 +234,7 @@ function MainArtifact({
         <SketchFrame variant={project.zone} />{kind === "aviary" && <span className="guide-spine" aria-hidden="true" />}
         <span className="artifact-number">{String(project.zone + 1).padStart(2, "0")}</span>
         {kind === "clay" ? <ClayStudy /> : <span className="artifact-icon">{icons[kind]}</span>}
-        <span className="working-annotation" aria-hidden="true">{{ clay: "lift the page. look beneath.", aviary: "look a little closer ↗", archive: "collected, still collecting", language: "notes in the margins" }[kind]}</span>
+        <span className="working-annotation" aria-hidden="true">{{ clay: "lift the page. look beneath.", aviary: "look a little closer", archive: "collected, still collecting", language: "notes in the margins" }[kind]}{kind === "aviary" && <svg className="annotation-arrow" viewBox="0 0 42 30" fill="none" aria-hidden="true"><path d="M4 26 Q17 24 34 7 M23 8 L35 6 L34 18" /></svg>}</span>
         <span className="artifact-title"><span className={kind === "archive" ? "sr-only" : undefined}>{project.title}</span>{kind === "archive" && <span className="book-cover-title" aria-hidden="true">An Autobiography<br />Told Through Love</span>}</span>
         <span className="artifact-prompt">{open ? (mobile ? "Close for now" : "Explore below") : prompts[kind]}</span>
       </Button>

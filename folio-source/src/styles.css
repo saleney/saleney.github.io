@@ -852,3 +852,5 @@
  .field-study .zone-playroom .return-stamp { top:calc(17vh + 54vw + 30px); bottom:auto; right:7vw; }
 }
 .field-study .curiosity--flag .curiosity-object { border:0; box-shadow:none; }
+
+.annotation-arrow { display:inline-block; width:32px; height:24px; vertical-align:middle; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; }
