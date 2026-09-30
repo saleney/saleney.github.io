@@ -9,3 +9,5 @@ Validation: TypeScript check and static build passed. Browser previews inspected
 Follow-up: replaced Aviary annotation's Unicode diagonal-arrow glyph with an inline drawn SVG arrow to avoid Apple/mobile font substitution. TypeScript and production build passed.
 
 Follow-up: removed the translation icon (including its Latin A) from 听不懂. Chinese title remains the cover mark. Production build passed.
+
+Follow-up: centered all three Playroom titles inside their furnishings; moved action labels below and separated decorative illustrations from title flow. Replaced blueprint Unicode arrow with drawn SVG strokes. Build passed; mobile 390×844 visual preview checked and screenshot saved.

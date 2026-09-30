@@ -854,3 +854,12 @@
 .field-study .curiosity--flag .curiosity-object { border:0; box-shadow:none; }
 
 .annotation-arrow { display:inline-block; width:32px; height:24px; vertical-align:middle; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round; }
+
+/* Center each room furnishing title; keep annotations outside the title area. */
+.field-study .zone-playroom .curiosity-object { padding:0; align-items:center; justify-content:center; }
+.field-study .zone-playroom .object-mark { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; width:100%; margin:0; padding:8px; }
+.field-study .zone-playroom .curiosity--tin .object-mark { margin:0; }
+.field-study .zone-playroom .desk-project-name { width:100%; text-align:center; }
+.field-study .zone-playroom .object-prompt { position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:5px; }
+.field-study .zone-playroom .curiosity--storybook .field-art { position:absolute; left:50%; top:3%; transform:translateX(-50%); width:30px; height:18px; opacity:.45; }
+.field-study .zone-playroom .rescue-book-art { position:absolute; bottom:3%; right:5%; width:22px; height:18px; opacity:.35; }
