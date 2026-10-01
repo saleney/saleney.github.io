@@ -43,3 +43,6 @@ Converted the Atlas margin note, making note, Aviary invitation, Archive annotat
 ## Aviary on-sheet title — 2026-10-01
 - Moved the title inside the sheet and added small imagined field coordinates beneath it. Kept the existing bird and interaction.
 - Production build passed; desktop composition reviewed and saved as aviary-field-coordinates.png.
+
+## Squarer Aviary sheet
+Brought the sheet closer to square and replaced the precise bird icon contours with gently irregular pen paths, preserving its silhouette. Build passed; desktop and phone reviewed. Saved aviary-squarer-sheet.png.
