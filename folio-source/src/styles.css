@@ -879,3 +879,19 @@
 .working-annotation .pen-note{width:130px!important;height:auto!important}
 .playroom-blueprint .blueprint-pen-note{width:160px;height:32px;position:static;inset:auto;opacity:1}
 @media(max-width:650px){.atlas-margin-note .pen-note{width:170px}.pencil-note .pen-note{width:185px}.working-annotation .pen-note{width:95px!important}}
+/* The Field: a wide, quiet specimen sheet with its bird kept at the center. */
+.field-study .zone-field .major-artifact--aviary{left:50%;top:30%;width:min(52vw,620px);height:min(36vh,320px);transform:translateX(-50%)}
+.field-study .zone-field .major-artifact--aviary .artifact-face{padding:0;overflow:visible;align-items:center;transform:rotate(-.4deg)}
+.field-study .zone-field .major-artifact--aviary .artifact-icon{position:absolute;left:50%;top:48%;align-self:auto;transform:translate(-50%,-50%)}
+.field-study .zone-field .major-artifact--aviary .artifact-title{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);width:max-content;max-width:90%;font-size:34px}
+.field-study .zone-field .major-artifact--aviary .artifact-number{top:-22px;left:0}
+.field-study .zone-field .major-artifact--aviary .working-annotation{top:-38px;right:0;max-width:none;transform:rotate(-3deg)}
+.field-study .zone-field .major-artifact--aviary .working-annotation .pen-note{width:155px!important}
+.field-study .zone-field .major-artifact--aviary.is-open .artifact-face{transform:perspective(1200px) rotateY(-48deg) rotate(-2deg)}
+@media(max-width:700px){
+ .field-study .zone-field .major-artifact--aviary,.field-study .zone-field.has-field-reveal .major-artifact--aviary{left:50%;top:22vh;width:82vw;height:30vh}
+ .field-study .zone-field .major-artifact--aviary .artifact-title{font-size:28px;bottom:-12px}
+ .field-study .zone-field .major-artifact--aviary .artifact-icon svg{width:90px;height:90px}
+ .field-study .zone-field .major-artifact--aviary .working-annotation .pen-note{width:130px!important}
+ .field-study .zone-field .major-artifact--aviary.is-open .artifact-face{transform:translateY(-35px) rotate(-3deg)}
+}

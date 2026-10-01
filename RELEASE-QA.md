@@ -33,3 +33,9 @@ Restored three sparse invitations as custom SVG pen paths: unfurl here, lift the
 
 ## Drawn margin notes
 Converted the Atlas margin note, making note, Aviary invitation, Archive annotation, language margins, and Playroom blueprint labels to custom pen-stroke SVG paths. No handwriting font in these annotations. Reviewed Atlas and Playroom at desktop. Screenshots: drawn-margin-notes.png, drawn-playroom-notes.png.
+
+## Aviary spacing — 2026-10-01
+- Gave The Aviary a wider, centered pale sheet, with the existing bird centered inside it, title at the lower edge, and drawn note above the right corner.
+- Preserved the bird artwork and field-guide interaction.
+- Production build passed. Reviewed desktop and mobile composition; mobile guide opens and closes correctly.
+- Saved aviary-spacing-desktop.png and aviary-spacing-mobile.png locally.
