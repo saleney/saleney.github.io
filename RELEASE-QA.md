@@ -49,3 +49,6 @@ Brought the sheet closer to square and replaced the precise bird icon contours w
 
 ## Original Aviary bird restored
 Restored the original Bird artwork from the earlier released Playground, preserving the squarer sheet, inset title, and coordinates. Production build passed.
+
+## Drive original Aviary artwork restored
+Recovered the exact image labeled Original reference — Aviary bird from the Playground Icon System document in Drive (1-4b1zXp-iMYPKw4F3-7Hxe2z2xMJtuUWI2OW4JgIZAw). Preserved the original downloaded image, squarer sheet, title and interaction. Build passed; appearance reviewed and saved as aviary-drive-art-restored.png.

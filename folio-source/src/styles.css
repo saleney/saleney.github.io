@@ -897,3 +897,8 @@
 }
 
 .field-study .zone-field .major-artifact--aviary .aviary-coordinates{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);font-family:var(--font-mono,monospace);font-size:8px;letter-spacing:1.3px;white-space:nowrap;color:#78816d}
+
+.field-study .zone-field .major-artifact--aviary .artifact-icon{width:260px;height:auto}
+.aviary-original-art{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+@media(max-width:700px){.field-study .zone-field .major-artifact--aviary .artifact-icon{width:210px}}
+.field-study .zone-field .major-artifact--aviary .artifact-icon{mix-blend-mode:multiply}

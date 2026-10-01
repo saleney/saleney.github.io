@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
-  Bird,
   BookOpen,
   ExternalLink,
   List,
@@ -198,7 +197,7 @@ function MainArtifact({
   const icons = {
     atlas: <Map aria-hidden="true" />,
     clay: <svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M26 34 Q50 19 74 34 L68 72 Q50 82 32 72 Z" /><ellipse cx="50" cy="34" rx="24" ry="9" /><path d="M32 52 Q50 60 68 52 M34 64 Q50 71 66 64" /></svg>,
-    aviary: <Bird aria-hidden="true" />,
+    aviary: <img className="aviary-original-art" src="/assets/project-icons/aviary-original.png" alt="" aria-hidden="true" />,
     archive: <BookOpen aria-hidden="true" />,
     language: null,
   };
