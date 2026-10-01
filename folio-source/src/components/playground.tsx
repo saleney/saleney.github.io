@@ -207,7 +207,7 @@ function MainArtifact({
             <path d="M77 85 l16 -26 19 27 M87 74 l7 6 7 -7 M371 170 q23 -40 45 -6 q-23 31 -45 6 Z M214 66 q16 -19 27 1 q-9 20 -27 -1 Z" />
             <circle cx="251" cy="113" r="8" /><path d="M246 113 l4 4 8 -10 M431 70 l12 6 -1 13" />
           </svg>
-          <SketchFrame variant={0} /><span className="atlas-cover-prompt">{open ? "a world unfolding" : "unfold this world"}</span>
+          <SketchFrame variant={0} />
         </button>
         <p className="atlas-margin-note">the map is not the territory,<br />but it is a good place to start<span aria-hidden="true">↙</span></p>
         <div className="artifact-reveal atlas-inside" id={`reveal-${project.id}`} aria-hidden={!open || !active} inert={!open || !active}>
@@ -233,9 +233,9 @@ function MainArtifact({
         <SketchFrame variant={project.zone} />{kind === "aviary" && <span className="guide-spine" aria-hidden="true" />}
         <span className="artifact-number">{String(project.zone + 1).padStart(2, "0")}</span>
         {kind === "clay" ? <ClayStudy /> : kind !== "language" && <span className="artifact-icon">{icons[kind]}</span>}
-        <span className="working-annotation" aria-hidden="true">{{ clay: "lift the page. look beneath.", aviary: "look a little closer", archive: "collected, still collecting", language: "notes in the margins" }[kind]}{kind === "aviary" && <svg className="annotation-arrow" viewBox="0 0 42 30" fill="none" aria-hidden="true"><path d="M4 26 Q17 24 34 7 M23 8 L35 6 L34 18" /></svg>}</span>
+        <span className="working-annotation" aria-hidden="true">{{ clay: "", aviary: "look a little closer", archive: "collected, still collecting", language: "notes in the margins" }[kind]}{kind === "aviary" && <svg className="annotation-arrow" viewBox="0 0 42 30" fill="none" aria-hidden="true"><path d="M4 26 Q17 24 34 7 M23 8 L35 6 L34 18" /></svg>}</span>
         <span className="artifact-title"><span className={kind === "archive" ? "sr-only" : undefined}>{project.title}</span>{kind === "archive" && <span className="book-cover-title" aria-hidden="true">An Autobiography<br />Told Through Love</span>}</span>
-        <span className="artifact-prompt">{open ? (mobile ? "Close for now" : "Explore below") : prompts[kind]}</span>
+        <span className="sr-only">{prompts[kind]}</span>
       </Button>
       <div className="artifact-reveal" id={`reveal-${project.id}`} aria-hidden={!open || !active} inert={!open || !active} hidden={mobile && project.zone !== 0}>
         <p className="specimen-label">{project.label}</p>
@@ -303,7 +303,7 @@ function Curiosity({
           {kind === "flag" && <svg className="oracle-flag" viewBox="0 0 130 150" fill="none"><path className="flag-pole" d="M22 12 Q20 70 23 138 M12 139 h25" /><path className="flag-cloth" d="M23 18 Q48 6 70 20 Q93 32 117 17 L113 78 Q91 93 69 79 Q47 66 23 78 Z" /><path d="M27 25 Q47 16 64 27" /></svg>}
           {kind === "drawer" && <><span className="desk-project-name">Preschool<br />Emergency Brain</span><svg className="rescue-book-art" viewBox="0 0 120 100" fill="none" aria-hidden="true"><path d="M17 12 Q40 6 60 15 Q82 7 104 13 L103 83 Q80 78 60 89 Q40 79 17 83 Z" /><path d="M60 15 L60 89 M27 64 L49 64 M72 64 L94 64 M27 72 L44 72 M73 72 L94 72" /><path d="M31 37 l7 -13 7 13 14 3 -11 9 2 14 -12 -7 -12 7 2 -14 -11 -9 Z" /><path d="M83 30 v24 M71 42 h24" /></svg></>}
         </span>
-        <span className="object-prompt">{prompt}</span>
+
       </Button>
       <div className="curiosity-note" id={`reveal-${project.id}`} aria-hidden={!revealed || !active} inert={!revealed || !active} hidden={mobile && project.zone !== 0}>
         <p className="specimen-label">{project.label}</p>

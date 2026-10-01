@@ -24,3 +24,6 @@ Phone checks use browser viewport emulation rather than physical devices. Reduce
 
 ## Deployment
 Target: https://saleney.github.io/ via existing main-branch GitHub Pages. Deployment result and commit recorded separately after publish.
+
+## October 1 — Quieter artifacts
+Removed visible action cues from the Atlas, major artifacts, and small objects. Kept screen-reader labels, hover/focus reveals, and mobile tap behavior. Removed the Clay lift instruction. Production rebuild passed; no horizontal overflow at 320, 390, and 430px. Desktop screenshot: quiet-artifacts.png.
