@@ -873,3 +873,9 @@
 .artifact-face .clay-pen-note{width:122px!important;height:auto!important}
 .artifact-face .archive-pen-note{width:92px!important;height:auto!important}
 @media(max-width:650px){.artifact-face .clay-pen-note{width:96px!important}.artifact-face .archive-pen-note{width:78px!important}}
+
+.atlas-margin-note .pen-note{width:240px;height:auto}
+.pencil-note .pen-note{width:250px;height:auto}
+.working-annotation .pen-note{width:130px!important;height:auto!important}
+.playroom-blueprint .blueprint-pen-note{width:160px;height:32px;position:static;inset:auto;opacity:1}
+@media(max-width:650px){.atlas-margin-note .pen-note{width:170px}.pencil-note .pen-note{width:185px}.working-annotation .pen-note{width:95px!important}}

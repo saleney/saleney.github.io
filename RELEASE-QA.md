@@ -30,3 +30,6 @@ Removed visible action cues from the Atlas, major artifacts, and small objects. 
 
 ## October 1 — Pen invitations
 Restored three sparse invitations as custom SVG pen paths: unfurl here, lift the page / look beneath, flip here. No font or SVG text elements in these drawings. Varied baseline, tilt, stroke width, and curved arrows. Accessible image labels retained. Production rebuild passed, desktop Atlas and Studio reviewed, responsive views checked for overflow. Screenshot: pen-invitations.png.
+
+## Drawn margin notes
+Converted the Atlas margin note, making note, Aviary invitation, Archive annotation, language margins, and Playroom blueprint labels to custom pen-stroke SVG paths. No handwriting font in these annotations. Reviewed Atlas and Playroom at desktop. Screenshots: drawn-margin-notes.png, drawn-playroom-notes.png.

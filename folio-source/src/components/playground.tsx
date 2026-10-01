@@ -143,8 +143,12 @@ function ProjectLink({ project }: { project: Project }) {
 
 // Pen-stroke annotations: custom paths, no text element or handwriting font.
 const inkLetters: Record<string,string> = {
+ c:"M11 7Q3 3 2 11T11 14", d:"M10 1L9 16M9 8Q1 3 2 12T9 13", m:"M1 7v9M1 10Q5 4 6 9v7M6 10Q11 3 12 9l1 7", s:"M11 7Q1 3 3 9l6 3Q12 17 1 15", w:"M1 6l2 10 5-8 2 8 4-10", y:"M1 6q0 13 9 3M11 6l-5 17-5 1", v:"M1 6l5 10 7-10", ',':"M4 16l-2 4", '+':"M6 5v10M1 10h10",
  a:"M9 8C2 3 0 13 4 15Q8 16 9 8L9 15l3-1", b:"M2 1l1 15M3 9Q11 3 11 11T3 15", e:"M2 10l9-1Q9 3 4 7T3 14q4 3 8-1", f:"M3 18L5 5Q6-1 11 2M1 8l9-1", g:"M10 7Q2 2 2 11T10 12M10 6l-1 14q-2 5-7 1", h:"M2 1L1 16M2 11Q8 3 9 9l1 7", i:"M4 7l-1 8 3-1M4 2l.2.3", k:"M2 1L1 16M10 6l-8 6 8 4", l:"M4 1Q0 12 3 16l4-2", n:"M2 7L1 16M2 11Q8 3 10 8l1 8", o:"M7 6C0 5-1 17 6 16S13 5 7 6", p:"M2 7L1 22M2 10Q10 3 11 10T2 15", r:"M2 7l-1 9M2 11Q7 4 11 7", t:"M5 2L3 13q0 5 6 1M0 7l10-1", u:"M2 6Q-1 19 7 15l3-9M10 7l-1 9 3-1"
 };
+function BlueprintInk({text}: {text:string}) {
+ return <g transform="scale(.75)" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">{Array.from(text).map((letter,index)=>inkLetters[letter]&&<path key={index} d={inkLetters[letter]} transform={`translate(${index*13} ${index%3}) rotate(${index%2?2:-3})`} strokeWidth="1.1"/>)}</g>;
+}
 function PenNote({lines,className=""}: {lines:string[];className?:string}) {
  const width=Math.max(...lines.map(line=>line.length))*13+12;
  return <svg className={`pen-note ${className}`} viewBox={`0 0 ${width} ${lines.length*28+20}`} role="img" aria-label={lines.join(". ")}>
@@ -221,7 +225,7 @@ function MainArtifact({
           </svg>
           <SketchFrame variant={0} /><PenNote lines={["unfurl here"]} className="atlas-pen-note" />
         </button>
-        <p className="atlas-margin-note">the map is not the territory,<br />but it is a good place to start<span aria-hidden="true">↙</span></p>
+        <div className="atlas-margin-note"><PenNote lines={["the map is not the territory", "but it is a good place to start"]} /></div>
         <div className="artifact-reveal atlas-inside" id={`reveal-${project.id}`} aria-hidden={!open || !active} inert={!open || !active}>
           <p className="specimen-label">THE ATLAS</p>
           <h2>{project.title}</h2>
@@ -245,7 +249,7 @@ function MainArtifact({
         <SketchFrame variant={project.zone} />{kind === "aviary" && <span className="guide-spine" aria-hidden="true" />}
         <span className="artifact-number">{String(project.zone + 1).padStart(2, "0")}</span>
         {kind === "clay" ? <ClayStudy /> : kind !== "language" && <span className="artifact-icon">{icons[kind]}</span>}
-        <span className="working-annotation" aria-hidden="true">{{ clay: "", aviary: "look a little closer", archive: "collected, still collecting", language: "notes in the margins" }[kind]}{kind === "aviary" && <svg className="annotation-arrow" viewBox="0 0 42 30" fill="none" aria-hidden="true"><path d="M4 26 Q17 24 34 7 M23 8 L35 6 L34 18" /></svg>}</span>
+        {kind !== "clay" && <span className="working-annotation"><PenNote lines={kind === "aviary" ? ["look a little closer"] : kind === "archive" ? ["collected", "still collecting"] : ["notes in the margins"]} /></span>}
         <span className="artifact-title"><span className={kind === "archive" ? "sr-only" : undefined}>{project.title}</span>{kind === "archive" && <span className="book-cover-title" aria-hidden="true">An Autobiography<br />Told Through Love</span>}</span>
         <span className="sr-only">{prompts[kind]}</span>
         {kind === "clay" && <PenNote lines={["lift the page", "look beneath"]} className="clay-pen-note" />}
@@ -422,7 +426,7 @@ export function Playground() {
           {folios.map((folio, zone) => (
             <section key={folio.name} className={cn("table-zone", folio.className, activeZone === zone && "is-active", mobile && activeZone === zone && fieldSelection && "has-field-reveal")} aria-labelledby={`zone-${zone}-title`} inert={activeZone !== zone}>
               <div className="zone-heading"><span>{String(zone + 1).padStart(2, "0")} · {folio.name}</span>{zone === 0 ? <><h1 className="sr-only" id={`zone-${zone}-title`}>The Atlas</h1></> : <h2 id={`zone-${zone}-title`}>{folio.heading}</h2>}</div>
-              {zone === 5 && <div className="playroom-blueprint" aria-hidden="true"><svg viewBox="0 0 800 480" preserveAspectRatio="none" fill="none"><path className="room-wall" d="M42 39 Q240 34 406 40 L752 36 L755 433 L435 438 M351 438 L46 432 Z" /><path d="M351 437 v-80 Q430 357 435 438 M42 230 h130 m125 0 h456 M295 40 v110 m0 80 v203" /><path d="M62 62 h205 v18 H62 Z M62 86 h205 v18 H62 Z M63 110 h204 v18 H63 Z M478 63 h237 v17 H478 Z" /><path strokeDasharray="3 7" d="M80 183 q40 -24 75 0 M328 275 q125 70 205 22 M580 94 q60 7 74 57" /><path d="M19 40 v392 m-7 -387 7 -7 7 7 m-14 380 7 7 7 -7 M43 15 h710 m-702 -6 -8 6 8 6 m694 -12 8 6 -8 6" /><circle cx="559" cy="159" r="9" /><circle cx="657" cy="156" r="9" /><circle cx="611" cy="235" r="9" /><text x="83" y="300">story corner</text><text x="350" y="90">make + play</text><text x="330" y="320">a little help here</text><path d="M462 317 Q476 311 482 298 M472 299 L483 297 L482 308" /><text x="366" y="470">come on in</text></svg><span className="plan-caption">THE PLAYROOM · working plan / not to scale</span></div>}
+              {zone === 5 && <div className="playroom-blueprint" aria-hidden="true"><svg viewBox="0 0 800 480" preserveAspectRatio="none" fill="none"><path className="room-wall" d="M42 39 Q240 34 406 40 L752 36 L755 433 L435 438 M351 438 L46 432 Z" /><path d="M351 437 v-80 Q430 357 435 438 M42 230 h130 m125 0 h456 M295 40 v110 m0 80 v203" /><path d="M62 62 h205 v18 H62 Z M62 86 h205 v18 H62 Z M63 110 h204 v18 H63 Z M478 63 h237 v17 H478 Z" /><path strokeDasharray="3 7" d="M80 183 q40 -24 75 0 M328 275 q125 70 205 22 M580 94 q60 7 74 57" /><path d="M19 40 v392 m-7 -387 7 -7 7 7 m-14 380 7 7 7 -7 M43 15 h710 m-702 -6 -8 6 8 6 m694 -12 8 6 -8 6" /><circle cx="559" cy="159" r="9" /><circle cx="657" cy="156" r="9" /><circle cx="611" cy="235" r="9" /><g transform="translate(83 278)"><BlueprintInk text="story corner" /></g><g transform="translate(350 68)"><BlueprintInk text="make + play" /></g><g transform="translate(330 298)"><BlueprintInk text="a little help here" /></g><path d="M462 317 Q476 311 482 298 M472 299 L483 297 L482 308" /><g transform="translate(366 448)"><BlueprintInk text="come on in" /></g></svg><span className="plan-caption">THE PLAYROOM · working plan / not to scale</span></div>}
               {folio.objects.map(([id, kind]) => {
                 const project = projects.find((item) => item.id === id)!;
                 const common = { project, open: hovered === id || opened.includes(id), revealed: hovered === id || opened.includes(id), onToggle: () => toggle(id), onExplore: () => explore(id), onLeave: () => leave(id), active: activeZone === zone, mobile };
@@ -430,7 +434,7 @@ export function Playground() {
                   ? <MainArtifact key={id} {...common} kind={kind} />
                   : <Curiosity key={id} {...common} kind={kind} />;
               })}
-              {zone === 1 && <p className="pencil-note pencil-note--two">making is one way of thinking</p>}
+              {zone === 1 && <div className="pencil-note pencil-note--two"><PenNote lines={["making is one way of thinking"]} /></div>}
               {zone === 2 && <FieldTrace />}
               {zone === 3 && <p className="pencil-note pencil-note--three">some archives are made of feeling</p>}
               {zone === 5 && <button className="return-stamp" onClick={() => goToZone(0)} type="button"><RotateCcw aria-hidden="true" /> return to the beginning</button>}
