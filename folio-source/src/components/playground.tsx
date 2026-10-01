@@ -141,6 +141,18 @@ function ProjectLink({ project }: { project: Project }) {
   );
 }
 
+// Pen-stroke annotations: custom paths, no text element or handwriting font.
+const inkLetters: Record<string,string> = {
+ a:"M9 8C2 3 0 13 4 15Q8 16 9 8L9 15l3-1", b:"M2 1l1 15M3 9Q11 3 11 11T3 15", e:"M2 10l9-1Q9 3 4 7T3 14q4 3 8-1", f:"M3 18L5 5Q6-1 11 2M1 8l9-1", g:"M10 7Q2 2 2 11T10 12M10 6l-1 14q-2 5-7 1", h:"M2 1L1 16M2 11Q8 3 9 9l1 7", i:"M4 7l-1 8 3-1M4 2l.2.3", k:"M2 1L1 16M10 6l-8 6 8 4", l:"M4 1Q0 12 3 16l4-2", n:"M2 7L1 16M2 11Q8 3 10 8l1 8", o:"M7 6C0 5-1 17 6 16S13 5 7 6", p:"M2 7L1 22M2 10Q10 3 11 10T2 15", r:"M2 7l-1 9M2 11Q7 4 11 7", t:"M5 2L3 13q0 5 6 1M0 7l10-1", u:"M2 6Q-1 19 7 15l3-9M10 7l-1 9 3-1"
+};
+function PenNote({lines,className=""}: {lines:string[];className?:string}) {
+ const width=Math.max(...lines.map(line=>line.length))*13+12;
+ return <svg className={`pen-note ${className}`} viewBox={`0 0 ${width} ${lines.length*28+20}`} role="img" aria-label={lines.join(". ")}>
+ {lines.map((line,row)=>Array.from(line).map((letter,index)=>inkLetters[letter]&&<path key={`${row}-${index}`} d={inkLetters[letter]} transform={`translate(${index*13+4} ${row*28+5+(index%3-1)*.7}) rotate(${index%2?2:-3})`} strokeWidth={index%3===0?1.3:1.1}/>))}
+ <path d={`M${width-37} ${lines.length*28+2}q-14 12-30 9m6-6-7 6 9 2`} strokeWidth="1.1"/>
+ </svg>;
+}
+
 function SketchFrame({ variant = 0 }: { variant?: number }) {
   const outlines = [
     "M4 8 Q85 2 155 5 Q235 2 295 7 L297 96 Q300 165 294 194 Q215 201 148 196 Q70 202 7 195 Q1 127 4 8 Z",
@@ -207,7 +219,7 @@ function MainArtifact({
             <path d="M77 85 l16 -26 19 27 M87 74 l7 6 7 -7 M371 170 q23 -40 45 -6 q-23 31 -45 6 Z M214 66 q16 -19 27 1 q-9 20 -27 -1 Z" />
             <circle cx="251" cy="113" r="8" /><path d="M246 113 l4 4 8 -10 M431 70 l12 6 -1 13" />
           </svg>
-          <SketchFrame variant={0} />
+          <SketchFrame variant={0} /><PenNote lines={["unfurl here"]} className="atlas-pen-note" />
         </button>
         <p className="atlas-margin-note">the map is not the territory,<br />but it is a good place to start<span aria-hidden="true">↙</span></p>
         <div className="artifact-reveal atlas-inside" id={`reveal-${project.id}`} aria-hidden={!open || !active} inert={!open || !active}>
@@ -236,6 +248,8 @@ function MainArtifact({
         <span className="working-annotation" aria-hidden="true">{{ clay: "", aviary: "look a little closer", archive: "collected, still collecting", language: "notes in the margins" }[kind]}{kind === "aviary" && <svg className="annotation-arrow" viewBox="0 0 42 30" fill="none" aria-hidden="true"><path d="M4 26 Q17 24 34 7 M23 8 L35 6 L34 18" /></svg>}</span>
         <span className="artifact-title"><span className={kind === "archive" ? "sr-only" : undefined}>{project.title}</span>{kind === "archive" && <span className="book-cover-title" aria-hidden="true">An Autobiography<br />Told Through Love</span>}</span>
         <span className="sr-only">{prompts[kind]}</span>
+        {kind === "clay" && <PenNote lines={["lift the page", "look beneath"]} className="clay-pen-note" />}
+        {kind === "archive" && <PenNote lines={["flip here"]} className="archive-pen-note" />}
       </Button>
       <div className="artifact-reveal" id={`reveal-${project.id}`} aria-hidden={!open || !active} inert={!open || !active} hidden={mobile && project.zone !== 0}>
         <p className="specimen-label">{project.label}</p>

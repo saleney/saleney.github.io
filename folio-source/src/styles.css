@@ -863,3 +863,13 @@
 .field-study .zone-playroom .object-prompt { position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:5px; }
 .field-study .zone-playroom .curiosity--storybook .field-art { position:absolute; left:50%; top:3%; transform:translateX(-50%); width:30px; height:18px; opacity:.45; }
 .field-study .zone-playroom .rescue-book-art { position:absolute; bottom:3%; right:5%; width:22px; height:18px; opacity:.35; }
+
+/* Actual vector pen marks rather than a handwriting typeface. */
+.pen-note{display:block;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;color:#796c57;overflow:visible;pointer-events:none;flex-shrink:0}
+.atlas-pen-note{width:112px;margin:15px auto 0;transform:rotate(-4deg)}
+.clay-pen-note{position:absolute;width:122px;right:5%;top:8%;transform:rotate(5deg)}
+.archive-pen-note{position:absolute;width:92px;right:8%;bottom:10%;transform:rotate(-5deg)}
+@media(max-width:650px){.atlas-pen-note{width:98px}.clay-pen-note{width:96px;right:6%;top:7%}.archive-pen-note{width:78px}}
+.artifact-face .clay-pen-note{width:122px!important;height:auto!important}
+.artifact-face .archive-pen-note{width:92px!important;height:auto!important}
+@media(max-width:650px){.artifact-face .clay-pen-note{width:96px!important}.artifact-face .archive-pen-note{width:78px!important}}

@@ -27,3 +27,6 @@ Target: https://saleney.github.io/ via existing main-branch GitHub Pages. Deploy
 
 ## October 1 — Quieter artifacts
 Removed visible action cues from the Atlas, major artifacts, and small objects. Kept screen-reader labels, hover/focus reveals, and mobile tap behavior. Removed the Clay lift instruction. Production rebuild passed; no horizontal overflow at 320, 390, and 430px. Desktop screenshot: quiet-artifacts.png.
+
+## October 1 — Pen invitations
+Restored three sparse invitations as custom SVG pen paths: unfurl here, lift the page / look beneath, flip here. No font or SVG text elements in these drawings. Varied baseline, tilt, stroke width, and curved arrows. Accessible image labels retained. Production rebuild passed, desktop Atlas and Studio reviewed, responsive views checked for overflow. Screenshot: pen-invitations.png.
