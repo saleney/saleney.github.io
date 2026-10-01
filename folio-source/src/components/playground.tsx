@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  Bird,
   BookOpen,
   ExternalLink,
   List,
@@ -197,12 +198,7 @@ function MainArtifact({
   const icons = {
     atlas: <Map aria-hidden="true" />,
     clay: <svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M26 34 Q50 19 74 34 L68 72 Q50 82 32 72 Z" /><ellipse cx="50" cy="34" rx="24" ry="9" /><path d="M32 52 Q50 60 68 52 M34 64 Q50 71 66 64" /></svg>,
-    aviary: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth=".8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M3.5 18.1Q7.4 17.8 12 18c4.4.1 8.1-3.5 8-8l.1-3c-.1-3.6-4.9-5.5-7.3-2.2L2 20" />
-      <path d="M20 7l2 .6-2.1.5M10 18q-.2 1.4.1 3M14 17.8q.2 1.5-.1 3.2M7 18c5.3-.1 7.8-6.9 3.8-10.6" />
-      <path d="M3.9 17.8q4 .3 8 .1c4 .2 7.9-3.3 7.8-7.8M7.3 17.7c4.9-.4 7.4-6.4 3.7-9.9" opacity=".24" strokeWidth=".3" />
-      <circle cx="16" cy="7" r=".2" fill="currentColor" stroke="none" />
-    </svg>,
+    aviary: <Bird aria-hidden="true" />,
     archive: <BookOpen aria-hidden="true" />,
     language: null,
   };

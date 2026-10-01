@@ -46,3 +46,6 @@ Converted the Atlas margin note, making note, Aviary invitation, Archive annotat
 
 ## Squarer Aviary sheet
 Brought the sheet closer to square and replaced the precise bird icon contours with gently irregular pen paths, preserving its silhouette. Build passed; desktop and phone reviewed. Saved aviary-squarer-sheet.png.
+
+## Original Aviary bird restored
+Restored the original Bird artwork from the earlier released Playground, preserving the squarer sheet, inset title, and coordinates. Production build passed.
