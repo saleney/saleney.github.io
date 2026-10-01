@@ -52,3 +52,6 @@ Restored the original Bird artwork from the earlier released Playground, preserv
 
 ## Drive original Aviary artwork restored
 Recovered the exact image labeled Original reference — Aviary bird from the Playground Icon System document in Drive (1-4b1zXp-iMYPKw4F3-7Hxe2z2xMJtuUWI2OW4JgIZAw). Preserved the original downloaded image, squarer sheet, title and interaction. Build passed; appearance reviewed and saved as aviary-drive-art-restored.png.
+
+## Aviary background and press positioning
+Used a small brightness adjustment with the existing multiply blend to remove the pale rectangular background visually without modifying the source image. Disabled the legacy wing animation on the positioning wrapper so opening no longer overrides its centering transform. Build passed; desktop appearance and mobile opening/closing checked. Saved aviary-seamless-background.png.

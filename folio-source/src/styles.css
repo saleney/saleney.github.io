@@ -902,3 +902,7 @@
 .aviary-original-art{display:block;width:100%;height:auto;mix-blend-mode:multiply}
 @media(max-width:700px){.field-study .zone-field .major-artifact--aviary .artifact-icon{width:210px}}
 .field-study .zone-field .major-artifact--aviary .artifact-icon{mix-blend-mode:multiply}
+
+/* Keep the original illustration centered while its paper cover opens. */
+.field-study .zone-field .major-artifact--aviary.is-open .artifact-icon{animation:none;transform:translate(-50%,-50%)}
+.aviary-original-art{filter:brightness(1.08)}
