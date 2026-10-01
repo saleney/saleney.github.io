@@ -250,6 +250,7 @@ function MainArtifact({
         <span className="artifact-number">{String(project.zone + 1).padStart(2, "0")}</span>
         {kind === "clay" ? <ClayStudy /> : kind !== "language" && <span className="artifact-icon">{icons[kind]}</span>}
         {kind !== "clay" && <span className="working-annotation"><PenNote lines={kind === "aviary" ? ["look a little closer"] : kind === "archive" ? ["collected", "still collecting"] : ["notes in the margins"]} /></span>}
+        {kind === "aviary" && <span className="aviary-coordinates" aria-label="Imagined field coordinates">37° 48′ N · 122° 16′ W</span>}
         <span className="artifact-title"><span className={kind === "archive" ? "sr-only" : undefined}>{project.title}</span>{kind === "archive" && <span className="book-cover-title" aria-hidden="true">An Autobiography<br />Told Through Love</span>}</span>
         <span className="sr-only">{prompts[kind]}</span>
         {kind === "clay" && <PenNote lines={["lift the page", "look beneath"]} className="clay-pen-note" />}

@@ -39,3 +39,7 @@ Converted the Atlas margin note, making note, Aviary invitation, Archive annotat
 - Preserved the bird artwork and field-guide interaction.
 - Production build passed. Reviewed desktop and mobile composition; mobile guide opens and closes correctly.
 - Saved aviary-spacing-desktop.png and aviary-spacing-mobile.png locally.
+
+## Aviary on-sheet title — 2026-10-01
+- Moved the title inside the sheet and added small imagined field coordinates beneath it. Kept the existing bird and interaction.
+- Production build passed; desktop composition reviewed and saved as aviary-field-coordinates.png.
