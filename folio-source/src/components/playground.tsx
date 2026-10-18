@@ -37,7 +37,7 @@ const projects: Project[] = [
     title: "Virtual Clay Studio",
     label: "THE STUDIO",
     note: "A quiet, hands-on place to throw a small piece of virtual clay.",
-    href: "https://saleney.github.io/virtual-clay-studio/",
+    href: "https://salene-clay-studio.pages.dev/",
     zone: 1,
   },
   {
