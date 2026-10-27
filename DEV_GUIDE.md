@@ -77,7 +77,7 @@ Master guide: `DEV_GUIDE.md`
 
 - Public: `https://saleney.github.io/`
 - Deployed entry: `index.html`; generated assets: `folio-assets/`; editable React/CSS source: `folio-source/`
-- Six folios: The Atlas, The Studio, The Field, The Archive, Games & Oracles, The Playroom. Twelve project destinations remain centralized.
+- Six folios: The Atlas, The Studio, The Field, The Archive, Games & Oracles, The Playroom. Fourteen project destinations remain centralized.
 - Rebuild instructions: `folio-source/README.md`.
 - Role: hub/index for the whole collection.
 
@@ -198,3 +198,21 @@ Idea or problem
 → verify the deployed public site on a real phone
 
 → stop when the problem is solved
+
+### The Third Teacher
+
+- Private source repository: `saleney/the-third-teacher`.
+- Public: `https://the-third-teacher.pages.dev/`.
+- Single-file, code-drawn 23-room prototype. Cloudflare Pages direct upload; publication is manual.
+
+### Unhinged 8 Ball — Halloween
+
+- Private source repository: `saleney/unhinged-8-ball-halloween`.
+- Public: `https://unhinged-8-ball-halloween.pages.dev/`.
+- Includes 47 actual recorded answers; no browser voice-pack import required. Sound and voice start off. Cloudflare Pages publication is manual.
+
+### Current public Clay Atelier
+
+- Private source repository: `saleney/virtual-clay-studio-private`.
+- Public: `https://salene-clay-studio.pages.dev/`.
+- Updated from verified Atelier v13. Public storage key and shelf-transfer page preserved.

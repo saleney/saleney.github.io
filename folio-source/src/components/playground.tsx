@@ -34,7 +34,7 @@ const projects: Project[] = [
   },
   {
     id: "clay",
-    title: "Virtual Clay Studio",
+    title: "Virtual Clay Atelier",
     label: "THE STUDIO",
     note: "A quiet, hands-on place to throw a small piece of virtual clay.",
     href: "https://salene-clay-studio.pages.dev/",
@@ -70,6 +70,14 @@ const projects: Project[] = [
     label: "ORACLE · 01",
     note: "For questions that deserve an equally unhinged answer.",
     href: "https://saleney.github.io/unhinged-8-ball/",
+    zone: 4,
+  },
+  {
+    id: "halloween",
+    title: "Unhinged 8 Ball · Halloween",
+    label: "ORACLE · HALLOWEEN",
+    note: "The spirits have opinions. In my actual voice.",
+    href: "https://unhinged-8-ball-halloween.pages.dev/",
     zone: 4,
   },
   {
@@ -120,14 +128,22 @@ const projects: Project[] = [
     href: "https://saleney.github.io/preschool-emergency-brain/",
     zone: 5,
   },
+  {
+    id: "school",
+    title: "The Third Teacher",
+    label: "THE STUDIO · A GROWING WORLD",
+    note: "A love letter to my classroom years. Wander, touch, make. Rooms are still being added.",
+    href: "https://the-third-teacher.pages.dev/",
+    zone: 1,
+  },
 ];
 
 const folios = [
   { name: "The Atlas", className: "zone-atlas", heading: "Begin anywhere.", objects: [["world", "atlas"]] },
-  { name: "The Studio", className: "zone-workshop", heading: "Things shaped by hand.", objects: [["clay", "clay"]] },
+  { name: "The Studio", className: "zone-workshop", heading: "Things shaped by hand.", objects: [["clay", "clay"], ["school", "school"]] },
   { name: "The Field", className: "zone-field", heading: "Things noticed outside.", objects: [["aviary", "aviary"]] },
   { name: "The Archive", className: "zone-archive", heading: "Things kept close.", objects: [["autobiography", "archive"], ["ting", "language"]] },
-  { name: "Games & Oracles", className: "zone-oracles", heading: "Ask. Pull. Flip.", objects: [["eightball", "orb"], ["badidea", "slip"], ["ex", "coin"], ["redflag", "flag"]] },
+  { name: "Games & Oracles", className: "zone-oracles", heading: "Ask. Pull. Flip.", objects: [["eightball", "orb"], ["halloween", "orb"], ["badidea", "slip"], ["ex", "coin"], ["redflag", "flag"]] },
   { name: "The Playroom", className: "zone-playroom", heading: "Little people, big possibilities.", objects: [["adventure", "storybook"], ["whatnow", "tin"], ["preschool", "drawer"]] },
 ] as const;
 const zoneNames = folios.map((folio) => folio.name);
@@ -142,17 +158,18 @@ function ProjectLink({ project }: { project: Project }) {
 
 // Pen-stroke annotations: custom paths, no text element or handwriting font.
 const inkLetters: Record<string,string> = {
+ '.':"M4 15l.3.2",
  c:"M11 7Q3 3 2 11T11 14", d:"M10 1L9 16M9 8Q1 3 2 12T9 13", m:"M1 7v9M1 10Q5 4 6 9v7M6 10Q11 3 12 9l1 7", s:"M11 7Q1 3 3 9l6 3Q12 17 1 15", w:"M1 6l2 10 5-8 2 8 4-10", y:"M1 6q0 13 9 3M11 6l-5 17-5 1", v:"M1 6l5 10 7-10", ',':"M4 16l-2 4", '+':"M6 5v10M1 10h10",
  a:"M9 8C2 3 0 13 4 15Q8 16 9 8L9 15l3-1", b:"M2 1l1 15M3 9Q11 3 11 11T3 15", e:"M2 10l9-1Q9 3 4 7T3 14q4 3 8-1", f:"M3 18L5 5Q6-1 11 2M1 8l9-1", g:"M10 7Q2 2 2 11T10 12M10 6l-1 14q-2 5-7 1", h:"M2 1L1 16M2 11Q8 3 9 9l1 7", i:"M4 7l-1 8 3-1M4 2l.2.3", k:"M2 1L1 16M10 6l-8 6 8 4", l:"M4 1Q0 12 3 16l4-2", n:"M2 7L1 16M2 11Q8 3 10 8l1 8", o:"M7 6C0 5-1 17 6 16S13 5 7 6", p:"M2 7L1 22M2 10Q10 3 11 10T2 15", r:"M2 7l-1 9M2 11Q7 4 11 7", t:"M5 2L3 13q0 5 6 1M0 7l10-1", u:"M2 6Q-1 19 7 15l3-9M10 7l-1 9 3-1"
 };
 function BlueprintInk({text}: {text:string}) {
  return <g transform="scale(.75)" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">{Array.from(text).map((letter,index)=>inkLetters[letter]&&<path key={index} d={inkLetters[letter]} transform={`translate(${index*13} ${index%3}) rotate(${index%2?2:-3})`} strokeWidth="1.1"/>)}</g>;
 }
-function PenNote({lines,className=""}: {lines:string[];className?:string}) {
+function PenNote({lines,className="",arrow="curve"}: {lines:string[];className?:string;arrow?:"curve"|"bend"}) {
  const width=Math.max(...lines.map(line=>line.length))*13+12;
- return <svg className={`pen-note ${className}`} viewBox={`0 0 ${width} ${lines.length*28+20}`} role="img" aria-label={lines.join(". ")}>
+ return <svg className={`pen-note ${className}`} viewBox={`0 0 ${width} ${lines.length*28+20}`} role="img" aria-label={lines.map(line => line.replace(/[.!?]$/, "")).join(". ")}>
  {lines.map((line,row)=>Array.from(line).map((letter,index)=>inkLetters[letter]&&<path key={`${row}-${index}`} d={inkLetters[letter]} transform={`translate(${index*13+4} ${row*28+5+(index%3-1)*.7}) rotate(${index%2?2:-3})`} strokeWidth={index%3===0?1.3:1.1}/>))}
- <path d={`M${width-37} ${lines.length*28+2}q-14 12-30 9m6-6-7 6 9 2`} strokeWidth="1.1"/>
+ <path d={arrow === "bend" ? `M${width-65} ${lines.length*28+3}q20 16 45 3m-9-3 10 2-5 8` : `M${width-37} ${lines.length*28+2}q-14 12-30 9m6-6-7 6 9 2`} strokeWidth="1.1"/>
  </svg>;
 }
 
@@ -185,7 +202,7 @@ function MainArtifact({
   mobile,
 }: {
   project: Project;
-  kind: "atlas" | "clay" | "aviary" | "archive" | "language";
+  kind: "atlas" | "clay" | "school" | "aviary" | "archive" | "language";
   open: boolean;
   onToggle: () => void;
   onExplore: () => void;
@@ -200,6 +217,12 @@ function MainArtifact({
     aviary: <img className="aviary-original-art" src="/assets/project-icons/aviary-original.png" alt="" aria-hidden="true" />,
     archive: <BookOpen aria-hidden="true" />,
     language: null,
+    school: <svg className="school-blueprint" viewBox="0 0 300 185" fill="none" aria-hidden="true">
+      <defs><pattern id="school-plan-grid" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M15 0H0V15" stroke="currentColor" strokeWidth=".35" opacity=".2" /></pattern></defs>
+      <rect x="8" y="8" width="284" height="166" fill="url(#school-plan-grid)" />
+      <g stroke="currentColor" strokeWidth="1.1"><path d="M35 30H265V150H196M155 150H35V30 M35 95H135 M135 30V68 M135 100V150 M135 68A32 32 0 0 1 167 100 M135 100H195 M195 30V150 M35 22V158 M27 30H273 M55 45H115V82H55Z M210 48H231V72H210Z M238 48H259V72H238Z" /><circle cx="70" cy="117" r="12"/><circle cx="105" cy="117" r="12"/><path d="M212 105l30 30m0-30-30 30 M155 150v-32q40 0 41 32 M35 167H265" /></g>
+      <g fill="currentColor" fontFamily="monospace" fontSize="5" letterSpacing="1"><text x="63" y="91">MATERIALS</text><text x="204" y="94">LIGHT / SHADOW</text><text x="160" y="177">WORKING PLAN · 001</text></g>
+    </svg>,
   };
   const prompts = {
     atlas: "Unfold the map",
@@ -207,6 +230,7 @@ function MainArtifact({
     aviary: "Open the field guide",
     archive: "Turn the cover",
     language: "Lift the pages",
+    school: "Wander into The Third Teacher",
   };
 
   if (kind === "atlas") {
@@ -248,11 +272,12 @@ function MainArtifact({
         <SketchFrame variant={project.zone} />{kind === "aviary" && <span className="guide-spine" aria-hidden="true" />}
         <span className="artifact-number">{String(project.zone + 1).padStart(2, "0")}</span>
         {kind === "clay" ? <ClayStudy /> : kind !== "language" && <span className="artifact-icon">{icons[kind]}</span>}
-        {kind !== "clay" && <span className="working-annotation"><PenNote lines={kind === "aviary" ? ["look a little closer"] : kind === "archive" ? ["collected", "still collecting"] : ["notes in the margins"]} /></span>}
+        {kind !== "clay" && kind !== "school" && <span className="working-annotation"><PenNote lines={kind === "aviary" ? ["look a little closer"] : kind === "archive" ? ["collected", "still collecting"] : ["notes in the margins"]} /></span>}
         {kind === "aviary" && <span className="aviary-coordinates" aria-label="Imagined field coordinates">37° 48′ N · 122° 16′ W</span>}
         <span className="artifact-title"><span className={kind === "archive" ? "sr-only" : undefined}>{project.title}</span>{kind === "archive" && <span className="book-cover-title" aria-hidden="true">An Autobiography<br />Told Through Love</span>}</span>
         <span className="sr-only">{prompts[kind]}</span>
         {kind === "clay" && <PenNote lines={["lift the page", "look beneath"]} className="clay-pen-note" />}
+        {kind === "school" && <><PenNote lines={["rooms still being built."]} className="school-pen-note school-pen-note--rooms" arrow="bend" /><PenNote lines={["open during construction."]} className="school-pen-note school-pen-note--open" /></>}
         {kind === "archive" && <PenNote lines={["flip here"]} className="archive-pen-note" />}
       </Button>
       <div className="artifact-reveal" id={`reveal-${project.id}`} aria-hidden={!open || !active} inert={!open || !active} hidden={mobile && project.zone !== 0}>
@@ -306,14 +331,14 @@ function Curiosity({
   }[kind];
 
   return (
-    <article className={cn("curiosity", `curiosity--${kind}`, open && "is-open", revealed && "is-revealed")} id={`artifact-${project.id}`} onPointerEnter={(event) => { if (!mobile && event.pointerType === "mouse") onExplore(); }} onFocus={(event) => { if (event.target.matches(":focus-visible")) onExplore(); }} onPointerLeave={(event) => { if (!mobile && event.pointerType === "mouse") onLeave(); }} onBlur={(event) => { if (!mobile && !event.currentTarget.contains(event.relatedTarget)) onLeave(); }}>
+    <article className={cn("curiosity", `curiosity--${kind}`, project.id === "halloween" && "curiosity--halloween", open && "is-open", revealed && "is-revealed")} id={`artifact-${project.id}`} onPointerEnter={(event) => { if (!mobile && event.pointerType === "mouse") onExplore(); }} onFocus={(event) => { if (event.target.matches(":focus-visible")) onExplore(); }} onPointerLeave={(event) => { if (!mobile && event.pointerType === "mouse") onLeave(); }} onBlur={(event) => { if (!mobile && !event.currentTarget.contains(event.relatedTarget)) onLeave(); }}>
       <Button className="curiosity-object" variant="ghost" onClick={mobile ? onToggle : onExplore} aria-expanded={project.zone === 4 ? revealed : open} aria-controls={mobile ? "field-mobile-reveal" : `reveal-${project.id}`}>
         {["slip", "tin", "storybook", "drawer"].includes(kind) && <SketchFrame variant={project.title.length} />}
         <span className="sr-only">{prompt} {project.title}</span>
         {kind === "tin" && <svg className="playroom-plan" viewBox="0 0 150 100" fill="none" aria-hidden="true"><path d="M12 13 l126 -2 1 77 -126 1 Z M62 13 v30 m0 20 v26 M62 52 h76 M13 55 h28" /><path d="M23 24 h26 v20 H23 Z M84 22 h36 v18 H84 Z M80 65 h17 v14 H80 Z M111 64 h16 v15 h-16 Z M42 56 q20 0 20 20" strokeDasharray="2 3" /></svg>}
         {kind === "storybook" && <FieldArt kind="mountains" />}
         <span className="object-mark" aria-hidden="true">
-          {kind === "orb" && "8"}
+          {kind === "orb" && <><span>8</span><span className="orb-edition">{project.id === "halloween" ? "Halloween" : "Original"}</span>{project.id === "halloween" && <svg className="halloween-hat" viewBox="0 0 100 75" aria-hidden="true"><path d="M17 58L55 5L70 59Z" fill="#726555"/><path d="M25 48L67 48L70 59L17 58Z" fill="#c18f64"/><ellipse cx="47" cy="62" rx="45" ry="8" fill="#665a4b"/></svg>}</>}
           {kind === "slip" && <span className="slot-machine" aria-hidden="true"><span className="slot-reels"><i><svg viewBox="0 0 30 36"><path d="M12 25 Q4 13 11 7 Q19 1 23 11 Q25 17 19 25 Z M12 29 h7 M13 33 h5 M14 17 l4 8" /></svg></i><i><svg viewBox="0 0 30 36"><path d="M6 19 L23 8 L19 29 L14 21 Z M14 21 l9 -13" /></svg></i><i><svg viewBox="0 0 30 36"><path d="M16 3 l-5 12 10 -1 -14 19 5 -13 -8 1 Z" /></svg></i></span><span className="slot-caption">bad ideas</span><span className="slot-lever" /></span>}
           {kind === "tin" && "What Should We Do?"}
           {kind === "storybook" && "A Little Adventure"}
@@ -356,7 +381,8 @@ export function Playground() {
     .map((id) => projects.find((project) => project.id === id))
     .find((project) => project?.zone === activeZone && project.zone !== 0);
   const mobileResults: Record<string, string> = {
-    eightball: "OUTLOOK HAZY. TRY IT ANYWAY.", badidea: "PERMISSION GRANTED: make the suspicious thing.",
+    eightball: "OUTLOOK HAZY. TRY IT ANYWAY.",
+    halloween: "THE SPIRITS HAVE OPINIONS.", badidea: "PERMISSION GRANTED: make the suspicious thing.",
     whatnow: "Try: build a blanket cave with one impossible rule.", adventure: "A path forks just beyond the brambles…",
     ex: "NO. Put the phone down gently.", redflag: "Possibly. But self-awareness is promising.",
     preschool: "Stories, songs, transitions, rescue.",
@@ -430,7 +456,7 @@ export function Playground() {
               {folio.objects.map(([id, kind]) => {
                 const project = projects.find((item) => item.id === id)!;
                 const common = { project, open: hovered === id || opened.includes(id), revealed: hovered === id || opened.includes(id), onToggle: () => toggle(id), onExplore: () => explore(id), onLeave: () => leave(id), active: activeZone === zone, mobile };
-                return kind === "atlas" || kind === "clay" || kind === "aviary" || kind === "archive" || kind === "language"
+                return kind === "atlas" || kind === "clay" || kind === "school" || kind === "aviary" || kind === "archive" || kind === "language"
                   ? <MainArtifact key={id} {...common} kind={kind} />
                   : <Curiosity key={id} {...common} kind={kind} />;
               })}
