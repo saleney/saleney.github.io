@@ -77,16 +77,15 @@ Master guide: `DEV_GUIDE.md`
 
 - Public: `https://saleney.github.io/`
 - Deployed entry: `index.html`; generated assets: `folio-assets/`; editable React/CSS source: `folio-source/`
-- Six folios: The Atlas, The Studio, The Field, The Archive, Games & Oracles, The Playroom. Thirteen project destinations remain centralized.
+- Six folios: The Atlas, The Studio, The Field, The Archive, Games & Oracles, The Playroom. Twelve project destinations remain centralized.
 - Rebuild instructions: `folio-source/README.md`.
 - Role: hub/index for the whole collection.
 
 ### Virtual Clay Studio
 
-- Source repository: `saleney/virtual-clay-studio-private`
-- Public: `https://salene-clay-studio.pages.dev/`
-- Legacy URL: `https://saleney.github.io/virtual-clay-studio/` redirects with shelf-transfer support.
-- Main files: `index.html`, `atelier.js`, `interface.css`, `interface.js`
+- Repository: `saleney/virtual-clay-studio`
+- Public: `https://saleney.github.io/virtual-clay-studio/`
+- Main files: `index.html`, `atelier.js`
 - Role: a standalone real-time WebGL pottery-wheel experience. Its repository is separate from this hub; the front door only links to it.
 
 ### The Aviary
@@ -136,9 +135,7 @@ Master guide: `DEV_GUIDE.md`
 - Repository: `saleney/unhinged-8-ball`
 - Public: `https://saleney.github.io/unhinged-8-ball/`
 - Project instructions: `AGENTS.md`
-- Original app: `index.html`
-- Homepage now opens the Halloween edition: `https://saleney.github.io/unhinged-8-ball/halloween/`.
-- Halloween files: `halloween/index.html`, `halloween/pwa.js`, `halloween/voice-store.js`. Voice packs are imported and stored on each device; audio is not bundled in the public repository.
+- Main/only app file: `index.html`
 
 ### Bad Idea Generator
 
@@ -201,11 +198,3 @@ Idea or problem
 → verify the deployed public site on a real phone
 
 → stop when the problem is solved
-
-### The Third Teacher
-
-- Public: `https://saleney.github.io/the-third-teacher/`
-- Canonical published file: `the-third-teacher/index.html` in this repository.
-- A growing Reggio-inspired world, linked from The Studio alongside the Virtual Clay Atelier.
-- Rooms are still being added. All school visuals are drawn in code; no classroom reference documents or identifying information are published.
-- The numbered index, prepared material trays, and room transitions are self-contained in the HTML.

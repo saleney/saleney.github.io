@@ -34,9 +34,9 @@ const projects: Project[] = [
   },
   {
     id: "clay",
-    title: "Virtual Clay Atelier",
+    title: "Virtual Clay Studio",
     label: "THE STUDIO",
-    note: "A quiet place to shape, glaze, and keep a little piece of clay.",
+    note: "A quiet, hands-on place to throw a small piece of virtual clay.",
     href: "https://salene-clay-studio.pages.dev/",
     zone: 1,
   },
@@ -66,10 +66,10 @@ const projects: Project[] = [
   },
   {
     id: "eightball",
-    title: "Unhinged 8 Ball · Halloween",
+    title: "Unhinged 8 Ball",
     label: "ORACLE · 01",
-    note: "A Halloween oracle. No wisdom. No guarantees. Just vibes.",
-    href: "https://saleney.github.io/unhinged-8-ball/halloween/",
+    note: "For questions that deserve an equally unhinged answer.",
+    href: "https://saleney.github.io/unhinged-8-ball/",
     zone: 4,
   },
   {
@@ -120,19 +120,11 @@ const projects: Project[] = [
     href: "https://saleney.github.io/preschool-emergency-brain/",
     zone: 5,
   },
-  {
-    id: "school",
-    title: "The Third Teacher",
-    label: "THE STUDIO · A GROWING WORLD",
-    note: "A love letter to my classroom years. Wander, touch, make. Rooms are still being added.",
-    href: "/the-third-teacher/",
-    zone: 1,
-  },
 ];
 
 const folios = [
   { name: "The Atlas", className: "zone-atlas", heading: "Begin anywhere.", objects: [["world", "atlas"]] },
-  { name: "The Studio", className: "zone-workshop", heading: "Things shaped by hand.", objects: [["clay", "clay"], ["school", "school"]] },
+  { name: "The Studio", className: "zone-workshop", heading: "Things shaped by hand.", objects: [["clay", "clay"]] },
   { name: "The Field", className: "zone-field", heading: "Things noticed outside.", objects: [["aviary", "aviary"]] },
   { name: "The Archive", className: "zone-archive", heading: "Things kept close.", objects: [["autobiography", "archive"], ["ting", "language"]] },
   { name: "Games & Oracles", className: "zone-oracles", heading: "Ask. Pull. Flip.", objects: [["eightball", "orb"], ["badidea", "slip"], ["ex", "coin"], ["redflag", "flag"]] },
@@ -193,7 +185,7 @@ function MainArtifact({
   mobile,
 }: {
   project: Project;
-  kind: "atlas" | "clay" | "school" | "aviary" | "archive" | "language";
+  kind: "atlas" | "clay" | "aviary" | "archive" | "language";
   open: boolean;
   onToggle: () => void;
   onExplore: () => void;
@@ -208,12 +200,10 @@ function MainArtifact({
     aviary: <img className="aviary-original-art" src="/assets/project-icons/aviary-original.png" alt="" aria-hidden="true" />,
     archive: <BookOpen aria-hidden="true" />,
     language: null,
-    school: <svg viewBox="0 0 240 170" fill="none" aria-hidden="true"><path d="M22 32Q18 8 48 18T80 28Q90 55 61 58T22 32Z" fill="#d6b69c55"/><path d="M142 35Q165 8 193 29T210 64Q179 78 156 64T142 35Z" fill="#a9bba155"/><path d="M66 112Q73 81 110 93T139 130Q125 158 88 145T66 112Z" fill="#bdcad055"/><path d="M35 29L63 43M172 30V59M159 45H186M82 120L106 103L124 126" stroke="currentColor" strokeWidth="1.2"/><circle className="school-wanderer" cx="126" cy="69" r="7" fill="#ba8366"/><path d="M113 69H97M126 83V96" stroke="currentColor" strokeDasharray="1 5" opacity=".25"/></svg>,
   };
   const prompts = {
     atlas: "Unfold the map",
     clay: "Lift the tracing paper",
-    school: "Wander into The Third Teacher",
     aviary: "Open the field guide",
     archive: "Turn the cover",
     language: "Lift the pages",
@@ -440,7 +430,7 @@ export function Playground() {
               {folio.objects.map(([id, kind]) => {
                 const project = projects.find((item) => item.id === id)!;
                 const common = { project, open: hovered === id || opened.includes(id), revealed: hovered === id || opened.includes(id), onToggle: () => toggle(id), onExplore: () => explore(id), onLeave: () => leave(id), active: activeZone === zone, mobile };
-                return kind === "atlas" || kind === "clay" || kind === "school" || kind === "aviary" || kind === "archive" || kind === "language"
+                return kind === "atlas" || kind === "clay" || kind === "aviary" || kind === "archive" || kind === "language"
                   ? <MainArtifact key={id} {...common} kind={kind} />
                   : <Curiosity key={id} {...common} kind={kind} />;
               })}
