@@ -921,3 +921,8 @@
  .field-study .major-artifact--school .school-pen-note--rooms{width:90%;top:1%;left:5%}
  .field-study .major-artifact--school .school-pen-note--open{width:94%;top:61%;left:2%}
 }
+
+/* Keep the blueprint between its notes even on short desktop screens. */
+.field-study .major-artifact--school .artifact-icon{top:15%;height:43%}
+.field-study .major-artifact--school .artifact-icon svg{height:100%}
+.field-study .major-artifact--school .school-pen-note--open{top:63%}
