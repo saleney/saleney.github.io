@@ -392,12 +392,22 @@ export function Playground() {
   useEffect(() => {
     const el = scroller.current;
     if (!el) return;
+    let width = el.clientWidth || 1;
+    let zone = Math.round(el.scrollLeft / width);
     const onScroll = () => {
-      const width = el.clientWidth || 1;
-      setActiveZone(Math.max(0, Math.min(folios.length - 1, Math.round(el.scrollLeft / width))));
+      if (el.clientWidth !== width) return;
+      zone = Math.max(0, Math.min(folios.length - 1, Math.round(el.scrollLeft / width)));
+      setActiveZone(zone);
     };
+    const resize = new ResizeObserver(() => {
+      const nextWidth = el.clientWidth || 1;
+      if (nextWidth === width) return;
+      width = nextWidth;
+      el.scrollTo({ left: zone * width, behavior: "instant" });
+    });
+    resize.observe(el);
     el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
+    return () => { resize.disconnect(); el.removeEventListener("scroll", onScroll); };
   }, []);
 
   useEffect(() => {
