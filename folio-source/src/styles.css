@@ -906,3 +906,27 @@
 /* Keep the original illustration centered while its paper cover opens. */
 .field-study .zone-field .major-artifact--aviary.is-open .artifact-icon{animation:none;transform:translate(-50%,-50%)}
 .aviary-original-art{filter:brightness(1.08)}
+
+/* Two working studies share the studio folio. */
+.field-study .zone-workshop .major-artifact--clay{left:12vw;top:28%;width:34vw;max-width:450px;height:43vh;max-height:400px}
+.field-study .zone-workshop .major-artifact--school{position:absolute;left:56vw;top:29%;width:31vw;height:41vh;max-height:380px;transform:rotate(2deg)}
+.field-study .major-artifact--school .artifact-face{background:color-mix(in oklab,var(--color-paper-light) 88%,#bdc6a1);border-radius:3px;transform-origin:left center;transition:transform .8s ease}
+.field-study .major-artifact--school .artifact-icon{width:100%;height:auto;position:absolute;left:0;top:15%;display:block}
+.field-study .major-artifact--school .artifact-icon svg{width:100%;height:160px;stroke:none;color:#8b9279}
+.field-study .major-artifact--school .artifact-title{position:absolute;bottom:24px;left:18px;right:18px;font-size:30px;text-align:center}
+.field-study .major-artifact--school .working-annotation{display:none}
+.field-study .major-artifact--school .artifact-reveal{inset:12% 2% 0;transform:none;padding:80px 24px 24px;z-index:0}
+.field-study .major-artifact--school .artifact-face{position:relative;z-index:2}
+.field-study .major-artifact--school.is-open .artifact-face{transform:perspective(1000px) rotateY(-75deg)}
+.field-study .major-artifact--school.is-open .school-wanderer{transform:translate(22px,10px);transition:transform 1s}
+@media(max-width:700px){
+ .field-study .zone-workshop .major-artifact--clay,.field-study .zone-workshop .major-artifact--school{top:22vh;width:40vw;height:33vh;max-height:290px;left:6vw}
+ .field-study .zone-workshop .major-artifact--school{left:53vw;top:26vh;transform:rotate(2deg)}
+ .field-study .major-artifact--school .artifact-title{font-size:21px;bottom:16px;left:8px;right:8px}
+ .field-study .major-artifact--school .artifact-icon svg{height:110px}
+ .field-study .zone-workshop .major-artifact--clay .artifact-title{font-size:21px}
+ .field-study .zone-workshop .major-artifact--clay .clay-process{display:none}
+ .field-study .zone-workshop .major-artifact--clay .clay-pen-note{width:70px!important;top:5%}
+ .field-study .zone-workshop .major-artifact--clay .clay-swatches small{display:none}
+}
+@media(prefers-reduced-motion:reduce){.field-study .major-artifact--school .artifact-face,.field-study .major-artifact--school .school-wanderer{transition:none}}
