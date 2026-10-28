@@ -926,3 +926,19 @@
 .field-study .major-artifact--school .artifact-icon{top:15%;height:43%}
 .field-study .major-artifact--school .artifact-icon svg{height:100%}
 .field-study .major-artifact--school .school-pen-note--open{top:63%}
+
+/* Keep both oracle links inside their sheets and reachable from the balls. */
+@media (min-width: 701px) {
+  .field-study .zone-oracles .curiosity--orb .curiosity-note {
+    bottom: auto;
+  }
+  .field-study .zone-oracles .curiosity--orb.is-open::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: -15px;
+    width: 280px;
+    max-width: 32vw;
+    height: 64px;
+  }
+}
